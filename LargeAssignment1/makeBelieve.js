@@ -24,7 +24,7 @@
             for(var i = 0; i < this.nodes.length; i++) {
                 for(var j = 0; j < selectorQuery.nodes.length; j++) {
                     if(this.nodes[i].parentNode == selectorQuery.nodes[j]) {
-                        if(!parents.includes(this.nodes[i].parentNode)){
+                        if(!parents.includes(this.nodes[i].parentNode)) {
                             parents[i] = this.nodes[i].parentNode;
                         }
                     }
@@ -33,7 +33,7 @@
         }
         else {
             for(var i = 0; i < this.nodes.length; i++) {
-                if(!parents.includes(this.nodes[i].parentNode)){
+                if(!parents.includes(this.nodes[i].parentNode)) {
                     parents[i] = this.nodes[i].parentNode;
                 }
             }
@@ -44,18 +44,20 @@
 
     //5.
     MakeBelieveElement.prototype.grandParent = function(optionalSelector = null) {
-        var grandParent;
+        var grandParent = [];
+
         if(optionalSelector != null) {
             var queryGrandParent = query(optionalSelector);
             for(var i = 0; i < queryGrandParent.nodes.length; i++) {
                 if(this.nodes[0].parentNode.parentNode == queryGrandParent.nodes[i]) {
-                    grandParent = this.nodes[0].parentNode.parentNode;
+                    grandParent[0] = this.nodes[0].parentNode.parentNode;
                     break;
                 }
             }
         } 
         else {
-            grandParent = this.nodes[0].parentNode.parentNode;
+            console.log(this);
+            grandParent[0] = this.nodes[0].parentNode.parentNode;
         }
 
         return new MakeBelieveElement(grandParent);
@@ -100,6 +102,8 @@
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].innerHTML = text;
         }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
     //9.
@@ -150,21 +154,69 @@
             parents[i] = this.nodes[i];
         }
 
-        for(var j = 0; j < this.nodes.length; i++) {
-            parents[i].removeChild(this.nodes[i]);
+        for(var j = 0; j < this.nodes.length; j++) {
+            parents[j].removeChild(this.nodes[j]);
         }
+    };
+
+    //12.
+    //Gugga var að vinna i ajax
+
+    //13.
+    MakeBelieveElement.prototype.css = function(change, values) {
+        var formatArr = [];
+        var upper = false;
+
+        for(var i = 0; i < change.length; i++) {
+            if(change[i] == '-') {
+                upper = true;
+                continue;
+            }
+
+            if(upper) {
+                var capitalLetter = change[i].toUpperCase();
+                formatArr.push(capitalLetter);
+                upper = false;
+                continue;
+            }
+
+            formatArr.push(change[i]);
+        }
+
+        var formattedChange = formatArr.join("");
+        
+        for(var j = 0; j < this.nodes.length; j++) {
+            this.nodes[j].style[formattedChange] = values;
+        }
+
+        return new MakeBelieveElement(this.nodes);
+    };
+
+    //13.
+    MakeBelieveElement.prototype.toggleClass = function(tClass) {
+        for(var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].classList.toggle(tClass);
+        }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
 
 })(window);
 
+
+
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
-if(typeof bla === 'object')
-    console.log('heyy');
+__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
-__('.the-appender').prepend(document.createElement('p').appendChild(document.createTextNode('Hi!')));
+//console.log(__('body'));
+//__('body').css('background-color', 'blue');
 
-__('.the-appender').prepend('<p>ROCK YOU LIKE A HURRICAIN</p>');
+//console.log(__('.cat').parent().grandParent().parent());
+
+//__('.the-appender').prepend(document.createElement('p').appendChild(document.createTextNode('Hi!')));
+
+//__('.the-appender').prepend('<p>ROCK YOU LIKE A HURRICAIN</p>');
 /*
 __('#password').onClick(function (evt) {
     console.log(evt.target.value);
