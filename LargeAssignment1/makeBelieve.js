@@ -88,14 +88,86 @@
         return new MakeBelieveElement();
     };
 
+    //7.
     MakeBelieveElement.prototype.onClick = function(evt) {
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('click', evt);
         }
     };
 
+    //8.
+    MakeBelieveElement.prototype.insertText = function(text) {
+        for(var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].innerHTML = text;
+        }
+    };
+
+    //9.
+    MakeBelieveElement.prototype.append = function(item) {
+        if(typeof item == 'string') {
+            var parser = new DOMParser();
+            var html = parser.parseFromString(item, 'text/html');
+
+            for(var i = 0; i < this.nodes.length; i++) {
+                this.nodes[i].appendChild(html.body.childNodes[0]);
+            }
+        }
+        else if(typeof item == 'object') {
+            for(var i = 0; i < this.nodes.length; i++) {
+                this.nodes[i].appendChild(item);
+            }
+        }
+        else {
+            console.log("Invalid parameter!: Must be a valid html syntax or object!");
+        }
+    };
+
+    //10.
+    MakeBelieveElement.prototype.prepend = function(item) {
+        if(typeof item == 'string') {
+            var parser = new DOMParser();
+            var html = parser.parseFromString(item, 'text/html');
+
+            for(var i = 0; i < this.nodes.length; i++) {
+                this.nodes[i].insertBefore(html.body.childNodes[0], this.nodes[i].childNodes[0]);
+            }
+        }
+        else if(typeof item == 'object') {
+            for(var i = 0; i < this.nodes.length; i++) {
+                this.nodes[i].insertBefore(item, this.nodes[i].childNodes[0]);
+            }
+        }
+        else {
+            console.log("Invalid parameter!: Must be a valid html syntax or object!");
+        }
+    };
+
+    //11.
+    MakeBelieveElement.prototype.delete = function() {
+        var parents = [];
+
+        for(var i = 0; i < this.nodes.length; i++) {
+            parents[i] = this.nodes[i];
+        }
+
+        for(var j = 0; j < this.nodes.length; i++) {
+            parents[i].removeChild(this.nodes[i]);
+        }
+    };
+
+
 })(window);
 
+//var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
+if(typeof bla === 'object')
+    console.log('heyy');
+
+__('.the-appender').prepend(document.createElement('p').appendChild(document.createTextNode('Hi!')));
+
+__('.the-appender').prepend('<p>ROCK YOU LIKE A HURRICAIN</p>');
+/*
 __('#password').onClick(function (evt) {
     console.log(evt.target.value);
+__('#paragraph-1').insertText('Its all goin down right now!');
 });
+*/
