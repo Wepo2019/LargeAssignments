@@ -24,14 +24,18 @@
             for(var i = 0; i < this.nodes.length; i++) {
                 for(var j = 0; j < selectorQuery.nodes.length; j++) {
                     if(this.nodes[i].parentNode == selectorQuery.nodes[j]) {
-                        parents[i] = this.nodes[i].parentNode;
+                        if(!parents.includes(this.nodes[i].parentNode)){
+                            parents[i] = this.nodes[i].parentNode;
+                        }
                     }
                 }
             }
         }
         else {
             for(var i = 0; i < this.nodes.length; i++) {
-                parents[i] = this.nodes[i].parentNode;
+                if(!parents.includes(this.nodes[i].parentNode)){
+                    parents[i] = this.nodes[i].parentNode;
+                }
             }
         }
 
@@ -58,9 +62,38 @@
     };
 
     //6.
+    MakeBelieveElement.prototype.ancestor = function(requiredSelector = null) {
+        //Return an empty object if there is no parameter.            
+        if(requiredSelector == null) {
+            console.log("Parameter required!");
+            return new MakeBelieveElement();
+        }
 
+        var ancestors = [];
+
+        var curr = this.nodes[0].parentNode.parentNode;
+        while(curr != undefined || curr != null) {
+            ancestors.push(curr.parentNode);
+            curr = curr.parentNode;
+        }
+
+        var desiredAncestor = query(requiredSelector).nodes[0];
+
+        for(var i = 0; i < ancestors.length; i++) {
+            if(ancestors[i] == desiredAncestor) {
+                return new MakeBelieveElement(ancestors[i]);
+            }
+        }
+
+        return new MakeBelieveElement();
+    };
 
 })(window);
 
-var test = __('.cat').grandParent('.kidasd');
-console.log(test);
+//console.log(__('#my-input input').parent());
+
+console.log(__('#password').ancestor('.ancestor'));
+
+console.log(__('#password').ancestor('.root'));
+
+console.log(__('#password').ancestor('.ancestor-sib'));
