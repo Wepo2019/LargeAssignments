@@ -88,12 +88,14 @@
         return new MakeBelieveElement();
     };
 
+    MakeBelieveElement.prototype.onClick = function(evt) {
+        for(var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].addEventListener('click', evt);
+        }
+    };
+
 })(window);
 
-//console.log(__('#my-input input').parent());
-
-console.log(__('#password').ancestor('.ancestor'));
-
-console.log(__('#password').ancestor('.root'));
-
-console.log(__('#password').ancestor('.ancestor-sib'));
+__('#password').onClick(function (evt) {
+    console.log(evt.target.value);
+});
