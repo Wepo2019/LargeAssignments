@@ -8,14 +8,14 @@
         return this.nodes.length;
     };
 
-    //1. & 2.
+    //1. & 2 & 3.
     function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     }
 
     globalObj.__ = query;
 
-    //3.
+    //4.
     MakeBelieveElement.prototype.parent = function(optionalSelector = null) {
         var parents = [];
 
@@ -38,11 +38,17 @@
         return new MakeBelieveElement(parents);
     };
 
+    //5.
     MakeBelieveElement.prototype.grandParent = function(optionalSelector = null) {
         var grandParent;
         if(optionalSelector != null) {
-            var grandChildren = query(optionalSelector);
-            grandParent = grandChildren.nodes[0].parentNode.parentNode;
+            var queryGrandParent = query(optionalSelector);
+            for(var i = 0; i < queryGrandParent.nodes.length; i++) {
+                if(this.nodes[0].parentNode.parentNode == queryGrandParent.nodes[i]) {
+                    grandParent = this.nodes[0].parentNode.parentNode;
+                    break;
+                }
+            }
         } 
         else {
             grandParent = this.nodes[0].parentNode.parentNode;
@@ -50,11 +56,11 @@
 
         return new MakeBelieveElement(grandParent);
     };
+
+    //6.
+
+
 })(window);
 
-var parent = __('.kid').parent('.item');
-console.log(parent);
-//console.log(__('.kid'));
-
-//nodelist vs array, includes, see if you can used nodelist[i] something to compare to stuff in array
-//check if you can even
+var test = __('.cat').grandParent('.kidasd');
+console.log(test);
