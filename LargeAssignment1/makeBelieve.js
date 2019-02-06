@@ -1,4 +1,4 @@
-(function (globalObj) {
+(function () {
 
     function MakeBelieveElement(nodes) {
         this.nodes = nodes;
@@ -9,11 +9,9 @@
     };
 
     //1. & 2 & 3.
-    function query(cssSelector) {
-        return new MakeBelieveElement(document.querySelectorAll(cssSelector));
+    var innerMakeBelieve = function(query) {
+        return new MakeBelieveElement(document.querySelectorAll(query));
     }
-
-    globalObj.__ = query;
 
     //4.
     MakeBelieveElement.prototype.parent = function(optionalSelector = null) {
@@ -160,7 +158,62 @@
     };
 
     //12.
-    //Gugga var að vinna i ajax
+    innerMakeBelieve.ajax = function(obj)  {
+       
+        var request = new XMLHttpRequest();
+
+        //hvað viljum við sem Success, kemur fyrst þá?
+        //allir satus kóðar á milli 200 og 400 eru sucess response, ef ekki 
+        // þá fer ég í fail 
+        function isSuccess(status) {
+            return status >= 200 && status < 400; //returnum bara status sem við fengum
+        }
+        
+        // munum að við erum að hjúpa gamla api í jacascript, xmlhtml request
+        //eru header-ar í opj sem við fengum inn?
+        // xhr (xmlHtml) það þarf að vita hverjir headeranir eru s.s. gömlu
+        // því það er það sem við erum að hjúpa
+        // röðum þeimm inn í reaquest-inu okkar key-value pair 
+        function setHeaders(request, obj) {
+            if ('headers' in obj)  {
+                for (var i = 0; i < obj.headers.length; i++) {
+                    var header = obj.headers[i];
+                    var key = Object.keys(header)[0];
+                    request.setRequestHeader(key, header[key]);
+                }
+            }
+        }   
+
+        //Hafa before send áður en ég opna???
+        // skil ekki almennilega before send fallið 
+        if(obj.beforeSend){
+
+        }
+
+        //method & url 
+        request.open(obj.method, obj.URL); 
+
+        setHeaders(request, obj); //köllum í setHeaders
+
+        // time out 
+
+        
+        // gamli vill bara fá í milli secondum svo þurfum að converta sec í milli 
+        // data 
+
+        //fall með reddy state? sem segir sucess or fail?
+        //hvernig kalla ég á skilaboðin? 
+
+        request.onReadyStateChange() = function() { //inn bygt fall 
+            if(request.readyState === XMLHttpRequest.DONE && isSuccess(status)) {
+                var resp = request.getResponseHeader('Content-Type').indexOf('xml') !== -1 ? request.responseXML : request.responseText;
+                obj.success(resp);
+            }
+            else {
+                obj.fail(request.responseText);
+            }
+        }
+    }
 
     //13.
     MakeBelieveElement.prototype.css = function(change, values) {
@@ -192,7 +245,7 @@
         return new MakeBelieveElement(this.nodes);
     };
 
-    //13.
+    //14.
     MakeBelieveElement.prototype.toggleClass = function(tClass) {
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].classList.toggle(tClass);
@@ -201,22 +254,44 @@
         return new MakeBelieveElement(this.nodes);
     };
 
+    window.__ = innerMakeBelieve;
+})();
 
-})(window);
+__.ajax({
 
+    url: 'https://serene-island-81305.herokuapp.com/200',
+    method: 'GET', 
+    timeout: 10,
+    data: {
+        name: "tuborg green for good"
+    },
+    headers: [
+        {'Authorization': 'my-secret-key'}
 
+    ],
+    sucess: function (resp) {
+        console.log("success" + resp);
+    },
+    fail: function (error) {
+        console.log("this is error" + error);
+    },
+    beforeSend: function (xhr) {
+        console.log();               // hvað kallar maður her ?
+    }
+
+});
 
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
-__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
+//__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
 //console.log(__('body'));
-//__('body').css('background-color', 'blue');
+__('body').css('background-color', 'blue');
 
 //console.log(__('.cat').parent().grandParent().parent());
 
-//__('.the-appender').prepend(document.createElement('p').appendChild(document.createTextNode('Hi!')));
+__('.the-appender').append(document.createElement('p').appendChild(document.createTextNode('Hi!')));
 
-//__('.the-appender').prepend('<p>ROCK YOU LIKE A HURRICAIN</p>');
+__('.the-appender').append('<p>ROCK YOU LIKE A HURRICAIN</p>');
 /*
 __('#password').onClick(function (evt) {
     console.log(evt.target.value);
