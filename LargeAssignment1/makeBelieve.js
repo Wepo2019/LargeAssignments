@@ -186,6 +186,11 @@
         var method = 'GET';
         if(obj.method)
             method = obj.method;
+
+        if(!obj.url) {
+            console.log("Cannot make a request without a url!");
+            return;
+        }
             
         request.open(method, obj.url); 
 
@@ -205,14 +210,19 @@
 
         //Callback functions based on state of request
         request.onreadystatechange = function() {
-            if(request.readyState === XMLHttpRequest.DONE && isSuccess(status)) {
+            if(request.readyState === XMLHttpRequest.DONE) {
                 var resp = request.getResponseHeader('Content-Type').indexOf('xml') !== -1 ? request.responseXML : request.responseText;
-                if(obj.success)
-                    obj.success(resp);
-            }
-            else {
-                if(obj.fail)
-                    obj.fail(request.responseText);
+
+                if(isSuccess(request.status)){
+                    if(obj.success) {
+                        obj.success(resp);
+                    }
+                }
+                else {
+                    if(obj.fail) {
+                        obj.fail(request.responseText);
+                    }
+                }
             }
         }
 
@@ -288,7 +298,7 @@
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/api/200',
-    method: 'GET', 
+    method: 'POST', 
     timeout: 10,
     data: {
         name: "Hjortur"
