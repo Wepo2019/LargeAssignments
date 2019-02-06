@@ -93,6 +93,7 @@
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('click', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     };
 
@@ -123,6 +124,8 @@
         else {
             console.log("Invalid parameter!: Must be a valid html syntax or object!");
         }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
     //10.
@@ -143,6 +146,8 @@
         else {
             console.log("Invalid parameter!: Must be a valid html syntax or object!");
         }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
     //11.
@@ -160,9 +165,6 @@
     
     //12.
     innerMakeBelieve.ajax = function(obj)  {
-
-        var request = new XMLHttpRequest();
-
         //Functions definitions:
         function isSuccess(status) {
             return status >= 200 && status < 400;
@@ -179,7 +181,13 @@
         }
 
         //Actions:
-        request.open(obj.method, obj.URL); 
+        var request = new XMLHttpRequest();
+        
+        var method = 'GET';
+        if(obj.method)
+            method = obj.method;
+            
+        request.open(method, obj.url); 
 
         setHeaders(request, obj);
 
@@ -195,21 +203,24 @@
             return;
         }
 
+        //Callback functions based on state of request
         request.onreadystatechange = function() {
             if(request.readyState === XMLHttpRequest.DONE && isSuccess(status)) {
                 var resp = request.getResponseHeader('Content-Type').indexOf('xml') !== -1 ? request.responseXML : request.responseText;
-                obj.success(resp);
+                if(obj.success)
+                    obj.success(resp);
             }
             else {
-                obj.fail(request.responseText);
+                if(obj.fail)
+                    obj.fail(request.responseText);
             }
         }
 
+        //If there is a beforeSend function, call it
         if(obj.beforeSend){
             obj.beforeSend();
         }
 
-        console.log(request);
         request.send(JSON.stringify(obj.data));
     }
 
@@ -257,6 +268,7 @@
         for (var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('submit', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     }
 
@@ -265,13 +277,14 @@
         for (var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('input', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     }
 
     window.__ = innerMakeBelieve;
 
 })();
-/*
+
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/api/200',
@@ -281,7 +294,7 @@ __.ajax({
         name: "Hjortur"
     },
     headers: [
-        { Authorization : 'Basic YWxhZGRpbjpvcGVuc2VzYW1l' }
+        { 'Content-Type': 'application/json' }
 
     ],
     success: function (resp) {
@@ -294,7 +307,7 @@ __.ajax({
         console.log("Before sending, we did something");
     }
 });
-*/
+
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
