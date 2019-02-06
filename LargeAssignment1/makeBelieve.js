@@ -192,7 +192,7 @@
         return new MakeBelieveElement(this.nodes);
     };
 
-    //13.
+    //14.
     MakeBelieveElement.prototype.toggleClass = function(tClass) {
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].classList.toggle(tClass);
@@ -200,6 +200,8 @@
 
         return new MakeBelieveElement(this.nodes);
     };
+
+    //15.
 
 
 })(window);
