@@ -156,24 +156,17 @@
             parents[j].removeChild(this.nodes[j]);
         }
     };
-
+    
     //12.
     innerMakeBelieve.ajax = function(obj)  {
-       
+
         var request = new XMLHttpRequest();
 
-        //hvað viljum við sem Success, kemur fyrst þá?
-        //allir satus kóðar á milli 200 og 400 eru sucess response, ef ekki 
-        // þá fer ég í fail 
+        //Functions definitions:
         function isSuccess(status) {
-            return status >= 200 && status < 400; //returnum bara status sem við fengum
+            return status >= 200 && status < 400;
         }
         
-        // munum að við erum að hjúpa gamla api í jacascript, xmlhtml request
-        //eru header-ar í opj sem við fengum inn?
-        // xhr (xmlHtml) það þarf að vita hverjir headeranir eru s.s. gömlu
-        // því það er það sem við erum að hjúpa
-        // röðum þeimm inn í reaquest-inu okkar key-value pair 
         function setHeaders(request, obj) {
             if ('headers' in obj)  {
                 for (var i = 0; i < obj.headers.length; i++) {
@@ -182,29 +175,26 @@
                     request.setRequestHeader(key, header[key]);
                 }
             }
-        }   
-
-        //Hafa before send áður en ég opna???
-        // skil ekki almennilega before send fallið 
-        if(obj.beforeSend){
-
         }
 
-        //method & url 
+        //Actions:
         request.open(obj.method, obj.URL); 
 
-        setHeaders(request, obj); //köllum í setHeaders
+        setHeaders(request, obj);
 
-        // time out 
+        //Setting timeout of request
+        if(typeof obj.timeout == 'number' && obj.timeout > 0) {
+            var convertedTime = (obj.timeout * 1000);
+            request.timeout = convertedTime;
+        }
 
-        
-        // gamli vill bara fá í milli secondum svo þurfum að converta sec í milli 
-        // data 
+        //Do something when timeout occurs
+        request.ontimeout = function(evt) {
+            console.log("Request timed out after: " + obj.timeout + "seconds!");
+            return;
+        }
 
-        //fall með reddy state? sem segir sucess or fail?
-        //hvernig kalla ég á skilaboðin? 
-
-        request.onReadyStateChange() = function() { //inn bygt fall 
+        request.onreadystatechange = function() {
             if(request.readyState === XMLHttpRequest.DONE && isSuccess(status)) {
                 var resp = request.getResponseHeader('Content-Type').indexOf('xml') !== -1 ? request.responseXML : request.responseText;
                 obj.success(resp);
@@ -213,6 +203,13 @@
                 obj.fail(request.responseText);
             }
         }
+
+        if(obj.beforeSend){
+            obj.beforeSend();
+        }
+
+        console.log(request);
+        request.send(JSON.stringify(obj.data));
     }
 
     //13.
@@ -255,44 +252,47 @@
     };
 
     //15.
+    
 
     window.__ = innerMakeBelieve;
+
 })();
 
 __.ajax({
 
-    url: 'https://serene-island-81305.herokuapp.com/200',
+    url: 'https://serene-island-81305.herokuapp.com/api/200',
     method: 'GET', 
     timeout: 10,
     data: {
-        name: "tuborg green for good"
+        name: "Hjortur"
     },
     headers: [
-        {'Authorization': 'my-secret-key'}
+        { Authorization : 'Basic YWxhZGRpbjpvcGVuc2VzYW1l' }
 
     ],
-    sucess: function (resp) {
-        console.log("success" + resp);
+    success: function (resp) {
+        console.log("Success " + resp);
     },
     fail: function (error) {
-        console.log("this is error" + error);
+        console.log("Error " + error);
     },
     beforeSend: function (xhr) {
-        console.log();               // hvað kallar maður her ?
+        console.log("Before sending, we did something");
     }
 });
+
 
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
 //console.log(__('body'));
-__('body').css('background-color', 'blue');
+//__('body').css('background-color', 'blue');
 
 //console.log(__('.cat').parent().grandParent().parent());
 
-__('.the-appender').append(document.createElement('p').appendChild(document.createTextNode('Hi!')));
+//__('.the-appender').append(document.createElement('p').appendChild(document.createTextNode('Hi!')));
 
-__('.the-appender').append('<p>ROCK YOU LIKE A HURRICAIN</p>');
+//__('.the-appender').append('<p>ROCK YOU LIKE A HURRICAIN</p>');
 /*
 __('#password').onClick(function (evt) {
     console.log(evt.target.value);
