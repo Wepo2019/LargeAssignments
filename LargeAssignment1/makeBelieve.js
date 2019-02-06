@@ -93,6 +93,7 @@
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('click', evt);
         }
+        return new MakeBelieveElement(this.nodes);
     };
 
     //8.
@@ -255,10 +256,24 @@
     };
 
     //15.
+    MakeBelieveElement.prototype.onSubmit = function (evt) {
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].addEventListener('submit', evt);
+        }
+        return new MakeBelieveElement(this.nodes);
+    }
+
+    //16.
+    MakeBelieveElement.prototype.onInput = function (evt) {
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].addEventListener('input', evt);
+        }
+        return new MakeBelieveElement(this.nodes);
+    }
 
     window.__ = innerMakeBelieve;
 })();
-
+/*
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/200',
@@ -281,12 +296,12 @@ __.ajax({
         console.log();               // hvað kallar maður her ?
     }
 });
-
+*/
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
 //console.log(__('body'));
-__('body').css('background-color', 'blue');
+//__('body').css('background-color', 'blue');
 
 //console.log(__('.cat').parent().grandParent().parent());
 
@@ -299,3 +314,8 @@ __('#password').onClick(function (evt) {
 __('#paragraph-1').insertText('Its all goin down right now!');
 });
 */
+
+//Q.16
+__('#password').onInput(function (evt) {
+    console.log(evt.target.value);
+});
