@@ -4,10 +4,6 @@
         this.nodes = nodes;
     }
 
-    MakeBelieveElement.prototype.getLength = function() {
-        return this.nodes.length;
-    };
-
     //1. & 2 & 3.
     var innerMakeBelieve = function(query) {
         return new MakeBelieveElement(document.querySelectorAll(query));
@@ -66,7 +62,7 @@
         //Return an empty object if there is no parameter.            
         if(requiredSelector == null) {
             console.log("Parameter required!");
-            return new MakeBelieveElement();
+            return;
         }
 
         var ancestors = [];
@@ -118,7 +114,7 @@
         }
         else if(typeof item == 'object') {
             for(var i = 0; i < this.nodes.length; i++) {
-                this.nodes[i].appendChild(item);
+                this.nodes[i].appendChild(item.parentNode);
             }
         }
         else {
@@ -140,7 +136,7 @@
         }
         else if(typeof item == 'object') {
             for(var i = 0; i < this.nodes.length; i++) {
-                this.nodes[i].insertBefore(item, this.nodes[i].childNodes[0]);
+                this.nodes[i].insertBefore(item.parentNode, this.nodes[i].childNodes[0]);
             }
         }
         else {
@@ -221,6 +217,7 @@
                 else {
                     if(obj.fail) {
                         obj.fail(request.responseText);
+                        //Should we return here?
                     }
                 }
             }
@@ -294,7 +291,7 @@
     window.__ = innerMakeBelieve;
 
 })();
-
+/*
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/api/200',
@@ -317,6 +314,7 @@ __.ajax({
         console.log("Before sending, we did something");
     }
 });
+*/
 
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
@@ -337,6 +335,6 @@ __('#paragraph-1').insertText('Its all goin down right now!');
 */
 
 //Q.16
-__('#password').onInput(function (evt) {
-    console.log(evt.target.value);
-});
+//__('#password').onInput(function (evt) {
+//    console.log(evt.target.value);
+//});
