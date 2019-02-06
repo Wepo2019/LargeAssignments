@@ -254,6 +254,8 @@
         return new MakeBelieveElement(this.nodes);
     };
 
+    //15.
+
     window.__ = innerMakeBelieve;
 })();
 
@@ -278,7 +280,6 @@ __.ajax({
     beforeSend: function (xhr) {
         console.log();               // hvað kallar maður her ?
     }
-
 });
 
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
