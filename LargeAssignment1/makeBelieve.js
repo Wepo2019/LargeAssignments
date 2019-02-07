@@ -1,3 +1,5 @@
+//Hjörtur Jóhann Vignisson, Guðrún Margrét Ívansdóttir og Ívar Kristinn Hallsson
+
 (function () {
 
     function MakeBelieveElement(nodes) {
