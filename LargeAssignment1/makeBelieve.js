@@ -4,10 +4,6 @@
         this.nodes = nodes;
     }
 
-    MakeBelieveElement.prototype.getLength = function() {
-        return this.nodes.length;
-    };
-
     //1. & 2 & 3.
     var innerMakeBelieve = function(query) {
         return new MakeBelieveElement(document.querySelectorAll(query));
@@ -66,7 +62,7 @@
         //Return an empty object if there is no parameter.            
         if(requiredSelector == null) {
             console.log("Parameter required!");
-            return new MakeBelieveElement();
+            return;
         }
 
         var ancestors = [];
@@ -93,6 +89,7 @@
         for(var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('click', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     };
 
@@ -117,12 +114,14 @@
         }
         else if(typeof item == 'object') {
             for(var i = 0; i < this.nodes.length; i++) {
-                this.nodes[i].appendChild(item);
+                this.nodes[i].appendChild(item.parentNode);
             }
         }
         else {
             console.log("Invalid parameter!: Must be a valid html syntax or object!");
         }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
     //10.
@@ -137,12 +136,14 @@
         }
         else if(typeof item == 'object') {
             for(var i = 0; i < this.nodes.length; i++) {
-                this.nodes[i].insertBefore(item, this.nodes[i].childNodes[0]);
+                this.nodes[i].insertBefore(item.parentNode, this.nodes[i].childNodes[0]);
             }
         }
         else {
             console.log("Invalid parameter!: Must be a valid html syntax or object!");
         }
+
+        return new MakeBelieveElement(this.nodes);
     };
 
     //11.
@@ -160,9 +161,6 @@
     
     //12.
     innerMakeBelieve.ajax = function(obj)  {
-
-        var request = new XMLHttpRequest();
-
         //Functions definitions:
         function isSuccess(status) {
             return status >= 200 && status < 400;
@@ -179,7 +177,18 @@
         }
 
         //Actions:
-        request.open(obj.method, obj.url); 
+        var request = new XMLHttpRequest();
+        
+        var method = 'GET';
+        if(obj.method)
+            method = obj.method;
+
+        if(!obj.url) {
+            console.log("Cannot make a request without a url!");
+            return;
+        }
+            
+        request.open(method, obj.url); 
 
         setHeaders(request, obj);
 
@@ -195,21 +204,30 @@
             return;
         }
 
+        //Callback functions based on state of request
         request.onreadystatechange = function() {
-            if(request.readyState === XMLHttpRequest.DONE && isSuccess(status)) {
+            if(request.readyState === XMLHttpRequest.DONE) {
                 var resp = request.getResponseHeader('Content-Type').indexOf('xml') !== -1 ? request.responseXML : request.responseText;
-                obj.success(resp);
-            }
-            else {
-                obj.fail(request.responseText);
+
+                if(isSuccess(request.status)){
+                    if(obj.success) {
+                        obj.success(resp);
+                    }
+                }
+                else {
+                    if(obj.fail) {
+                        obj.fail(request.responseText);
+                        //Should we return here?
+                    }
+                }
             }
         }
 
+        //If there is a beforeSend function, call it
         if(obj.beforeSend){
             obj.beforeSend();
         }
 
-        console.log(request);
         request.send(JSON.stringify(obj.data));
     }
 
@@ -257,6 +275,7 @@
         for (var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('submit', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     }
 
@@ -265,6 +284,7 @@
         for (var i = 0; i < this.nodes.length; i++) {
             this.nodes[i].addEventListener('input', evt);
         }
+
         return new MakeBelieveElement(this.nodes);
     }
 
@@ -275,13 +295,13 @@
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/api/200',
-    method: 'GET', 
+    method: 'POST', 
     timeout: 10,
     data: {
         name: "Hjortur"
     },
     headers: [
-        { Authorization : 'Basic YWxhZGRpbjpvcGVuc2VzYW1l' }
+        { 'Content-Type': 'application/json' }
 
     ],
     success: function (resp) {
@@ -294,6 +314,7 @@ __.ajax({
         console.log("Before sending, we did something");
     }
 });
+*/
 
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
@@ -314,6 +335,6 @@ __('#paragraph-1').insertText('Its all goin down right now!');
 */
 
 //Q.16
-__('#password').onInput(function (evt) {
-    console.log(evt.target.value);
-});
+//__('#password').onInput(function (evt) {
+//    console.log(evt.target.value);
+//});
