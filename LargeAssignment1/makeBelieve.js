@@ -179,7 +179,7 @@
         }
 
         //Actions:
-        request.open(obj.method, obj.URL); 
+        request.open(obj.method, obj.url); 
 
         setHeaders(request, obj);
 
@@ -271,7 +271,7 @@
     window.__ = innerMakeBelieve;
 
 })();
-/*
+
 __.ajax({
 
     url: 'https://serene-island-81305.herokuapp.com/api/200',
@@ -294,7 +294,7 @@ __.ajax({
         console.log("Before sending, we did something");
     }
 });
-*/
+
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
