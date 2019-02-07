@@ -13,8 +13,8 @@
     MakeBelieveElement.prototype.parent = function(optionalSelector = null) {
         var parents = [];
 
-        if(optionalSelector != null) {
-            var selectorQuery = query(optionalSelector);
+        if (optionalSelector != null) {
+            var selectorQuery = innerMakeBelieve(optionalSelector);
             for(var i = 0; i < this.nodes.length; i++) {
                 for(var j = 0; j < selectorQuery.nodes.length; j++) {
                     if(this.nodes[i].parentNode == selectorQuery.nodes[j]) {
@@ -41,7 +41,7 @@
         var grandParent = [];
 
         if(optionalSelector != null) {
-            var queryGrandParent = query(optionalSelector);
+            var queryGrandParent = innerMakeBelieve(optionalSelector);
             for(var i = 0; i < queryGrandParent.nodes.length; i++) {
                 if(this.nodes[0].parentNode.parentNode == queryGrandParent.nodes[i]) {
                     grandParent[0] = this.nodes[0].parentNode.parentNode;
@@ -73,7 +73,7 @@
             curr = curr.parentNode;
         }
 
-        var desiredAncestor = query(requiredSelector).nodes[0];
+        var desiredAncestor = innerMakeBelieve(requiredSelector).nodes[0];
 
         for(var i = 0; i < ancestors.length; i++) {
             if(ancestors[i] == desiredAncestor) {
@@ -147,8 +147,9 @@
     };
 
     //11.
+    //TODO: SKOÐA
     MakeBelieveElement.prototype.delete = function() {
-        var parents = [];
+        /*var parents = [];
 
         for(var i = 0; i < this.nodes.length; i++) {
             parents[i] = this.nodes[i];
@@ -156,6 +157,10 @@
 
         for(var j = 0; j < this.nodes.length; j++) {
             parents[j].removeChild(this.nodes[j]);
+        }
+        */
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].remove();
         }
     };
     
@@ -191,6 +196,12 @@
         request.open(method, obj.url); 
 
         setHeaders(request, obj);
+
+        //Default Data
+        var data = {};
+        if (obj.data) {
+            data = obj.data;
+        }
 
         //Setting timeout of request
         if(typeof obj.timeout == 'number' && obj.timeout > 0) {
@@ -228,7 +239,7 @@
             obj.beforeSend();
         }
 
-        request.send(JSON.stringify(obj.data));
+        request.send(JSON.stringify(data));
     }
 
     //13.
@@ -292,30 +303,6 @@
 
 })();
 
-__.ajax({
-
-    url: 'https://serene-island-81305.herokuapp.com/api/200',
-    method: 'POST', 
-    timeout: 10,
-    data: {
-        name: "Hjortur"
-    },
-    headers: [
-        { 'Content-Type': 'application/json' }
-
-    ],
-    success: function (resp) {
-        console.log("Success " + resp);
-    },
-    fail: function (error) {
-        console.log("Error " + error);
-    },
-    beforeSend: function (xhr) {
-        console.log("Before sending, we did something");
-    }
-});
-*/
-
 //var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
 //__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
 
@@ -324,16 +311,89 @@ __.ajax({
 
 //console.log(__('.cat').parent().grandParent().parent());
 
+/*******   TESTS   *******/
+//Q.1, Q.2
+//var inputs = __('#Q2');
+//console.log(inputs);
+//Q.3
+//skoða
+//Q.4
+//var emptyparent = __('#password').parent();
+//console.log(emptyparent);
+//var formparent = __('#password').parent('#my-input');
+//console.log(formparent);
+//Q.5
+//var GParent = __('#password').grandParent();
+//console.log(GParent);
+//var IdGParent = __('#password').grandParent('#grandfather');
+//console.log(IdGParent);
+//Q.6
+//var root = __('#password').ancestor('.root');
+//console.log(root);
+//var ancestor = __('#password').ancestor('.ancestor');
+//console.log(ancestor);
+//var ancestorsib = __('#password').ancestor('.ancestor-sib');
+//console.log(ancestorsib);
+// TODO: SKOÐA
+//var chainancestorrootparent = __('.ancestor').parent();
+//console.log(chainancestorrootparent);
+//Q.7
+//__('#password').onClick(function (evt) {
+//    console.log(evt.target.value);
+//});
+//ChainTest
+//__('#password').onClick(function (evt) {
+//    console.log(evt.target.value);
+//}).css('background-color', 'blue');
+//Q.8
+//__('#paragraph-2').insertText('The Best, The Best, The Best of you!!!!!');
+//__('#paragraph-1').insertText('Its all goin down right now!');
+//Q.9
 //__('.the-appender').append(document.createElement('p').appendChild(document.createTextNode('Hi!')));
-
 //__('.the-appender').append('<p>ROCK YOU LIKE A HURRICAIN</p>');
+//Q.10
+//__('.the-prepender').prepend('<p>You're the pretender</p>');
+//__('.the-prepender').prepend(
+//document.createElement('p')
+//    .appendChild(
+//    document.createTextNode('Pretender paragraph!')
+//)
+//);
+//Q.11
+//__('.the-prepender').delete();
+//__('.the-appender').delete();
+//Q.12
 /*
-__('#password').onClick(function (evt) {
-    console.log(evt.target.value);
-__('#paragraph-1').insertText('Its all goin down right now!');
-});
+__.ajax({
+    url: 'https://serene-island-81305.herokuapp.com/api/200',
+    method: 'GET',
+    timeout: 10,
+    data: {
+        //name: "Hjortur"
+        },
+        headers: [
+            { 'Content-Type': 'application/json' }
+    
+        ],
+        success: function (resp) {
+            console.log("Success " + resp);
+        },
+        fail: function (error) {
+            console.log("Error " + error);
+        },
+        beforeSend: function (xhr) {
+            console.log("Before sending, we did something");
+        }
+    });
 */
-
+//Q.13
+//__('body').css('background-color', 'blue');
+//Q.14
+//__('body').toggleClass('bla');
+//Q.15
+//__('#my-input').onSubmit(function (evt) {
+//    //????
+//});
 //Q.16
 //__('#password').onInput(function (evt) {
 //    console.log(evt.target.value);
