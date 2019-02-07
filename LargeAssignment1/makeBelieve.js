@@ -38,23 +38,30 @@
 
     //5.
     MakeBelieveElement.prototype.grandParent = function(optionalSelector = null) {
-        var grandParent = [];
+        var grandParents = [];
 
         if(optionalSelector != null) {
             var queryGrandParent = innerMakeBelieve(optionalSelector);
-            for(var i = 0; i < queryGrandParent.nodes.length; i++) {
-                if(this.nodes[0].parentNode.parentNode == queryGrandParent.nodes[i]) {
-                    grandParent[0] = this.nodes[0].parentNode.parentNode;
-                    break;
+            for(var i = 0; i < this.nodes.length; i++) {
+                for(var j = 0; j < queryGrandParent.nodes.length; j++) {
+                    if(this.nodes[i].parentNode.parentNode == queryGrandParent.nodes[j]) {
+                        if(!grandParents.includes(this.nodes[i].parentNode.parentNode)) {
+                            grandParents.push(this.nodes[i].parentNode.parentNode);
+                            break;
+                        }
+                    }
                 }
             }
         } 
         else {
-            console.log(this);
-            grandParent[0] = this.nodes[0].parentNode.parentNode;
+            for(var i = 0; i < this.nodes.length; i++) {
+                if(!grandParents.includes(this.nodes[i].parentNode.parentNode)) {
+                    grandParents[i] = this.nodes[i].parentNode.parentNode;
+                }
+            }
         }
 
-        return new MakeBelieveElement(grandParent);
+        return new MakeBelieveElement(grandParents);
     };
 
     //6.
@@ -65,23 +72,28 @@
             return;
         }
 
-        var ancestors = [];
+        var desiredAncestors = innerMakeBelieve(requiredSelector);
 
-        var curr = this.nodes[0].parentNode.parentNode;
-        while(curr != undefined || curr != null) {
-            ancestors.push(curr.parentNode);
-            curr = curr.parentNode;
-        }
+        var correctAncestors = [];
 
-        var desiredAncestor = innerMakeBelieve(requiredSelector).nodes[0];
-
-        for(var i = 0; i < ancestors.length; i++) {
-            if(ancestors[i] == desiredAncestor) {
-                return new MakeBelieveElement(ancestors[i]);
+        for(var i = 0; i < this.nodes.length; i++) {
+            var ancestors = [];
+            var curr = this.nodes[i].parentNode.parentNode;
+            while(curr != undefined || curr != null) {
+                ancestors.push(curr.parentNode);
+                curr = curr.parentNode;
+            }
+            
+            for(var j = 0; j < ancestors.length; j++) {
+                for(var k = 0; k < desiredAncestors.nodes.length; k++) {
+                    if(ancestors[j] == desiredAncestors.nodes[k]) {
+                        correctAncestors.push(ancestors[j]);
+                    }
+                }
             }
         }
 
-        return new MakeBelieveElement();
+        return new MakeBelieveElement(correctAncestors);
     };
 
     //7.
@@ -147,20 +159,13 @@
     };
 
     //11.
-    //TODO: SKOÐA
+    //TODO: SKOA
     MakeBelieveElement.prototype.delete = function() {
-        /*var parents = [];
-
         for(var i = 0; i < this.nodes.length; i++) {
-            parents[i] = this.nodes[i];
-        }
+            var currElem = this.nodes[i];
 
-        for(var j = 0; j < this.nodes.length; j++) {
-            parents[j].removeChild(this.nodes[j]);
-        }
-        */
-        for (var i = 0; i < this.nodes.length; i++) {
-            this.nodes[i].remove();
+            var del = currElem;
+            del.parentNode.removeChild(del);
         }
     };
     
@@ -303,30 +308,28 @@
 
 })();
 
-//var bla = document.createElement('p').appendChild(document.createTextNode('what am i!'));
-//__('.dog').toggleClass('cat').toggleClass('dog').toggleClass('mom');
-
-//console.log(__('body'));
-//__('body').css('background-color', 'blue');
-
-//console.log(__('.cat').parent().grandParent().parent());
+//console.log(__('.Gugga').ancestor('.item').grandParent() );
 
 /*******   TESTS   *******/
 //Q.1, Q.2
 //var inputs = __('#Q2');
 //console.log(inputs);
+
 //Q.3
-//skoða
+//Everything chains!
+
 //Q.4
 //var emptyparent = __('#password').parent();
 //console.log(emptyparent);
 //var formparent = __('#password').parent('#my-input');
 //console.log(formparent);
+
 //Q.5
-//var GParent = __('#password').grandParent();
+//var GParent = __('.Gugga').grandParent().grandParent();
 //console.log(GParent);
 //var IdGParent = __('#password').grandParent('#grandfather');
 //console.log(IdGParent);
+
 //Q.6
 //var root = __('#password').ancestor('.root');
 //console.log(root);
@@ -334,9 +337,10 @@
 //console.log(ancestor);
 //var ancestorsib = __('#password').ancestor('.ancestor-sib');
 //console.log(ancestorsib);
-// TODO: SKOÐA
-//var chainancestorrootparent = __('.ancestor').parent();
+
+//var chainancestorrootparent = __('.Gugga').ancestor('.kid').parent();
 //console.log(chainancestorrootparent);
+
 //Q.7
 //__('#password').onClick(function (evt) {
 //    console.log(evt.target.value);
@@ -345,12 +349,15 @@
 //__('#password').onClick(function (evt) {
 //    console.log(evt.target.value);
 //}).css('background-color', 'blue');
+
 //Q.8
 //__('#paragraph-2').insertText('The Best, The Best, The Best of you!!!!!');
 //__('#paragraph-1').insertText('Its all goin down right now!');
+
 //Q.9
 //__('.the-appender').append(document.createElement('p').appendChild(document.createTextNode('Hi!')));
 //__('.the-appender').append('<p>ROCK YOU LIKE A HURRICAIN</p>');
+
 //Q.10
 //__('.the-prepender').prepend('<p>You're the pretender</p>');
 //__('.the-prepender').prepend(
@@ -359,9 +366,11 @@
 //    document.createTextNode('Pretender paragraph!')
 //)
 //);
+
 //Q.11
 //__('.the-prepender').delete();
 //__('.the-appender').delete();
+
 //Q.12
 /*
 __.ajax({
@@ -386,14 +395,18 @@ __.ajax({
         }
     });
 */
+
 //Q.13
 //__('body').css('background-color', 'blue');
+
 //Q.14
 //__('body').toggleClass('bla');
+
 //Q.15
 //__('#my-input').onSubmit(function (evt) {
-//    //????
+//    console.log(evt.target.value);
 //});
+
 //Q.16
 //__('#password').onInput(function (evt) {
 //    console.log(evt.target.value);
