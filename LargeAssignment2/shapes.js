@@ -1,6 +1,3 @@
-//define the shapes
-
-//parent klasi
 
 function Shape(position) { 
     this.position = position;
@@ -20,7 +17,6 @@ function Rectangle(position, width, height) {
     this.height = height;
 };
 
-//aaign the prototype 
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
