@@ -26,6 +26,7 @@ $(function() {
             $(this).addClass('selected');
             drawio.selectedShape = $(this).data('shape');
         });
+       
 
         $('#my-canvas').on('mousedown', function (mouseEvent) {
             switch (drawio.selectedShape) {
