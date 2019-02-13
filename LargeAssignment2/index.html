@@ -26,9 +26,8 @@
             display: inline-block;
             font-size: 2em;
             float: right;
-            width: 100px;
-            top: 15px;
             transition: color .5s;
+            color: firebrick;
         }
         .icon:hover {
             color: red;
@@ -54,7 +53,16 @@
             font-weight: 700;
             font-style: normal;
         }
-      
+        .rightSidebar {
+            height: 100%;
+            width: 320px;
+            position: fixed;
+            top: 45px;
+            left: 0;
+            background-color: black;
+            overflow-x: hidden;
+            margin-top: 145px;
+        }
 
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -65,11 +73,20 @@
         </nav>
 
         <div class="rightSidebar">
-           
+            <div class="icon selected" data-shape="undo">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+            </div><br><br>
+            <div class="icon selected" data-shape="redo">
+                <i class="fa fa-repeat" aria-hidden="true"></i>
+            </div><br><br>
+            <div class="icon selected" data-shape="save">
+                <i class="fa fa-save" aria-hidden="true"></i>
+            </div>
         </div>
+
         <div class="container">
             <canvas id="my-canvas" width="793" height="1122">
-                not supported
+                Not supported!
             </canvas>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" charset="utf-8"></script>
