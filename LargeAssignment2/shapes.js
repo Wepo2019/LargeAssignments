@@ -1,16 +1,18 @@
 
-function Shape(position) { 
+function Shape(position) {
     this.position = position;
 };
 
 Shape.prototype.render = function () {};
 
 Shape.prototype.move = function (position) {
-    this.position = position; 
+    this.position = position;
 };
 
-Shape.prototype.resize = function ()  {};
+Shape.prototype.resize = function () {};
 
+
+//Rectangle shape
 function Rectangle(position, width, height) {
     Shape.call(this, position);
     this.width = width;
@@ -22,10 +24,9 @@ Rectangle.prototype.constructor = Rectangle;
 
 Rectangle.prototype.render = function () {
     drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-};
+}
 
 Rectangle.prototype.resize = function (x, y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
 };
-
