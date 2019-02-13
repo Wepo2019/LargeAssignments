@@ -2,65 +2,73 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>HTML 5 Canvas Structure</title>
+        <title> Large Assignment 2 - Drawio </title>
         <style media="screen">
         body {
             padding: 0;
             margin: 0;
+            background-color: black;
         }
         .container {
-            padding: 20px;
+            width: 1200px;
+            margin: 0 auto;
+            height: 100%;
         }
         #my-canvas {
-            background-color: lightblue;
+            background-color: white;
             box-shadow: 1px 1px 1px;
             margin: 0 auto;
             display: block;
+            border: 5px solid;
         }
         .icon {
             position: relative;
             display: inline-block;
-            font-size: 4em;
+            font-size: 2em;
             float: right;
             width: 100px;
             top: 15px;
             transition: color .5s;
         }
         .icon:hover {
-            color: orange;
+            color: red;
             cursor: pointer;
         }
         .icon.selected {
-            color: yellow;
+            color: red;
         }
         .navbar {
-            height: 100 px;
-            background-color: rgb(50, 100, 200, 0.5);
-            border-bottom: solid 6px rgba(50, 100, 200, 1);
+            height: 185px;
+            background-color: black; 
+            padding-top: 1px;
         }
+        .navbar p  {
+            font-size: 100px;
+            font-family: 'Ostrich Sans';
+            color: red;
+            padding-left: 35%;
+        } 
+        @font-face {
+            font-family: 'Ostrich Sans';
+            src: url('ostrich-sans-bold.ttf') ;
+            font-weight: 700;
+            font-style: normal;
+        }
+      
+
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     </head>
     <body>
         <nav class="navbar">
-            <div class="icon selected" data-shape="rectangle">
-                <i class="fa fa-square-o" aria-hidden="true"></i>
-            </div>
-            <div class="icon selected" data-shape="star">
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-            </div>
-            <div class="icon selected" data-shape="undo">
-                    <i class="fa fa-undo" aria-hidden="true"></i>
-                </div>
-            <div class="icon selected" data-shape="pen">
-                <i class="fa fa-paint-brush" aria-hidden="true"></i>
-            </div>
-            <div class="icon selected" data-shape="redo">
-                    <i class="fa fa-repeat" aria-hidden="true"></i>
-                </div>
+            <p> D R A W I O </p>
         </nav>
+
+        <div class="rightSidebar">
+           
+        </div>
         <div class="container">
-            <canvas id="my-canvas" width="800" height="600">
+            <canvas id="my-canvas" width="793" height="1122">
                 not supported
             </canvas>
         </div>
