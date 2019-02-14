@@ -21,24 +21,14 @@
             display: block;
             border: 5px solid;
         }
-        .icon {
-            position: relative;
-            display: inline-block;
-            font-size: 2em;
-            transition: color .5s;
-            color: firebrick;
+        @font-face {
+            font-family: 'Ostrich Sans';
+            src: url('./font/ostrich-sans-bold.ttf') ;
+            font-weight: 700;
+            font-style: normal;
         }
-        
-        .icon:hover { 
-            color: red;
-            cursor: pointer;
-        }
-        .icon.selected {
-            color: red;
-        }
-
         .navbar {
-            height: 185px;
+            height: 180px;
             background-color: black; 
             padding-top: 1px;
         }
@@ -46,14 +36,8 @@
             font-size: 100px;
             font-family: 'Ostrich Sans';
             color: red;
-            padding-left: 35%;
+            padding-left: 36%;
         } 
-        @font-face {
-            font-family: 'Ostrich Sans';
-            src: url('./font/ostrich-sans-bold.ttf') ;
-            font-weight: 700;
-            font-style: normal;
-        }
         .leftSidebar {
             height: 100%;
             width: 320px;
@@ -71,13 +55,26 @@
             top: 45px;
             right: 0;
             background-color: black;
-            overflow-x: hidden;
-            margin-top: 145px;
+            margin-top: 110px;
         }
-
         .rightSidebar p {
             font-family: 'Ostrich Sans';
             font-size: 30px;
+            color: red;
+            padding-left: 15%;
+        }
+        .icon {
+            position: relative;
+            display: inline-block;
+            font-size: 2em;
+            transition: color .5s;
+            color: firebrick;
+        }
+        .icon:hover { 
+            color: red;
+            cursor: pointer;
+        }
+        .icon.selected {
             color: red;
         }
         .icon#right {
@@ -87,7 +84,96 @@
         .icon#left {
             float: right;
         }
-       
+
+        .colors button{
+            border: 1px solid;
+            height: 30px;
+            width: 30px;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+        .colors {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        
+        .button:hover {opacity: 1} 
+        
+        .colors .blackButton{
+        border: 1px solid red ;
+        border-radius: 2px;
+        background-color: black;
+        }
+        .colors .yellowButton{
+        border: 1px solid yellow;
+        border-radius: 2px;
+        background-color: yellow;
+        }
+        .colors .redButton{
+        border: 1px solid red;
+        border-radius: 2px;
+        background-color: red;
+        }
+        .colors .greenButton{
+        border: 1px solid green ;
+        border-radius: 2px;
+        background-color: green;
+        }
+        .colors .blueButton{
+        border: 1px solid blue ;
+        border-radius: 2px;
+        background-color: blue;
+        }
+        .colors .whiteButton{
+        border: 1px solid white ;
+        border-radius: 2px;
+        background-color: white;
+        }
+        .colors .purpleButton{
+        border: 1px solid purple;
+        border-radius: 2px;
+        background-color: purple;
+        }
+        .colors .brownButton{
+        border: 1px solid brown;
+        border-radius: 2px;
+        background-color: brown;
+        }
+        .colors .pinkButton{
+        border: 1px solid pink ;
+        border-radius: 2px;
+        background-color: pink;
+        }
+        .colors .orangeButton{
+        border: 1px solid orange ;
+        border-radius: 2px;
+        background-color: orange;
+        }
+        .colors .AquaButton{
+        border: 1px solid Aqua;
+        border-radius: 2px;
+        background-color: aqua;
+        }
+        .colors .AntiqueWhiteButton{
+        border: 1px solid AntiqueWhite;
+        border-radius: 2px;
+        background-color: AntiqueWhite;
+        }
+        .colors .AntiqueWhiteButton{
+        border: 1px solid AntiqueWhite;
+        border-radius: 2px;
+        background-color: AntiqueWhite;
+        }
+        .colors .FuchsiaButton{
+        border: 1px solid Fuchsia;
+        border-radius: 2px;
+        background-color: Fuchsia;
+        }
+        .colors .GreenYellowButton{
+        border: 1px solid GreenYellow;
+        border-radius: 2px;
+        background-color: GreenYellow;
+        }
 
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -115,8 +201,8 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
             <div class="icon selected" id="right" data-shape="looked-like-line">
-                    <i class="fa fa-window-minimize" aria-hidden="true"></i>
-                </div>
+                <i class="fa fa-window-minimize" aria-hidden="true"></i>
+            </div>
             <div class="icon selected" id="right" data-shape="square">
                 <i class="fa fa-square-o" aria-hidden="true"></i>
             </div>
@@ -124,11 +210,32 @@
                 <i class="fa fa-circle-thin" aria-hidden="true"></i>
             </div>
             <div class="icon selected" id="right" data-shape="text">
-                    <i class="fa fa fa-font" aria-hidden="true"></i>
-                </div>
+                <i class="fa fa fa-font" aria-hidden="true"></i>
+            </div>
+            <br><br>
+            <div class="colors">
+                    <p> Colors</p>
+                <div>
+                        <button id="black" class="blackButton" type="button"></button>
+                        <button id="yellow"class="yellowButton" type="button"></button>
+                        <button id="red" class="redButton" type="button"></button>
+                        <button id="green" class="greenButton" type="button"></button>
+                        <button id="blueC" class="blueButton" type="button"></button>
+                        <button id="white" class="white" type="button"></button>
+                        <button id="purple" class="purpleButton" type="button"></button>
+                        <button id="brown" class="brownButton" type="button"></button>
+                        <button id="pink" class="pinkButton" type="button"></button>
+                        <button id="orange" class="orangeButton" type="button"></button>
+                        <button id="grey" class="AquaButton" type="button"></button>
+                        <button id="pink" class="AntiqueWhiteButton" type="button"></button>
+                        <button id="orange" class="FuchsiaButton" type="button"></button>
+                        <button id="grey" class="GreenYellowButton" type="button"></button>
+                    </div>
+            </div>
+           
+
         </div>
        
-
         <div class="container">
             <canvas id="my-canvas" width="793" height="1122">
                 Not supported!
