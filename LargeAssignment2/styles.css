@@ -1,0 +1,181 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+#my-canvas {
+    background-color: white;
+    box-shadow: 1px 1px 1px;
+    margin: 0 auto;
+    display: block;
+    border: 5px solid;
+}
+@font-face {
+    font-family: 'Ostrich Sans';
+    src: url('./font/ostrich-sans-bold.ttf') ;
+    font-weight: 700;
+    font-style: normal;
+}
+.navbar {
+    height: 180px;
+    background-color: black; 
+    padding-top: 1px;
+}
+.navbar p  {
+    font-size: 100px;
+    font-family: 'Ostrich Sans';
+    color: red;
+    padding-left: 36%;
+} 
+.leftSidebar {
+    height: 100%;
+    width: 320px;
+    position: fixed;
+    top: 45px;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+    margin-top: 145px;
+}
+.rightSidebar {
+    height: 100%;
+    width: 320px;
+    position: fixed;
+    top: 45px;
+    right: 0;
+    background-color: black;
+    margin-top: 110px;
+}
+
+.rightSidebar p {
+    font-family: 'Ostrich Sans';
+    font-size: 30px;
+    color: red;
+}
+.rightSidebar #p1 {
+   
+    padding-left: 20%;
+}
+.rightSidebar #p2 {
+    padding-left: 30%;
+    margin-top: 15%
+}
+.icon {
+    position: relative;
+    display: inline-block;
+    font-size: 2em;
+    transition: color .5s;
+    color: firebrick;
+}
+.icon:hover { 
+    color: red;
+    cursor: pointer;
+}
+.icon.selected {
+    color: red;
+}
+.icon#right {
+    float: left;
+    padding-left: 20px;
+}
+.icon#left {
+    float: right;
+}
+
+.colors button{
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+.colors {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+button:hover {
+    opacity: 1;
+} 
+.colors .blackButton{
+border: 1px solid red ;
+border-radius: 2px;
+background-color: black;
+}
+.colors .yellowButton{
+border: 1px solid yellow;
+border-radius: 2px;
+background-color: yellow;
+}
+.colors .redButton{
+border: 1px solid red;
+border-radius: 2px;
+background-color: red;
+}
+.colors .greenButton{
+border: 1px solid green ;
+border-radius: 2px;
+background-color: green;
+}
+.colors .blueButton{
+border: 1px solid blue ;
+border-radius: 2px;
+background-color: blue;
+}
+.colors .whiteButton{
+border: 1px solid white ;
+border-radius: 2px;
+background-color: white;
+}
+.colors .purpleButton{
+border: 1px solid plum;
+border-radius: 2px;
+background-color: plum;
+}
+.colors .brownButton{
+border: 1px solid brown;
+border-radius: 2px;
+background-color: brown;
+}
+.colors .pinkButton{
+border: 1px solid pink ;
+border-radius: 2px;
+background-color: pink;
+}
+.colors .orangeButton{
+border: 1px solid orange ;
+border-radius: 2px;
+background-color: orange;
+}
+.colors .AquaButton{
+border: 1px solid Aqua;
+border-radius: 2px;
+background-color: aqua;
+}
+.colors .PeachPuffButton{
+border: 1px solid PeachPuff;
+border-radius: 2px;
+background-color: PeachPuff;
+}
+.colors .AntiqueWhiteButton{
+border: 1px solid AntiqueWhite;
+border-radius: 2px;
+background-color: AntiqueWhite;
+}
+.colors .FuchsiaButton{
+border: 1px solid Fuchsia;
+border-radius: 2px;
+background-color: Fuchsia;
+}
+.colors .GreenYellowButton{
+border: 1px solid GreenYellow;
+border-radius: 2px;
+background-color: GreenYellow;
+}
+button.selected {
+    opacity: 1;
+}
