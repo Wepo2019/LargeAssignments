@@ -57,11 +57,19 @@
             background-color: black;
             margin-top: 110px;
         }
+
         .rightSidebar p {
             font-family: 'Ostrich Sans';
             font-size: 30px;
             color: red;
-            padding-left: 15%;
+        }
+        .rightSidebar #p1 {
+           
+            padding-left: 20%;
+        }
+        .rightSidebar #p2 {
+            padding-left: 30%;
+            margin-top: 15%
         }
         .icon {
             position: relative;
@@ -79,7 +87,7 @@
         }
         .icon#right {
             float: left;
-            padding-left: 15px;
+            padding-left: 20px;
         }
         .icon#left {
             float: right;
@@ -96,9 +104,9 @@
             padding-left: 10%;
             padding-right: 10%;
         }
-        
-        .button:hover {opacity: 1} 
-        
+        button:hover {
+            opacity: 1;
+        } 
         .colors .blackButton{
         border: 1px solid red ;
         border-radius: 2px;
@@ -130,9 +138,9 @@
         background-color: white;
         }
         .colors .purpleButton{
-        border: 1px solid purple;
+        border: 1px solid plum;
         border-radius: 2px;
-        background-color: purple;
+        background-color: plum;
         }
         .colors .brownButton{
         border: 1px solid brown;
@@ -154,10 +162,10 @@
         border-radius: 2px;
         background-color: aqua;
         }
-        .colors .AntiqueWhiteButton{
-        border: 1px solid AntiqueWhite;
+        .colors .PeachPuffButton{
+        border: 1px solid PeachPuff;
         border-radius: 2px;
-        background-color: AntiqueWhite;
+        background-color: PeachPuff;
         }
         .colors .AntiqueWhiteButton{
         border: 1px solid AntiqueWhite;
@@ -173,6 +181,9 @@
         border: 1px solid GreenYellow;
         border-radius: 2px;
         background-color: GreenYellow;
+        }
+        button.selected {
+            opacity: 1;
         }
 
         </style>
@@ -196,7 +207,7 @@
         </div>
 
         <div class="rightSidebar">
-            <p>Tools & shapes</p>
+            <p id="p1">Tools & shapes</p>
             <div class="icon selected" id="right" data-shape="pencil">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
@@ -213,21 +224,23 @@
                 <i class="fa fa fa-font" aria-hidden="true"></i>
             </div>
             <br><br>
+
+           
             <div class="colors">
-                    <p> Colors</p>
+                    <p id="p2"> Colors</p>
                 <div>
                         <button id="black" class="blackButton" type="button"></button>
                         <button id="yellow"class="yellowButton" type="button"></button>
                         <button id="red" class="redButton" type="button"></button>
                         <button id="green" class="greenButton" type="button"></button>
                         <button id="blueC" class="blueButton" type="button"></button>
-                        <button id="white" class="white" type="button"></button>
+                        <button id="white" class="whiteButton" type="button"></button>
                         <button id="purple" class="purpleButton" type="button"></button>
                         <button id="brown" class="brownButton" type="button"></button>
                         <button id="pink" class="pinkButton" type="button"></button>
                         <button id="orange" class="orangeButton" type="button"></button>
                         <button id="grey" class="AquaButton" type="button"></button>
-                        <button id="pink" class="AntiqueWhiteButton" type="button"></button>
+                        <button id="pink" class="PeachPuffButton" type="button"></button>
                         <button id="orange" class="FuchsiaButton" type="button"></button>
                         <button id="grey" class="GreenYellowButton" type="button"></button>
                     </div>

@@ -26,6 +26,13 @@ $(function() {
             $(this).addClass('selected');
             drawio.selectedShape = $(this).data('shape');
         });
+
+        
+        $('button').on('click', function(){
+            $('button').removeClass('selected');
+            $(this).addClass('selected');
+            //drawio
+        });
        
 
         $('#my-canvas').on('mousedown', function (mouseEvent) {
