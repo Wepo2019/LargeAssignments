@@ -1,6 +1,6 @@
 window.drawio = {
     shapes: [],
-    selectedShape: 'rectangle',
+    selectedShape: 'rectangle', //breyta seinna í pen 
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
