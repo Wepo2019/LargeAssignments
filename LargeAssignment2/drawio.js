@@ -5,7 +5,8 @@ window.drawio = {
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
     availableShapes: {
-        RECTANGLE: 'rectangle'
+        RECTANGLE: 'rectangle',
+        CIRCLE: 'circle'
     }
 };
 
@@ -39,6 +40,9 @@ $(function() {
             switch (drawio.selectedShape) {
                 case drawio.availableShapes.RECTANGLE:
                     drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0);
+                    break;
+                case drawio.availableShapes.CIRCLE:
+                    drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0);
                     break;
             }
         });
