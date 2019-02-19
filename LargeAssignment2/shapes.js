@@ -50,7 +50,6 @@ Circle.prototype.resize = function (x, y) {
     this.radius = Math.sqrt(Math.pow((x - this.position.x), 2) + Math.pow((y - this.position.y), 2));
 }
 
-
 //Text shape
 function Text(text, position) {
     Shape.call(this, position);
@@ -69,3 +68,46 @@ Text.prototype.resize = function (x,y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
 }
+//Line Shape
+
+function Line(position, endPosition) {
+    Shape.call(this, position);
+    this.endPosition = endPosition;
+}
+
+Line.prototype = Object.create(Shape.prototype);
+Line.prototype.constructor = Line;
+
+Line.prototype.render = function () {
+    drawio.ctx.beginPath();
+    drawio.ctx.lineTo(this.position.x, this.position.y)
+    drawio.ctx.stroke();
+}
+Line.prototype.resize = function (x, y) {
+    drawio.ctx.beginPath();
+    drawio.ctx.lineTo(x, y);
+    drawio.ctx.stroke();
+}
+//Pen
+function Pen(position) {
+    Shape.call(this, position);
+    this.points = [];
+}
+
+Pen.prototype = Object.create(Shape.prototype);
+Pen.prototype.constructor = Pen;
+
+Pen.prototype.render = function () {
+    drawio.ctx.beginPath();
+    for(var i = 0; i < this.points.length; i++) {
+        const p = this.points[i];
+        drawio.ctx.lineTo(p.x, p.y);
+    }
+    drawio.ctx.stroke();
+}
+
+
+Pen.prototype.resize = function (x, y) {
+    this.points.push( {x: x, y: y} );
+}
+
