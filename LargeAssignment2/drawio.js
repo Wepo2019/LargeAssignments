@@ -30,9 +30,11 @@ $(function() {
     }
 
     $('.icon').on('click', function () {
-        $('.icon').removeClass('selected');
-        $(this).addClass('selected');
-        drawio.selectedShape = $(this).data('shape');
+        if($(this).data('shape')) {
+            $('.icon').removeClass('selected');
+            $(this).addClass('selected');
+            drawio.selectedShape = $(this).data('shape');
+        }
     });
 
     
@@ -57,8 +59,6 @@ $(function() {
         if(drawio.shapes.length > 0) {
             drawio.deletedShapes.push(drawio.shapes.pop());
         }
-        console.log(drawio.shapes);
-        console.log(drawio.deletedShapes);
         drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
         drawCanvas();
     });
@@ -68,8 +68,6 @@ $(function() {
         if(drawio.deletedShapes.length > 0) {
             drawio.shapes.push(drawio.deletedShapes.pop());
         }
-        console.log(drawio.shapes);
-        console.log(drawio.deletedShapes);
         drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
         drawCanvas();
     });
