@@ -49,3 +49,24 @@ Circle.prototype.render = function () {
 Circle.prototype.resize = function (x, y) {
     this.radius = Math.sqrt(Math.pow((x - this.position.x), 2) + Math.pow((y - this.position.y), 2));
 }
+
+//Line Shape
+
+function Line(position, endPosition) {
+    Shape.call(this, position);
+    this.endPosition = endPosition;
+}
+
+Line.prototype = Object.create(Shape.prototype);
+Line.prototype.constructor = Line;
+
+Line.prototype.render = function () {
+    drawio.ctx.beginPath();
+    drawio.ctx.lineTo(this.position.x, this.position.y)
+    drawio.ctx.stroke();
+}
+Line.prototype.resize = function (x, y) {
+    drawio.ctx.beginPath();
+    drawio.ctx.lineTo(x, y);
+    drawio.ctx.stroke();
+}
