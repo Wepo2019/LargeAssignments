@@ -12,7 +12,7 @@ Shape.prototype.move = function (position) {
 Shape.prototype.resize = function () {};
 
 
-//Rectangle shape
+// Rectangle shape
 function Rectangle(position, width, height) {
     Shape.call(this, position);
     this.width = width;
@@ -31,7 +31,7 @@ Rectangle.prototype.resize = function (x, y) {
     this.height = y - this.position.y;
 };
 
-//Circle Shape
+//Circle Shapße
 function Circle(position, radius) {
     Shape.call(this, position);
     this.radius = radius;
