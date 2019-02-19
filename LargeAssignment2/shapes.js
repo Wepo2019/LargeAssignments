@@ -13,6 +13,7 @@ Shape.prototype.resize = function () {};
 
 // Rectangle shape
 function Rectangle(position, width, height) {
+    this.type = 'rectangle';
     Shape.call(this, position);
     this.width = width;
     this.height = height;
@@ -30,8 +31,9 @@ Rectangle.prototype.resize = function (x, y) {
     this.height = y - this.position.y;
 };
 
-//Circle Shapße
+//Circle Shape
 function Circle(position, radius) {
+    this.type = 'circle';
     Shape.call(this, position);
     this.radius = radius;
 };
@@ -53,6 +55,7 @@ Circle.prototype.resize = function (x, y) {
 // er ekki að saveast í shape array*
 //Og hélst ekki á sínu stað canvas
 function Text(position) {
+    this.type = 'text';
     Shape.call(this, position);
     var userInput = prompt('What is your name?');
     //console.log(userInput);
@@ -74,6 +77,7 @@ Text.prototype.resize = function (x,y) {
 
 //Line Shape
 function Line(position, endPositionX, endPositionY) {
+    this.type = 'line';
     Shape.call(this, position);
     this.endPosition = {x: endPositionX, y: endPositionY};
 }
@@ -87,15 +91,23 @@ Line.prototype.render = function () {
     drawio.ctx.lineTo(this.endPosition.x + this.position.x, this.endPosition.y + this.position.y);
     drawio.ctx.stroke();
 }
+
 Line.prototype.resize = function (x, y) {
     this.endPosition.x = x - this.position.x;
     this.endPosition.y = y - this.position.y;
 }
 
 //Pen
-function Pen(position) {
+function Pen(position, points) {
+    this.type = 'pen';
     Shape.call(this, position);
-    this.points = [];
+    if(points) {
+        this.points = points;
+    }
+    else {
+        this.points = [];
+    }
+    
 }
 
 Pen.prototype = Object.create(Shape.prototype);

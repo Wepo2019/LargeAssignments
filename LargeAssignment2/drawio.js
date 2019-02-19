@@ -1,3 +1,5 @@
+storageDrawio = window.localStorage;
+
 window.drawio = {
     shapes: [],
     deletedShapes: [],
@@ -44,14 +46,44 @@ $(function() {
         //drawio
     });
 
-    $('#save').on('click', function(){
+    $('#save-btn').on('click', function(){
         //Save array of shapes into localStorage
         //Dont clear the canvas
+        storageDrawio.setItem('saved', JSON.stringify(drawio.shapes));
     });
 
-    $('#load').on('click', function(){
+    $('#load-btn').on('click', function(){
         //Clear canvas
         //Load currently selected localStorage object into canvas
+        //make a list or something where saved files are listed and loop through them before saving to save a new thing with a different name
+        //then in load, put a selected class on the one we want to load and load the name we gave that element when we added it to the list
+        var jsonShapes = JSON.parse(storageDrawio.getItem('saved'));
+        console.log(jsonShapes);
+        console.log(jsonShapes.length);
+        drawio.shapes = [];
+
+        for( var i = 0; i < jsonShapes.length; i++) {
+            switch (jsonShapes[i].type) {
+                case drawio.availableShapes.PEN:
+                    drawio.shapes.push(new Pen(jsonShapes[i].position, jsonShapes[i].points));
+                    break;
+                case drawio.availableShapes.RECTANGLE:
+                    drawio.shapes.push(new Rectangle(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height));
+                    break;
+                case drawio.availableShapes.CIRCLE:
+                    drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius));
+                    break;
+                case drawio.availableShapes.TEXT:
+                    //drawio.shapes.push(new Text());
+                    break;
+                case drawio.availableShapes.LINE:
+                    drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y));
+                    break;
+            }
+        }
+
+        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+        drawCanvas();
     });
 
     $('#undo-btn').on('click', function(){
@@ -64,7 +96,7 @@ $(function() {
     });
 
     $('#redo-btn').on('click', function(){
-        //Take the newest hsape from deleted shapes and push it into the shapes array
+        //Take the newest shape from deleted shapes and push it into the shapes array
         if(drawio.deletedShapes.length > 0) {
             drawio.shapes.push(drawio.deletedShapes.pop());
         }
