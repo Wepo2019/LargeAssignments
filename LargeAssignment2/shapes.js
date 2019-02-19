@@ -50,9 +50,13 @@ Circle.prototype.resize = function (x, y) {
 }
 
 //Text shape
-function Text(text, position) {
+// er ekki að saveast í shape array*
+//Og hélst ekki á sínu stað canvas
+function Text(position) {
     Shape.call(this, position);
-    this.text = "bla";
+    var userInput = prompt('What is your name?');
+    //console.log(userInput);
+    this.text = userInput;
 }
 
 Text.prototype = Object.create(Shape.prototype);
