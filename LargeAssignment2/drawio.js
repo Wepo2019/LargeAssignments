@@ -53,7 +53,7 @@ $(function() {
                 case drawio.availableShapes.TEXT:
                     drawio.selectedElement = new Text(String, {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
                 case drawio.availableShapes.LINE:
-                    drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: moveEvent.offsetY}, 0);
+                    drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0);
                     break;
             }
         });

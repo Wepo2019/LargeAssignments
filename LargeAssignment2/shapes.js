@@ -70,9 +70,9 @@ Text.prototype.resize = function (x,y) {
 }
 //Line Shape
 
-function Line(position, endPosition) {
+function Line(position, endPositionX, endPositionY) {
     Shape.call(this, position);
-    this.endPosition = endPosition;
+    this.endPosition = {x: endPositionX, y: endPositionY};
 }
 
 Line.prototype = Object.create(Shape.prototype);
@@ -80,13 +80,13 @@ Line.prototype.constructor = Line;
 
 Line.prototype.render = function () {
     drawio.ctx.beginPath();
-    drawio.ctx.lineTo(this.position.x, this.position.y)
+    drawio.ctx.moveTo(this.position.x, this.position.y);
+    drawio.ctx.lineTo(this.endPosition.x + this.position.x, this.endPosition.y + this.position.y);
     drawio.ctx.stroke();
 }
 Line.prototype.resize = function (x, y) {
-    drawio.ctx.beginPath();
-    drawio.ctx.lineTo(x, y);
-    drawio.ctx.stroke();
+    this.endPosition.x = x - this.position.x;
+    this.endPosition.y = y - this.position.y;
 }
 //Pen
 function Pen(position) {
@@ -105,7 +105,6 @@ Pen.prototype.render = function () {
     }
     drawio.ctx.stroke();
 }
-
 
 Pen.prototype.resize = function (x, y) {
     this.points.push( {x: x, y: y} );
