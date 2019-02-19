@@ -1,12 +1,13 @@
 window.drawio = {
     shapes: [],
-    selectedShape: 'rectangle', //breyta seinna í pen 
+    selectedShape: 'text', //breyta seinna í pen 
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
     availableShapes: {
         RECTANGLE: 'rectangle',
-        CIRCLE: 'circle'
+        CIRCLE: 'circle',
+        TEXT: 'text'
     }
 };
 
@@ -43,6 +44,9 @@ $(function() {
                     break;
                 case drawio.availableShapes.CIRCLE:
                     drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0);
+                    break;
+                case drawio.availableShapes.TEXT:
+                    drawio.selectedElement = new Text(String, {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
                     break;
             }
         });

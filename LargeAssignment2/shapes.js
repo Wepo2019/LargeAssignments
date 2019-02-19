@@ -49,3 +49,23 @@ Circle.prototype.render = function () {
 Circle.prototype.resize = function (x, y) {
     this.radius = Math.sqrt(Math.pow((x - this.position.x), 2) + Math.pow((y - this.position.y), 2));
 }
+
+
+//Text shape
+function Text(text, position) {
+    Shape.call(this, position);
+    this.text = "bla";
+}
+
+Text.prototype = Object.create(Shape.prototype);
+Text.prototype.constructor = Text;
+
+Text.prototype.render = function () {
+    drawio.ctx.fillText(this.text, this.position.x, this.position.y);
+}
+
+//Virkar ekki að færa ???
+Text.prototype.resize = function (x,y) {
+    this.width = x - this.position.x;
+    this.height = y - this.position.y;
+}
