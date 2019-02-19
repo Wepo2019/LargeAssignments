@@ -23,7 +23,7 @@ body {
 }
 .navbar {
     height: 120px;
-    background-color: black; 
+    background-color: black;
 }
 .navbar p  {
     font-size: 100px;
@@ -77,11 +77,11 @@ body {
 .icon.selected {
     color: red;
 }
-.icon#right {
+.icon.right {
     float: left;
     padding-left: 20px;
 }
-.icon#left {
+.icon.left {
     float: right;
 }
 

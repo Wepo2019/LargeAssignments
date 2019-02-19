@@ -22,7 +22,7 @@ Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
 Rectangle.prototype.render = function () {
-    drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
 }
 
 Rectangle.prototype.resize = function (x, y) {
