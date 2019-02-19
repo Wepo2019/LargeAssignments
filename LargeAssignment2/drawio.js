@@ -81,7 +81,10 @@ $(function() {
         });
 
         $('#my-canvas').on('mouseup', function () {
-            drawio.shapes.push(drawio.selectedElement);
+            //Check if selected element is null, we dont want to push null
+            if(drawio.selectedElement) {
+                drawio.shapes.push(drawio.selectedElement);
+            }
             console.log(drawio.shapes);
             drawio.selectedElement = null;
         });
