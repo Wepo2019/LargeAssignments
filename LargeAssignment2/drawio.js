@@ -1,10 +1,11 @@
 window.drawio = {
     shapes: [],
-    selectedShape: 'rectangle', //breyta seinna í pen 
+    selectedShape: 'pen', //breyta seinna í pen 
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
     availableShapes: {
+        PEN: 'pen',
         RECTANGLE: 'rectangle',
         CIRCLE: 'circle',
         LINE: 'line'
@@ -39,6 +40,9 @@ $(function() {
 
         $('#my-canvas').on('mousedown', function (mouseEvent) {
             switch (drawio.selectedShape) {
+                case drawio.availableShapes.PEN:
+                    drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
+                    break;
                 case drawio.availableShapes.RECTANGLE:
                     drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0);
                     break;

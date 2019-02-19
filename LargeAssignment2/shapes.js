@@ -70,3 +70,26 @@ Line.prototype.resize = function (x, y) {
     drawio.ctx.lineTo(x, y);
     drawio.ctx.stroke();
 }
+//Pen
+function Pen(position) {
+    Shape.call(this, position);
+    this.points = [];
+}
+
+Pen.prototype = Object.create(Shape.prototype);
+Pen.prototype.constructor = Pen;
+
+Pen.prototype.render = function () {
+    drawio.ctx.beginPath();
+    for(var i = 0; i < this.points.length; i++) {
+        const p = this.points[i];
+        drawio.ctx.lineTo(p.x, p.y);
+    }
+    drawio.ctx.stroke();
+}
+
+
+Pen.prototype.resize = function (x, y) {
+    this.points.push( {x: x, y: y} );
+}
+
