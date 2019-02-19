@@ -1,4 +1,4 @@
-
+//Shape
 function Shape(position) {
     this.position = position;
 };
@@ -10,7 +10,6 @@ Shape.prototype.move = function (position) {
 };
 
 Shape.prototype.resize = function () {};
-
 
 // Rectangle shape
 function Rectangle(position, width, height) {
@@ -68,8 +67,8 @@ Text.prototype.resize = function (x,y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
 }
-//Line Shape
 
+//Line Shape
 function Line(position, endPositionX, endPositionY) {
     Shape.call(this, position);
     this.endPosition = {x: endPositionX, y: endPositionY};
@@ -88,6 +87,7 @@ Line.prototype.resize = function (x, y) {
     this.endPosition.x = x - this.position.x;
     this.endPosition.y = y - this.position.y;
 }
+
 //Pen
 function Pen(position) {
     Shape.call(this, position);

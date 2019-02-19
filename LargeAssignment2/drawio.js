@@ -1,6 +1,6 @@
 window.drawio = {
     shapes: [],
-    selectedShape: 'pen', //breyta seinna í pen 
+    selectedShape: 'pen',
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
@@ -11,6 +11,8 @@ window.drawio = {
         TEXT: 'text',
         LINE: 'line'
     }
+    //To do:
+    //Create a move "shape" that when selected will let you  move the object you have selected
 };
 
 $(function() {
@@ -36,6 +38,16 @@ $(function() {
             $('button').removeClass('selected');
             $(this).addClass('selected');
             //drawio
+        });
+
+        $('#save').on('click', function(){
+            //Save array of shapes into localStorage
+            //Dont clear the canvas
+        });
+
+        $('#load').on('click', function(){
+            //Clear canvas
+            //Load currently selected localStorage object into canvas
         });
        
 
@@ -65,6 +77,7 @@ $(function() {
                 drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
                 drawCanvas();
             }
+            //Need to consider the case when the move tool is selected
         });
 
         $('#my-canvas').on('mouseup', function () {
