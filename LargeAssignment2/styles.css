@@ -116,6 +116,10 @@ body {
     background-color: red;
 }
 
+.hide {
+    display: none;
+}
+
 .colors button{
     border: 1px solid;
     height: 30px;
