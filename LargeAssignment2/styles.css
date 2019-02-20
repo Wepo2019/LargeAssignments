@@ -98,8 +98,13 @@ body {
     list-style-type: none;
 }
 
-#load-files {
-    
+.load-list:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.load-list.selected {
+    color: red;
 }
 
 .colors button{

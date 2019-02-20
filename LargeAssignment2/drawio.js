@@ -4,6 +4,7 @@ window.drawio = {
     shapes: [],
     deletedShapes: [],
     selectedShape: 'pen',
+    selectedFile: null,
     selectedColor: 'black',
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
@@ -54,13 +55,27 @@ $(function() {
     $('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
-        //drawio
     });
+
+    //Select loaded file
+    $('li').on('click', selectedListClicks);
+    
+    function selectedListClicks(){
+        $('li').removeClass('selected');
+        $(this).addClass('selected');
+        drawio.selectedFile = $(this).data('name');
+    };
 
     $('#save-btn').on('click', function(){
         //Save array of shapes into localStorage
+        //Create new element in the list of load files with name: Canvas X
         //Dont clear the canvas
-        storageDrawio.setItem('saved', JSON.stringify(drawio.shapes));
+        var listSize = $('li').length;
+        var fileName = "canvas " + (listSize + 1);
+        storageDrawio.setItem(fileName, JSON.stringify(drawio.shapes));
+        var listElement = $("<li class=\"load-list\"></li>").attr('data-name', fileName).html(fileName);
+        listElement.on('click', selectedListClicks);
+        $('ul').append(listElement);
     });
 
     $('#load-btn').on('click', function(){
@@ -68,7 +83,11 @@ $(function() {
         //Load currently selected localStorage object into canvas
         //make a list or something where saved files are listed and loop through them before saving to save a new thing with a different name
         //then in load, put a selected class on the one we want to load and load the name we gave that element when we added it to the list
-        var jsonShapes = JSON.parse(storageDrawio.getItem('saved'));
+        if(!drawio.selectedFile) {
+            console.log("Please select a file first");
+            return;
+        }
+        var jsonShapes = JSON.parse(storageDrawio.getItem(drawio.selectedFile));
         console.log(jsonShapes);
         console.log(jsonShapes.length);
         drawio.shapes = [];
@@ -119,7 +138,7 @@ $(function() {
     $('#my-canvas').on('mousedown', function (mouseEvent) {
         switch (drawio.selectedShape) {
             case drawio.availableShapes.PEN:
-                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY},drawio.selectedColor);
+                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor);
                 break;
             case drawio.availableShapes.RECTANGLE:
                 drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);

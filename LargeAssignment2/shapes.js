@@ -11,7 +11,7 @@ Shape.prototype.move = function (position) {
 
 Shape.prototype.resize = function () {};
 
-// Rectangle shape
+//Rectangle shape
 function Rectangle(position, width, height, color) {
     this.type = 'rectangle';
     Shape.call(this, position);
@@ -109,8 +109,9 @@ Line.prototype.resize = function (x, y) {
 }
 
 //Pen
-function Pen(position, points) {
+function Pen(position, points, color) {
     this.type = 'pen';
+    this.color = color;
     Shape.call(this, position);
     if(points) {
         this.points = points;
@@ -118,7 +119,7 @@ function Pen(position, points) {
     else {
         this.points = [];
     }
-    
+   
 }
 
 Pen.prototype = Object.create(Shape.prototype);
