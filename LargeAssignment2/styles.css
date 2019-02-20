@@ -25,12 +25,8 @@ body {
     height: 120px;
     background-color: black;
 }
-.navbar p  {
-    font-size: 100px;
-    font-family: 'Ostrich Sans';
-    color: red;
-    padding-left: 36%;
-    padding-top: 5%;
+.rightSidebar #pH {
+    font-size: 70px;
 } 
 .leftSidebar {
     height: 100%;
