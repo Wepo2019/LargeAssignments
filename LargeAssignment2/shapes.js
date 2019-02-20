@@ -12,21 +12,30 @@ Shape.prototype.move = function (position) {
 Shape.prototype.resize = function () {};
 
 //Rectangle shape
-function Rectangle(position, width, height, color) {
+function Rectangle(position, width, height, color, fill) {
     this.type = 'rectangle';
     Shape.call(this, position);
     this.width = width;
     this.height = height;
     this.color = color;
+    this.fill = fill;
 };
 
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
 Rectangle.prototype.render = function () {
-    drawio.ctx.strokeStyle = this.color; //ekki rétt
-    drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
+    if(this.fill){
+        drawio.ctx.fillStyle = this.color;
+        drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+    else {
+        drawio.ctx.strokeStyle = this.color; 
+        drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
+    }
 }
+
+
 
 Rectangle.prototype.resize = function (x, y) {
     this.width = x - this.position.x;
@@ -34,21 +43,28 @@ Rectangle.prototype.resize = function (x, y) {
 };
 
 //Circle Shape
-function Circle(position, radius, color) {
+function Circle(position, radius, color, fill) {
     this.type = 'circle';
     Shape.call(this, position);
     this.radius = radius;
     this.color = color;
+    this.fill = fill;
 };
 
 Circle.prototype = Object.create(Shape.prototype);
 Circle.prototype.constructor = Circle;
 
 Circle.prototype.render = function () {
-    drawio.ctx.strokeStyle = this.color; 
     drawio.ctx.beginPath();
     drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2* Math.PI);
-    drawio.ctx.stroke();
+    if(this.fill){
+        drawio.ctx.fillStyle = this.color;
+        drawio.ctx.fill();
+    }
+    else {
+        drawio.ctx.strokeStyle = this.color;
+        drawio.ctx.stroke();
+    }
 }
 
 Circle.prototype.resize = function (x, y) {

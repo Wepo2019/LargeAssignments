@@ -6,6 +6,7 @@ window.drawio = {
     selectedShape: 'pen',
     selectedFile: null,
     selectedColor: 'black',
+    fillShapes: false,
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
@@ -27,13 +28,13 @@ $(function() {
         if(drawio.selectedElement) {
             drawio.selectedElement.render();
         }
-        
         for(var i = 0; i < drawio.shapes.length; i++) {
             drawio.shapes[i].render();
         }
     }
 
     $('.icon').on('click', function () {
+        
         if($(this).data('shape')) {
             $('.icon').removeClass('selected');
             $(this).addClass('selected');
@@ -44,7 +45,7 @@ $(function() {
     $('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
-    });
+    })
 
     //Select loaded file
     $('li').on('click', selectedListClicks);
@@ -130,10 +131,10 @@ $(function() {
                 drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor);
                 break;
             case drawio.availableShapes.RECTANGLE:
-                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
+                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.fillShapes);
                 break;
             case drawio.availableShapes.CIRCLE:
-                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor);
+                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes);
                 break;
             case drawio.availableShapes.TEXT:
                 drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null);
@@ -162,12 +163,24 @@ $(function() {
         drawio.selectedElement = null;
     });
 
-        // Select color
+        //Select color
     $('.colorButton').click(function() {
         $('.colorButton').removeClass('selected');
         $(this).addClass('selected');
         drawio.selectedColor = this.id;
-        console.log(drawio.selectedColor);
+    });
+
+        //Fill shapes
+    $("#fill").click(function() {
+        $("#noFill").removeClass("selected");
+        $("#fill").addClass("selected");
+        drawio.fillShapes = true;
+    });
+    
+    $("#noFill").click(function() {
+        $("#fill").removeClass("selected");
+        $("#noFill").addClass("selected");
+        drawio.fillShapes = false;
     });
     
 });
