@@ -40,17 +40,6 @@ $(function() {
             drawio.selectedShape = $(this).data('shape');
         }
     });
-
-        $('#save').on('click', function(){
-            //Save array of shapes into localStorage
-            //Dont clear the canvas
-        });
-
-        $('#load').on('click', function(){
-            //Clear canvas
-            //Load currently selected localStorage object into canvas
-        });
-       
       
     $('button').on('click', function(){
         $('button').removeClass('selected');
