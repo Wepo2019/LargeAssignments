@@ -74,7 +74,7 @@ $(function() {
                     drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius));
                     break;
                 case drawio.availableShapes.TEXT:
-                    //drawio.shapes.push(new Text());
+                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].text));
                     break;
                 case drawio.availableShapes.LINE:
                     drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y));

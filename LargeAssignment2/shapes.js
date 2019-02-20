@@ -54,12 +54,17 @@ Circle.prototype.resize = function (x, y) {
 //Text shape
 // er ekki að saveast í shape array*
 //Og hélst ekki á sínu stað canvas
-function Text(position) {
+function Text(position, text) {
     this.type = 'text';
     Shape.call(this, position);
-    var userInput = prompt('What is your name?');
-    //console.log(userInput);
-    this.text = userInput;
+    if(text) {
+        this.text = text;
+    }
+    else {
+        var userInput = prompt('What is your name?');
+        //console.log(userInput);
+        this.text = userInput;
+    }
 }
 
 Text.prototype = Object.create(Shape.prototype);

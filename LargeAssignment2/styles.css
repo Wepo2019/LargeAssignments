@@ -85,6 +85,19 @@ body {
     float: right;
 }
 
+.left {
+    float: right;
+}
+
+.bright {
+    font-family: 'Ostrich Sans';
+    color: white;
+}
+
+#load-files {
+    list-style-type: none;
+}
+
 .colors button{
     border: 1px solid;
     height: 30px;
