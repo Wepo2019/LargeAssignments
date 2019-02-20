@@ -37,11 +37,14 @@ Rectangle.prototype.render = function () {
     }
 }
 
-
-
 Rectangle.prototype.resize = function (x, y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
+};
+
+Rectangle.prototype.move = function (x, y) {
+    this.position.x = x;
+    this.position.y = y;
 };
 
 //Circle Shape
@@ -131,6 +134,14 @@ Line.prototype.resize = function (x, y) {
     this.endPosition.y = y - this.position.y;
 }
 
+Line.prototype.move = function (x, y) {
+    //move starting pos according to mouse position, which is the x and y,
+    //and then move the end position aswell by the difference in old position and new position
+
+    this.endPosition.x = x - this.position.x;
+    this.endPosition.y = y - this.position.y;
+}
+
 //Pen
 function Pen(position, points, color, penLineWidth) {
     this.type = 'pen';
@@ -163,4 +174,9 @@ Pen.prototype.render = function () {
 Pen.prototype.resize = function (x, y) {
     this.points.push( {x: x, y: y} );
 }
+
+Pen.prototype.move = function (x, y) {
+    //This needs a for loop to move all points in the line according to x and y
+    //and also the starting position
+};
 
