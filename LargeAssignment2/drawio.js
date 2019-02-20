@@ -5,6 +5,7 @@ window.drawio = {
     deletedShapes: [],
     selectedShape: 'pen',
     selectedFile: null,
+    selectedColor: 'black',
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
@@ -40,7 +41,17 @@ $(function() {
         }
     });
 
-    
+        $('#save').on('click', function(){
+            //Save array of shapes into localStorage
+            //Dont clear the canvas
+        });
+
+        $('#load').on('click', function(){
+            //Clear canvas
+            //Load currently selected localStorage object into canvas
+        });
+       
+      
     $('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
@@ -127,19 +138,19 @@ $(function() {
     $('#my-canvas').on('mousedown', function (mouseEvent) {
         switch (drawio.selectedShape) {
             case drawio.availableShapes.PEN:
-                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
+                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor);
                 break;
             case drawio.availableShapes.RECTANGLE:
-                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0);
+                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
                 break;
             case drawio.availableShapes.CIRCLE:
-                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0);
+                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor);
                 break;
             case drawio.availableShapes.TEXT:
                 drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY});
                 break;
             case drawio.availableShapes.LINE:
-                drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0);
+                drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
                 break;
         }
     });
@@ -162,9 +173,16 @@ $(function() {
         drawio.selectedElement = null;
     });
 
+        // Select color
+    $('.colorButton').click(function() {
+        $('.colorButton').removeClass('selected');
+        $(this).addClass('selected');
+        drawio.selectedColor = this.id;
+        console.log(drawio.selectedColor);
+    });
+    
 });
-
-
+        
 
 
 
