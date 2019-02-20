@@ -51,6 +51,12 @@ $(function() {
     //Tools and shapes selection
     $('.icon').on('click', function () {
         
+        if($(this).data('shape')== drawio.availableShapes.RECTANGLE || ($(this).data('shape')== drawio.availableShapes.CIRCLE)) {
+            $('#visability').removeClass('hide');
+        }
+        else {
+            $('#visability').addClass('hide');
+        }
         if($(this).data('shape')) {
             $('.icon').removeClass('selected');
             $(this).addClass('selected');
@@ -58,7 +64,8 @@ $(function() {
         }
     });
     
-    //
+
+    
     $('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
