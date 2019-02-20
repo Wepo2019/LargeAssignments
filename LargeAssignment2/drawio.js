@@ -89,7 +89,7 @@ $(function() {
 
     $('#load-btn').on('click', function(){
         if(!drawio.selectedFile) {
-            console.log("Please select a file first");
+            alert("Please select a file first");
             return;
         }
         drawio.deletedShapes = [];
