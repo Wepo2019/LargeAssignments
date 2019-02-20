@@ -15,7 +15,8 @@ window.drawio = {
         RECTANGLE: 'rectangle',
         CIRCLE: 'circle',
         TEXT: 'text',
-        LINE: 'line'
+        LINE: 'line',
+        MOVE: 'move'
     }
     //To do:
     //Create a move "shape" that when selected will let you move the object you have selected
@@ -33,7 +34,7 @@ $(function() {
             $('ul').append(listElement);
         }
     }
-
+    
     getLoadList();
 
     //Render all shapes to the canvas
@@ -174,16 +175,27 @@ $(function() {
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
                 break;
+            case drawio.availableShapes.MOVE:
+                //OnClick, send offsetX and Y into a function that checks if there is overlap on any objects, pick the first one that fits
+                //Put into selected element
+                //drawio.selectedElement = 
+                break;
         }
     });
 
     $('#my-canvas').on('mousemove', function (mouseEvent) {
         if(drawio.selectedElement) {
-            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-            drawCanvas();
+            if(drawio.selectedShape == drawio.availableShapes.MOVE) {
+                drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+                //drawio.selectedElement.move(mouseEvent.offsetX, mouseEvent.offsetY);
+                drawCanvas();
+            }
+            else {
+                drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+                drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+                drawCanvas();
+            }
         }
-        //Need to consider the case when the move tool is selected
     });
 
     $('#my-canvas').on('mouseup', function () {
