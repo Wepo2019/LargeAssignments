@@ -11,13 +11,9 @@ Shape.prototype.move = function (position) {
 
 Shape.prototype.resize = function () {};
 
-// Rectangle shape
-<<<<<<< HEAD
+//Rectangle shape
 function Rectangle(position, width, height, color) {
-=======
-function Rectangle(position, width, height) {
     this.type = 'rectangle';
->>>>>>> 662cd03134f1fa7efe3248f6176d4eb5e968b188
     Shape.call(this, position);
     this.width = width;
     this.height = height;
@@ -89,12 +85,8 @@ Text.prototype.resize = function (x,y) {
 }
 
 //Line Shape
-<<<<<<< HEAD
 function Line(position, endPositionX, endPositionY, color) {
-=======
-function Line(position, endPositionX, endPositionY) {
     this.type = 'line';
->>>>>>> 662cd03134f1fa7efe3248f6176d4eb5e968b188
     Shape.call(this, position);
     this.endPosition = {x: endPositionX, y: endPositionY};
     this.color = color;
@@ -117,14 +109,9 @@ Line.prototype.resize = function (x, y) {
 }
 
 //Pen
-<<<<<<< HEAD
-function Pen(position, color) {
-    Shape.call(this, position);
-    this.points = [];
-    this.color = color;
-=======
-function Pen(position, points) {
+function Pen(position, points, color) {
     this.type = 'pen';
+    this.color = color;
     Shape.call(this, position);
     if(points) {
         this.points = points;
@@ -132,8 +119,7 @@ function Pen(position, points) {
     else {
         this.points = [];
     }
-    
->>>>>>> 662cd03134f1fa7efe3248f6176d4eb5e968b188
+   
 }
 
 Pen.prototype = Object.create(Shape.prototype);

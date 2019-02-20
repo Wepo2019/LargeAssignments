@@ -119,7 +119,7 @@ $(function() {
     $('#my-canvas').on('mousedown', function (mouseEvent) {
         switch (drawio.selectedShape) {
             case drawio.availableShapes.PEN:
-                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY},drawio.selectedColor);
+                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor);
                 break;
             case drawio.availableShapes.RECTANGLE:
                 drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
@@ -128,7 +128,7 @@ $(function() {
                 drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor);
                 break;
             case drawio.availableShapes.TEXT:
-                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, drawio.selectedColor);
+                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY});
                 break;
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
