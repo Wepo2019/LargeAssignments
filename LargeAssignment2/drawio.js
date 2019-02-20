@@ -96,19 +96,19 @@ $(function() {
         for( var i = 0; i < jsonShapes.length; i++) {
             switch (jsonShapes[i].type) {
                 case drawio.availableShapes.PEN:
-                    drawio.shapes.push(new Pen(jsonShapes[i].position, jsonShapes[i].points));
+                    drawio.shapes.push(new Pen(jsonShapes[i].position, jsonShapes[i].points, jsonShapes[i].color));
                     break;
                 case drawio.availableShapes.RECTANGLE:
-                    drawio.shapes.push(new Rectangle(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height));
+                    drawio.shapes.push(new Rectangle(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].color, jsonShapes[i].fill));
                     break;
                 case drawio.availableShapes.CIRCLE:
-                    drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius));
+                    drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius, jsonShapes[i].color, jsonShapes[i].fill));
                     break;
                 case drawio.availableShapes.TEXT:
                     drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].text));
                     break;
                 case drawio.availableShapes.LINE:
-                    drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y));
+                    drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y, jsonShapes[i].color));
                     break;
             }
         }
