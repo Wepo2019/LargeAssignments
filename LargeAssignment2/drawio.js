@@ -40,11 +40,12 @@ $(function() {
 
     //Render all shapes to the canvas
     function drawCanvas() {
-        if(drawio.selectedElement) {
-            drawio.selectedElement.render();
-        }
         for(var i = 0; i < drawio.shapes.length; i++) {
             drawio.shapes[i].render();
+        }
+
+        if(drawio.selectedElement) {
+            drawio.selectedElement.render();
         }
     }
 
@@ -186,21 +187,33 @@ $(function() {
             case drawio.availableShapes.MOVE:
                 //OnClick, send offsetX and Y into a function that checks if there is overlap on any objects, pick the first one that fits
                 //Put into selected element
-                //drawio.selectedElement = 
+                drawio.selectedElement = getShapeFromClick( {x: mouseEvent.offsetX, y: mouseEvent.offsetY} );
                 break;
         }
     });
 
+    function getShapeFromClick(mousePos) {
+        for(var i = 0; i < drawio.shapes.length; i++) {
+            if( (drawio.shapes[i].position.x == (mousePos.x) || drawio.shapes[i].position.x == (mousePos.x)) && 
+                (drawio.shapes[i].position.y == (mousePos.y) || drawio.shapes[i].position.y == (mousePos.x))) {
+                return drawio.shapes[i];
+                //This if statement needs to be adjusted to let the user grab the object at not the exact pixel
+                //Super hard to grab the objects. but possible at the exact start point
+            }
+        }
+    }
+
     $('#my-canvas').on('mousemove', function (mouseEvent) {
         if(drawio.selectedElement) {
             if(drawio.selectedShape == drawio.availableShapes.MOVE) {
+                console.log("ELEMENT FOUND, MOVING ELEMENT");
                 drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-                //drawio.selectedElement.move(mouseEvent.offsetX, mouseEvent.offsetY);
+                drawio.selectedElement.move(mouseEvent.offsetX, mouseEvent.offsetY);
                 drawCanvas();
             }
             else {
-                drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
                 drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+                drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
                 drawCanvas();
             }
         }
