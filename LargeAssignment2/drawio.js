@@ -9,6 +9,7 @@ window.drawio = {
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
+    eraseRedo: false,
     availableShapes: {
         PEN: 'pen',
         RECTANGLE: 'rectangle',
@@ -22,7 +23,6 @@ window.drawio = {
 };
 
 $(function() {
-
     function drawCanvas() {
         if(drawio.selectedElement) {
             drawio.selectedElement.render();
@@ -56,9 +56,6 @@ $(function() {
     };
 
     $('#save-btn').on('click', function(){
-        //Save array of shapes into localStorage
-        //Create new element in the list of load files with name: Canvas X
-        //Dont clear the canvas
         var listSize = $('li').length;
         var fileName = "canvas " + (listSize + 1);
         storageDrawio.setItem(fileName, JSON.stringify(drawio.shapes));
@@ -68,14 +65,11 @@ $(function() {
     });
 
     $('#load-btn').on('click', function(){
-        //Clear canvas
-        //Load currently selected localStorage object into canvas
-        //make a list or something where saved files are listed and loop through them before saving to save a new thing with a different name
-        //then in load, put a selected class on the one we want to load and load the name we gave that element when we added it to the list
         if(!drawio.selectedFile) {
             console.log("Please select a file first");
             return;
         }
+        drawio.deletedShapes = [];
         var jsonShapes = JSON.parse(storageDrawio.getItem(drawio.selectedFile));
         console.log(jsonShapes);
         console.log(jsonShapes.length);
@@ -105,17 +99,37 @@ $(function() {
         drawCanvas();
     });
 
-    $('#undo-btn').on('click', function(){
-        //Take newest shape from shapes array and push it into a deleted shapes array
-        if(drawio.shapes.length > 0) {
+    $('#erase-btn').on('click', function(){
+        drawio.eraseRedo = true;
+        var iteratorValue = drawio.shapes.length;
+        for(var i = 0; i < iteratorValue; i++) {
             drawio.deletedShapes.push(drawio.shapes.pop());
         }
         drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
         drawCanvas();
     });
 
+    $('#undo-btn').on('click', function(){
+        if(drawio.eraseRedo) {
+            var iteratorValue = drawio.deletedShapes.length;
+            for(var i = 0; i < iteratorValue; i++) {
+                drawio.shapes.push(drawio.deletedShapes.pop());
+            }
+        
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawCanvas();
+            drawio.eraseRedo = false;
+        }
+        else {
+            if(drawio.shapes.length > 0) {
+                drawio.deletedShapes.push(drawio.shapes.pop());
+            }
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawCanvas();
+        }
+    });
+
     $('#redo-btn').on('click', function(){
-        //Take the newest shape from deleted shapes and push it into the shapes array
         if(drawio.deletedShapes.length > 0) {
             drawio.shapes.push(drawio.deletedShapes.pop());
         }
