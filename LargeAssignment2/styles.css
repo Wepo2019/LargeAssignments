@@ -94,8 +94,12 @@ body {
     color: white;
 }
 
-#load-files {
+.nodot {
     list-style-type: none;
+}
+
+#load-files {
+    
 }
 
 .colors button{
