@@ -126,6 +126,7 @@ $(function() {
     $("#deleteFile-btn").on('click', function() {
         if(confirm("Are you sure you want to delete all of your saved data?")) {
             storageDrawio.clear();
+            $('ul').empty();
         }
         else {
             return;

@@ -106,6 +106,12 @@ body {
     background-color: red;
 }
 
+.bottom {
+    position: absolute;
+    bottom: 5%;
+    left: 90%;
+}
+
 .hide {
     display: none;
 }
