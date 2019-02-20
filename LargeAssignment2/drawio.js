@@ -7,6 +7,7 @@ window.drawio = {
     selectedFile: null,
     selectedColor: 'black',
     fillShapes: false,
+    selectedLineWidth: 1,
     canvas: document.getElementById('my-canvas'),
     ctx: document.getElementById('my-canvas').getContext('2d'),
     selectedElement: null,
@@ -169,19 +170,19 @@ $(function() {
     $('#my-canvas').on('mousedown', function (mouseEvent) {
         switch (drawio.selectedShape) {
             case drawio.availableShapes.PEN:
-                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor);
+                drawio.selectedElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null, drawio.selectedColor, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.RECTANGLE:
-                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.fillShapes);
+                drawio.selectedElement = new Rectangle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.fillShapes, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.CIRCLE:
-                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes);
+                drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.TEXT:
                 drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null);
                 break;
             case drawio.availableShapes.LINE:
-                drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
+                drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.MOVE:
                 //OnClick, send offsetX and Y into a function that checks if there is overlap on any objects, pick the first one that fits
@@ -221,7 +222,7 @@ $(function() {
         drawio.selectedColor = this.id;
     });
 
-        //Fill shapes
+    //Fill shapes
     $("#fill").click(function() {
         $("#noFill").removeClass("selected");
         $("#fill").addClass("selected");
@@ -233,6 +234,15 @@ $(function() {
         $("#noFill").addClass("selected");
         drawio.fillShapes = false;
     });
+
+    //line width
+    $('.lineButton').click(function() {
+        $('.lineButton').removeClass('selected');
+        $(this).addClass('selected');
+        drawio.selectedLineWidth = $(this).html();
+        console.log(drawio.selectedLineWidth);
+    });
+
     
 });
         

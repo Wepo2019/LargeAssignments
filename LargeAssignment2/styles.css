@@ -212,3 +212,15 @@ background-color: GreenYellow;
 button.selected {
     opacity: 1;
 }
+.lineWidth {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.lineWidth .lineButton {
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    border-radius: 2px;
+    opacity: 0.7;
+    background-color: red;
+}

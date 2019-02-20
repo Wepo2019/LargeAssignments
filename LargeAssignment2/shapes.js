@@ -12,13 +12,14 @@ Shape.prototype.move = function (position) {
 Shape.prototype.resize = function () {};
 
 //Rectangle shape
-function Rectangle(position, width, height, color, fill) {
+function Rectangle(position, width, height, color, fill, rectLineWidth) {
     this.type = 'rectangle';
     Shape.call(this, position);
     this.width = width;
     this.height = height;
     this.color = color;
     this.fill = fill;
+    this.rectLineWidth = rectLineWidth;
 };
 
 Rectangle.prototype = Object.create(Shape.prototype);
@@ -30,7 +31,8 @@ Rectangle.prototype.render = function () {
         drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
     else {
-        drawio.ctx.strokeStyle = this.color; 
+        drawio.ctx.strokeStyle = this.color;
+        drawio.ctx.lineWidth = this.rectLineWidth;
         drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
     }
 }
@@ -43,12 +45,13 @@ Rectangle.prototype.resize = function (x, y) {
 };
 
 //Circle Shape
-function Circle(position, radius, color, fill) {
+function Circle(position, radius, color, fill, circleLineWidth) {
     this.type = 'circle';
     Shape.call(this, position);
     this.radius = radius;
     this.color = color;
     this.fill = fill;
+    this.circleLineWidth = circleLineWidth;
 };
 
 Circle.prototype = Object.create(Shape.prototype);
@@ -63,6 +66,7 @@ Circle.prototype.render = function () {
     }
     else {
         drawio.ctx.strokeStyle = this.color;
+        drawio.ctx.lineWidth = this.circleLineWidth;
         drawio.ctx.stroke();
     }
 }
@@ -101,11 +105,12 @@ Text.prototype.resize = function (x,y) {
 }
 
 //Line Shape
-function Line(position, endPositionX, endPositionY, color) {
+function Line(position, endPositionX, endPositionY, color, lineLineWidth) {
     this.type = 'line';
     Shape.call(this, position);
     this.endPosition = {x: endPositionX, y: endPositionY};
     this.color = color;
+    this.lineLineWidth = lineLineWidth;
 }
 
 Line.prototype = Object.create(Shape.prototype);
@@ -113,6 +118,8 @@ Line.prototype.constructor = Line;
 
 Line.prototype.render = function () {
     drawio.ctx.strokeStyle = this.color; 
+    drawio.ctx.lineWidth = this.lineLineWidth;
+
     drawio.ctx.beginPath();
     drawio.ctx.moveTo(this.position.x, this.position.y);
     drawio.ctx.lineTo(this.endPosition.x + this.position.x, this.endPosition.y + this.position.y);
@@ -125,9 +132,10 @@ Line.prototype.resize = function (x, y) {
 }
 
 //Pen
-function Pen(position, points, color) {
+function Pen(position, points, color, penLineWidth) {
     this.type = 'pen';
     this.color = color;
+    this.penLineWidth = penLineWidth;
     Shape.call(this, position);
     if(points) {
         this.points = points;
@@ -143,6 +151,7 @@ Pen.prototype.constructor = Pen;
 
 Pen.prototype.render = function () {
     drawio.ctx.strokeStyle = this.color; 
+    drawio.ctx.lineWidth = this.penLineWidth;
     drawio.ctx.beginPath();
     for(var i = 0; i < this.points.length; i++) {
         const p = this.points[i];
