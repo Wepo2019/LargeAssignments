@@ -23,6 +23,20 @@ window.drawio = {
 };
 
 $(function() {
+
+    //On load, get all storage keys and generate the possible to load list
+    function getLoadList() {
+        for (var i = 0; i < storageDrawio.length; i++) {
+            var fileName = storageDrawio.key(i);
+            var listElement = $("<li class=\"load-list\"></li>").attr('data-name', fileName).html(fileName);
+            listElement.on('click', selectedListClicks);
+            $('ul').append(listElement);
+        }
+    }
+
+    getLoadList();
+
+    //Render all shapes to the canvas
     function drawCanvas() {
         if(drawio.selectedElement) {
             drawio.selectedElement.render();
@@ -33,6 +47,7 @@ $(function() {
         }
     }
 
+    //Tools and shapes selection
     $('.icon').on('click', function () {
         if($(this).data('shape')) {
             $('.icon').removeClass('selected');
@@ -40,13 +55,14 @@ $(function() {
             drawio.selectedShape = $(this).data('shape');
         }
     });
-      
+    
+    //
     $('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
     });
 
-    //Select loaded file
+    //Select a file, load and save functions
     $('li').on('click', selectedListClicks);
     
     function selectedListClicks(){
@@ -99,6 +115,7 @@ $(function() {
         drawCanvas();
     });
 
+    //Erase everything on the canvas
     $('#erase-btn').on('click', function(){
         drawio.eraseRedo = true;
         var iteratorValue = drawio.shapes.length;
@@ -109,6 +126,7 @@ $(function() {
         drawCanvas();
     });
 
+    //Undo redo functions
     $('#undo-btn').on('click', function(){
         if(drawio.eraseRedo) {
             var iteratorValue = drawio.deletedShapes.length;
@@ -138,6 +156,7 @@ $(function() {
     });
     
 
+    //Canvas mouse events
     $('#my-canvas').on('mousedown', function (mouseEvent) {
         switch (drawio.selectedShape) {
             case drawio.availableShapes.PEN:
@@ -168,7 +187,6 @@ $(function() {
     });
 
     $('#my-canvas').on('mouseup', function () {
-        //Check if selected element is null, we dont want to push null
         if(drawio.selectedElement) {
             drawio.shapes.push(drawio.selectedElement);
         }
@@ -176,7 +194,7 @@ $(function() {
         drawio.selectedElement = null;
     });
 
-        // Select color
+    //Select color
     $('.colorButton').click(function() {
         $('.colorButton').removeClass('selected');
         $(this).addClass('selected');
