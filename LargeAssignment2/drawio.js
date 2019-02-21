@@ -104,7 +104,7 @@ $(function() {
                     drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius));
                     break;
                 case drawio.availableShapes.TEXT:
-                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].text));
+                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].textData, jsonShapes[i].textFont));
                     break;
                 case drawio.availableShapes.LINE:
                     drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y));
@@ -147,7 +147,7 @@ $(function() {
                 drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor);
                 break;
             case drawio.availableShapes.TEXT:
-                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY});
+                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, textData, textFont);
                 break;
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor);
@@ -180,7 +180,20 @@ $(function() {
         drawio.selectedColor = this.id;
         console.log(drawio.selectedColor);
     });
-    
+
+    //Toggles dropdown on and off
+   $('.textFunction').click(function() {
+        $('.myDropDown').toggle("show");
+    });
+
+    //Onclick on submit button then dropdown closes and
+    //input the data from the form
+    $('.textSubmitFunction').click(function() {
+        $('.myDropDown').toggle("show");
+        textData = $('#textInput').val();
+        textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
+    });
+
 });
         
 
