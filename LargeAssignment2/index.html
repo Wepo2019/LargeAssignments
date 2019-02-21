@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> 
     </head>
     <body>
-         <!-- Left Sidebar -->
+         <!-- Left Sidebar Icons -->
         <div class="leftSidebar">
             <p id="pH"><u> D R A W I O</u> </p>
             <div class="icon left" id="undo-btn">
@@ -31,7 +31,7 @@
                 <i class="fa fa-bomb" aria-hidden="true"></i>
             </div>
         </div>
-        <!-- Right Sidebar -->
+        <!-- Right Sidebar Icons -->
         <div class="rightSidebar">
             <p id="p1"><u>Tools & shapes</u></p>
             <div class="icon right selected" id="pen-btn" data-shape="pen">
@@ -46,7 +46,6 @@
                 </div>
                 <div class="dropdown">
                     <div class="dropdown-content myDropDown">
-
                         <select name="Font" id="textFontForm">
                             <option value="Arial">Arial</option>
                             <option value="Helvetica">Helvetica</option>
@@ -81,9 +80,10 @@
             <div class="icon right" id="circle-btn" data-shape="circle">
                 <i class="fa fa-circle-thin" aria-hidden="true"></i>
             </div><br><br>
+            <!-- Select Fill Shape or not -->
             <div id="visability" class="hide">
-            <button id="fill" class="fillOrNoFill" type="button">Fill</button>
-            <button id="noFill" class="fillOrNoFill" type="button">No fill</button>
+                <button id="fill" class="fillOrNoFill" type="button">Fill</button>
+                <button id="noFill" class="fillOrNoFill" type="button">No fill</button>
             </div> <br>
             <div class="icon right" id="erase-btn" data-shape="erase">
                     <i class="fa fa fa-times-circle-o" aria-hidden="true"></i>
@@ -91,7 +91,7 @@
             <div class="icon right" id="move-btn" data-shape="move">
                     <i class="fa fa fa-hand-o-down" aria-hidden="true"></i>
             </div><br><br>
-            <!-- colors -->
+            <!-- Colors -->
             <div class="colors">                    
                 <p id="p2"> <u>Colors</u></p>
                 <div id="buttonDiv1">
@@ -111,6 +111,7 @@
                     <button id="greenYellow" class="GreenYellowButton colorButton" type="button"></button>
                 </div>
             </div>
+            <!-- Line Width -->
             <div class="lineWidth">                    
                     <p id="p3"><u>Line Width</u></p>
                     <div id="buttonDiv2">
@@ -127,9 +128,10 @@
                     </div>
                 </div>
         </div>
-           <!-- Canvas -->
+        <!-- Canvas -->
         <div class="container">
-            <canvas id="my-canvas" width="793" height="1122">
+            <!-- Size of Canvas = A4 -->
+            <canvas id="my-canvas" width="793" height="1122"> 
                 Not supported!
             </canvas>
         </div>
