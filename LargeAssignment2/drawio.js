@@ -260,9 +260,9 @@ $(function() {
     });
   
    //Toggles dropdown on and off
-   $('.textFunction').click(function() {
+    $('.textFunction').click(function() {
         $('.myDropDown').toggle("show");
-    });
+    }); 
   
     //Onclick on submit button then dropdown closes and
     //input the data from the form
