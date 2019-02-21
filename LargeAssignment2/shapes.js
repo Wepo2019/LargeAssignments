@@ -91,7 +91,6 @@ function Text(position, color, textData, textFont, textStyle) {
 Text.prototype = Object.create(Shape.prototype);
 Text.prototype.constructor = Text;
 
-//strokeText
 Text.prototype.render = function () {
     drawio.ctx.font = this.textFont;
     drawio.ctx.fillStyle = this.color;
