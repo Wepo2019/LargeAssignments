@@ -83,6 +83,8 @@ function Text(position, color, textData, textFont, textStyle) {
     this.textData = textData;
     this.textFont = textFont;
     this.textStyle = textStyle;
+    this.textWidth;
+    this.textHeight;
 }
 
 Text.prototype = Object.create(Shape.prototype);
@@ -93,6 +95,9 @@ Text.prototype.render = function () {
     drawio.ctx.fillStyle = this.color;
     if(this.textStyle == 'strokeText') {
         drawio.ctx.strokeText(this.textData, this.position.x, this.position.y);
+        var textObj = drawio.ctx.measureText(this.textData);
+        this.textWidth = textObj.width * this.textData.length;
+        this.textHeight = 15;
     }
     if(this.textStyle == 'fillText') {
         drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
