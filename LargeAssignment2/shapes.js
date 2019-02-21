@@ -79,12 +79,13 @@ Circle.prototype.resize = function (x, y) {
 }
 
 //Text shape
-function Text(position, color, textData, textFont) {
+function Text(position, color, textData, textFont, textStyle) {
     this.type = 'text';
     Shape.call(this, position);
     this.color = color;
     this.textData = textData;
     this.textFont = textFont;
+    this.textStyle = textStyle;
 }
 
 Text.prototype = Object.create(Shape.prototype);
@@ -94,7 +95,12 @@ Text.prototype.constructor = Text;
 Text.prototype.render = function () {
     drawio.ctx.font = this.textFont;
     drawio.ctx.fillStyle = this.color;
-    drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
+    if(this.textStyle == 'strokeText') {
+        drawio.ctx.strokeText(this.textData, this.position.x, this.position.y);
+    }
+    if(this.textStyle == 'fillText') {
+        drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
+    }
 }
 
 Text.prototype.resize = function (x,y) {
