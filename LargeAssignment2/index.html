@@ -9,9 +9,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> 
     </head>
     <body>
-        <nav class="navbar">
-            <p> D R A W I O </p>
-        </nav>
          <!-- Left Sidebar -->
         <div class="leftSidebar">
             <div class="icon left" id="undo-btn">
@@ -30,9 +27,13 @@
                 <ul class="left bright nodot">
                 </ul>
             </div>
+            <div class="icon left bottom" id="deleteFile-btn">
+                <i class="fa fa-bomb" aria-hidden="true"></i>
+            </div><br><br>
         </div>
         <!-- Right Sidebar -->
         <div class="rightSidebar">
+            <p id="pH"><u> D R A W I O</u> </p>
             <p id="p1">Tools & shapes</p>
             <div class="icon right selected" id="pen-btn" data-shape="pen">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -75,6 +76,16 @@
                 </div>
             </div>
             <br><br>
+            <div class="icon right" id="erase-btn" data-shape="erase">
+                    <i class="fa fa fa-times-circle-o" aria-hidden="true"></i>
+            </div>
+            <div class="icon right" id="move-btn" data-shape="move">
+                    <i class="fa fa fa-hand-o-down" aria-hidden="true"></i>
+            </div><br><br>
+            <div id="visability" class="hide">
+            <button id="fill" class="fillOrNoFill" type="button">Fill</button>
+            <button id="noFill" class="fillOrNoFill" type="button">No fill</button>
+            </div> <br><br>
             <!-- colors -->
             <div class="colors">                    
                 <p id="p2"> Colors</p>
@@ -95,6 +106,22 @@
                     <button id="greenYellow" class="GreenYellowButton colorButton" type="button"></button>
                 </div>
             </div>
+
+            <div class="lineWidth">                    
+                    <p id="p3"> Line Width</p>
+                    <div>
+                        <button class="lineButton" type="button">1</button>
+                        <button class="lineButton" type="button">2</button>
+                        <button class="lineButton" type="button">5</button>
+                        <button class="lineButton" type="button">10</button>
+                        <button class="lineButton" type="button">15</button>
+                        <button class="lineButton" type="button">20</button>
+                        <button class="lineButton" type="button">25</button>
+                        <button class="lineButton" type="button">30</button>
+                        <button class="lineButton" type="button">35</button>
+                        <button class="lineButton" type="button">40</button>
+                    </div>
+                </div>
         </div>
            <!-- Canvas -->
         <div class="container">

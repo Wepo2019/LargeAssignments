@@ -21,35 +21,25 @@ body {
     font-weight: 700;
     font-style: normal;
 }
-.navbar {
-    height: 120px;
-    background-color: black;
-}
-.navbar p  {
-    font-size: 100px;
-    font-family: 'Ostrich Sans';
-    color: red;
-    padding-left: 36%;
-    padding-top: 5%;
+.rightSidebar #pH {
+    font-size: 70px;
 } 
 .leftSidebar {
     height: 100%;
     width: 320px;
     position: fixed;
-    top: 45px;
+    top: 5px;
     left: 0;
     background-color: black;
     overflow-x: hidden;
-    margin-top: 72px;
 }
 .rightSidebar {
     height: 100%;
     width: 320px;
     position: fixed;
-    top: 45px;
+    top: 5px;
     right: 0;
     background-color: black;
-    margin-top: 72px;
 }
 .rightSidebar p {
     font-family: 'Ostrich Sans';
@@ -61,7 +51,7 @@ body {
 }
 .rightSidebar #p2 {
     padding-left: 30%;
-    margin-top: 15%
+    margin-top: 10%;
 }
 .icon {
     position: relative;
@@ -105,6 +95,25 @@ body {
 
 .load-list.selected {
     color: red;
+}
+
+.fillOrNoFill{
+    border: 1px solid;
+    height: 30px;
+    width: 75px;
+    border-radius: 2px;
+    opacity: 0.7;
+    background-color: red;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 5%;
+    left: 90%;
+}
+
+.hide {
+    display: none;
 }
 
 .colors button{
@@ -245,3 +254,20 @@ button.selected {
     opacity: 0.7;
   }
   /*Mættir laga css fyrir dropdown menu*/
+.lineWidth {
+    padding-left: 12%;
+    padding-right: 10%;
+}
+
+.lineWidth #p3 {
+    padding-left: 20%;
+    margin-top: 10%
+}
+.lineButton {
+    border: 1px solid;
+    height: 30px;
+    width: 40px;
+    border-radius: 2px;
+    opacity: 0.7;
+    background-color: red;
+}
