@@ -108,7 +108,7 @@ $(function() {
                     drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius, jsonShapes[i].color, jsonShapes[i].fill, jsonShapes[i].circleLineWidth));
                     break;
                 case drawio.availableShapes.TEXT:
-                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].selectedColor, jsonShapes[i].textData, jsonShapes[i].textFont, jsonShapes[i].textStyle));
+                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].color, jsonShapes[i].textData, jsonShapes[i].textFont, jsonShapes[i].textStyle));
                     break;
                 case drawio.availableShapes.LINE:
                     drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y, jsonShapes[i].color, jsonShapes[i].lineLineWidth));
@@ -196,6 +196,8 @@ $(function() {
                 drawio.selectedElement = getShapeFromClick( {x: mouseEvent.offsetX, y: mouseEvent.offsetY} );
                 break;
         }
+        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+        drawCanvas();
     });
 
     function getShapeFromClick(mousePos) {
