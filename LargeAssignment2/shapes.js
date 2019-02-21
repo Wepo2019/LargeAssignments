@@ -79,34 +79,32 @@ Circle.prototype.resize = function (x, y) {
 }
 
 //Text shape
-// er ekki að saveast í shape array*
-//Og hélst ekki á sínu stað canvas
-function Text(position, text) {
+function Text(position, width, height, textData, textFont) {
     this.type = 'text';
     Shape.call(this, position);
-    if(text) {
-        this.text = text;
-    }
-    else {
-        var userInput = prompt('What is your name?');
-        //console.log(userInput);
-        this.text = userInput;
-    }
+    this.width = width;
+    this.height = height;
+    //this.color = color;
+    this.textData = textData;
+    this.textFont = textFont;
 }
 
 Text.prototype = Object.create(Shape.prototype);
 Text.prototype.constructor = Text;
 
 Text.prototype.render = function () {
-    drawio.ctx.fillText(this.text, this.position.x, this.position.y);
+    drawio.ctx.font = this.textFont;
+    //drawio.ctx.fillStyle = this.color;
+    drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
 }
 
 //Virkar ekki að færa ???
+/*
 Text.prototype.resize = function (x,y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
 }
-
+*/
 //Line Shape
 function Line(position, endPositionX, endPositionY, color, lineLineWidth) {
     this.type = 'line';
