@@ -205,14 +205,18 @@ $(function() {
 
     function getShapeFromClick(mousePos) {
         for(var i = 0; i < drawio.shapes.length; i++) {
-            if( (drawio.shapes[i].position.x <= (mousePos.x) && drawio.shapes[i].position.x + drawio.shapes[i].height >= (mousePos.x)) || 
+            if((drawio.shapes[i].position.x <= (mousePos.x) && drawio.shapes[i].position.x + drawio.shapes[i].height >= (mousePos.x)) || 
                 (drawio.shapes[i].position.y <= (mousePos.y) && drawio.shapes[i].position.y + drawio.shapes[i].width >= (mousePos.y))) {
                 return drawio.shapes[i];
                 //This if statement needs to be adjusted to let the user grab the object at not the exact pixel
                 //Super hard to grab the objects. but possible at the exact start point
             }
-        }
+            else if((drawio.shapes[i].position.x <= (mousePos.x) && drawio.shapes[i].position.x + drawio.shapes[i].radius >= (mousePos.x)) || 
+            (drawio.shapes[i].position.y <= (mousePos.y) && drawio.shapes[i].position.y + drawio.shapes[i].radius >= (mousePos.y))) {
+                return drawio.shapes[i];
+            }
     }
+}
 
    
     $('#my-canvas').on('mousemove', function (mouseEvent) {
