@@ -79,12 +79,12 @@ Circle.prototype.resize = function (x, y) {
 }
 
 //Text shape
-function Text(position, width, height, textData, textFont) {
+function Text(position, width, height, color, textData, textFont) {
     this.type = 'text';
     Shape.call(this, position);
     this.width = width;
     this.height = height;
-    //this.color = color;
+    this.color = color;
     this.textData = textData;
     this.textFont = textFont;
 }
@@ -94,17 +94,20 @@ Text.prototype.constructor = Text;
 
 Text.prototype.render = function () {
     drawio.ctx.font = this.textFont;
-    //drawio.ctx.fillStyle = this.color;
+    drawio.ctx.fillStyle = this.color;
     drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
 }
 
 //Virkar ekki að færa ???
-/*
 Text.prototype.resize = function (x,y) {
     this.width = x - this.position.x;
     this.height = y - this.position.y;
 }
-*/
+
+Text.prototype.move = function() {
+    this.position.x = x;
+    this.position.y = y;
+}
 //Line Shape
 function Line(position, endPositionX, endPositionY, color, lineLineWidth) {
     this.type = 'line';
