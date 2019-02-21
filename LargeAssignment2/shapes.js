@@ -42,10 +42,7 @@ Rectangle.prototype.resize = function (x, y) {
     this.height = y - this.position.y;
 };
 
-Rectangle.prototype.move = function (x, y) {
-    this.position.x = x;
-    this.position.y = y;
-};
+// move rect fært niður í bili 
 
 //Circle Shape
 function Circle(position, radius, color, fill, circleLineWidth) {
@@ -178,6 +175,23 @@ Pen.prototype.render = function () {
 Pen.prototype.resize = function (x, y) {
     this.points.push( {x: x, y: y} );
 }
+
+// MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE  MOVE 
+
+Rectangle.prototype.move = function (x, y) {
+    this.position.x = x;
+    this.position.y = y;
+};
+
+Circle.prototype.move = function (x, y) {
+    this.position.x = x;
+    this.position.y = y;
+};
+
+Line.prototype.move = function (x,y) {
+    
+}
+
 
 Pen.prototype.move = function (x, y) {
     //This needs a for loop to move all points in the line according to x and y
