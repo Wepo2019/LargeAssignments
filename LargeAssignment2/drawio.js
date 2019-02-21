@@ -108,7 +108,7 @@ $(function() {
                     drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius, jsonShapes[i].color, jsonShapes[i].fill, jsonShapes[i].circleLineWidth));
                     break;
                 case drawio.availableShapes.TEXT:
-                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].textData, jsonShapes[i].textFont));
+                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].selectedColor, jsonShapes[i].textData, jsonShapes[i].textFont, jsonShapes[i].textStyle));
                     break;
                 case drawio.availableShapes.LINE:
                     drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y, jsonShapes[i].color, jsonShapes[i].lineLineWidth));
@@ -185,7 +185,7 @@ $(function() {
                 drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.TEXT:
-                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, drawio.selectedColor, textData, textFont);
+                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, drawio.selectedColor, textData, textFont, textStyle);
                 break;
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.selectedLineWidth);
@@ -264,10 +264,11 @@ $(function() {
         $('.myDropDown').toggle("show");
     }); 
   
-    //Onclick on submit button then dropdown closes and
     //input the data from the form
     $('.textSubmitFunction').click(function() {
         textData = $('#textInput').val();
         textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
+        textStyle = $('#fontStyleForm').val();
+        console.log(textStyle);
     });
 });
