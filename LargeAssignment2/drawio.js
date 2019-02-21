@@ -274,3 +274,4 @@ $(function() {
         textData = $('#textInput').val();
         textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
     });
+});
