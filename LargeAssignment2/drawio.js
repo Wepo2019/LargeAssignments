@@ -309,13 +309,14 @@ $(function() {
         $('.myDropDown').toggle('show');
     }); 
   
-    //Input the data from the form
+    //Input the data from select options
     $('.myDropDown').change(function() {
         drawio.textData = $('#textInput').val();
         drawio.textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
         drawio.textStyle = $('#fontStyleForm').val();
     });
 
+    //Input the data from the form
     $('#textInput').on('input', function() {
         drawio.textData = $('#textInput').val();
     });
