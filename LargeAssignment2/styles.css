@@ -106,6 +106,12 @@ body {
     background-color: red;
 }
 
+.bottom {
+    position: absolute;
+    bottom: 5%;
+    left: 90%;
+}
+
 .hide {
     display: none;
 }
@@ -202,6 +208,47 @@ background-color: GreenYellow;
 button.selected {
     opacity: 1;
 }
+/*    TEXT   */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #474747;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+  }
+.dropdown-content select {
+    color: black;
+    padding: 6px 10px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content form {
+    color: black;
+    padding: 6px 10px;
+    text-decoration: none;
+    display: block;
+  }
+  .show {
+    display: none;
+  }
+  #fBtn {
+    background-color: RED;
+    border: 1px solid;
+    border-color: black;
+    color: white;
+    height: 45px;
+    width: 65px;
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+  /* LINE */
 .lineWidth {
     padding-left: 12%;
     padding-right: 10%;

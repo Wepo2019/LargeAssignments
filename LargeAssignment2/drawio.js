@@ -20,9 +20,6 @@ window.drawio = {
         LINE: 'line',
         MOVE: 'move'
     }
-    //To do:
-    //Create a move "shape" that when selected will let you move the object you have selected
-    //Filled boolean that will toggle shapes between stroke and fill?
 };
 
 $(function() {
@@ -52,7 +49,6 @@ $(function() {
 
     //Tools and shapes selection
     $('.icon').on('click', function () {
-        
         if($(this).data('shape')== drawio.availableShapes.RECTANGLE || ($(this).data('shape')== drawio.availableShapes.CIRCLE)) {
             $('#visability').removeClass('hide');
         }
@@ -72,13 +68,13 @@ $(function() {
     })*/
 
     //Select a file, load and save functions
-    $('li').on('click', selectedListClicks);
-    
     function selectedListClicks(){
         $('li').removeClass('selected');
         $(this).addClass('selected');
         drawio.selectedFile = $(this).data('name');
     };
+
+    $('li').on('click', selectedListClicks);
 
     $('#save-btn').on('click', function(){
         var listSize = $('li').length;
@@ -91,7 +87,7 @@ $(function() {
 
     $('#load-btn').on('click', function(){
         if(!drawio.selectedFile) {
-            console.log("Please select a file first");
+            alert("Please select a file first");
             return;
         }
         drawio.deletedShapes = [];
@@ -103,25 +99,36 @@ $(function() {
         for( var i = 0; i < jsonShapes.length; i++) {
             switch (jsonShapes[i].type) {
                 case drawio.availableShapes.PEN:
-                    drawio.shapes.push(new Pen(jsonShapes[i].position, jsonShapes[i].points, jsonShapes[i].color));
+                    drawio.shapes.push(new Pen(jsonShapes[i].position, jsonShapes[i].points, jsonShapes[i].color, jsonShapes[i].penLineWidth));
                     break;
                 case drawio.availableShapes.RECTANGLE:
-                    drawio.shapes.push(new Rectangle(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].color, jsonShapes[i].fill));
+                    drawio.shapes.push(new Rectangle(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].color, jsonShapes[i].fill, jsonShapes[i].rectLineWidth));
                     break;
                 case drawio.availableShapes.CIRCLE:
-                    drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius, jsonShapes[i].color, jsonShapes[i].fill));
+                    drawio.shapes.push(new Circle(jsonShapes[i].position, jsonShapes[i].radius, jsonShapes[i].color, jsonShapes[i].fill, jsonShapes[i].circleLineWidth));
                     break;
                 case drawio.availableShapes.TEXT:
-                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].text));
+                    drawio.shapes.push(new Text(jsonShapes[i].position, jsonShapes[i].width, jsonShapes[i].height, jsonShapes[i].textData, jsonShapes[i].textFont));
                     break;
                 case drawio.availableShapes.LINE:
-                    drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y, jsonShapes[i].color));
+                    drawio.shapes.push(new Line(jsonShapes[i].position, jsonShapes[i].endPosition.x, jsonShapes[i].endPosition.y, jsonShapes[i].color, jsonShapes[i].lineLineWidth));
                     break;
             }
         }
 
         drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
         drawCanvas();
+    });
+
+    //Delete all saved files
+    $("#deleteFile-btn").on('click', function() {
+        if(confirm("Are you sure you want to delete all of your saved data?")) {
+            storageDrawio.clear();
+            $('ul').empty();
+        }
+        else {
+            return;
+        }
     });
 
     //Erase everything on the canvas
@@ -178,7 +185,7 @@ $(function() {
                 drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.TEXT:
-                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, null);
+                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, textData, textFont);
                 break;
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.selectedLineWidth);
@@ -232,7 +239,6 @@ $(function() {
         $(this).addClass('selected');
         drawio.selectedColor = this.id;
     });
-
     //Fill shapes
     $("#fill").click(function() {
         $("#noFill").removeClass("selected");
@@ -252,9 +258,17 @@ $(function() {
         $(this).addClass('selected');
         drawio.selectedLineWidth = $(this).html();
     });
-
+  
+   //Toggles dropdown on and off
+   $('.textFunction').click(function() {
+        $('.myDropDown').toggle("show");
+    });
+  
+    //Onclick on submit button then dropdown closes and
+    //input the data from the form
+    $('.textSubmitFunction').click(function() {
+        $('.myDropDown').toggle("show");
+        textData = $('#textInput').val();
+        textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
+    });
 });
-        
-
-
-
