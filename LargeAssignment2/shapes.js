@@ -98,10 +98,9 @@ Text.prototype.render = function () {
     drawio.ctx.fillText(this.textData, this.position.x, this.position.y);
 }
 
-//Virkar ekki að færa ???
 Text.prototype.resize = function (x,y) {
-    this.width = x - this.position.x;
-    this.height = y - this.position.y;
+    this.position.x = x;
+    this.position.y = y;
 }
 
 Text.prototype.move = function() {
