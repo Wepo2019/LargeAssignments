@@ -34,7 +34,7 @@ body {
     overflow-x: hidden;
 }
 .rightSidebar {
-    height: 100%;
+    height: 140%;
     width: 320px;
     position: fixed;
     top: 5px;
@@ -70,6 +70,7 @@ body {
 .icon.right {
     float: left;
     padding-left: 20px;
+    margin-left: 3px;
 }
 .icon.left {
     float: right;
@@ -105,17 +106,14 @@ body {
     opacity: 0.7;
     background-color: red;
 }
-
 .bottom {
     position: absolute;
     bottom: 5%;
     left: 90%;
 }
-
 .hide {
     display: none;
 }
-
 .colors button{
     border: 1px solid;
     height: 30px;
@@ -131,79 +129,79 @@ button:hover {
     opacity: 1;
 } 
 .colors .blackButton{
-border: 1px solid red ;
-border-radius: 2px;
-background-color: black;
+    border: 1px solid red ;
+    border-radius: 2px;
+    background-color: black;
 }
 .colors .yellowButton{
-border: 1px solid yellow;
-border-radius: 2px;
-background-color: yellow;
+    border: 1px solid yellow;
+    border-radius: 2px;
+    background-color: yellow;
 }
 .colors .redButton{
-border: 1px solid red;
-border-radius: 2px;
-background-color: red;
+    border: 1px solid red;
+    border-radius: 2px;
+    background-color: red;
 }
 .colors .greenButton{
-border: 1px solid green ;
-border-radius: 2px;
-background-color: green;
+    border: 1px solid green ;
+    border-radius: 2px;
+    background-color: green;
 }
 .colors .blueButton{
-border: 1px solid blue ;
-border-radius: 2px;
-background-color: blue;
+    border: 1px solid blue ;
+    border-radius: 2px;
+    background-color: blue;
 }
 .colors .whiteButton{
-border: 1px solid white ;
-border-radius: 2px;
-background-color: white;
+    border: 1px solid white ;
+    border-radius: 2px;
+    background-color: white;
 }
 .colors .purpleButton{
-border: 1px solid plum;
-border-radius: 2px;
-background-color: plum;
+    border: 1px solid plum;
+    border-radius: 2px;
+    background-color: plum;
 }
 .colors .brownButton{
-border: 1px solid brown;
-border-radius: 2px;
-background-color: brown;
+    border: 1px solid brown;
+    border-radius: 2px;
+    background-color: brown;
 }
 .colors .pinkButton{
-border: 1px solid pink ;
-border-radius: 2px;
-background-color: pink;
+    border: 1px solid pink ;
+    border-radius: 2px;
+    background-color: pink;
 }
 .colors .orangeButton{
-border: 1px solid orange ;
-border-radius: 2px;
-background-color: orange;
+    border: 1px solid orange ;
+    border-radius: 2px;
+    background-color: orange;
 }
 .colors .AquaButton{
-border: 1px solid Aqua;
-border-radius: 2px;
-background-color: aqua;
+    border: 1px solid Aqua;
+    border-radius: 2px;
+    background-color: aqua;
 }
 .colors .PeachPuffButton{
-border: 1px solid PeachPuff;
-border-radius: 2px;
-background-color: PeachPuff;
+    border: 1px solid PeachPuff;
+    border-radius: 2px;
+    background-color: PeachPuff;
 }
 .colors .AntiqueWhiteButton{
-border: 1px solid AntiqueWhite;
-border-radius: 2px;
-background-color: AntiqueWhite;
+    border: 1px solid AntiqueWhite;
+    border-radius: 2px;
+    background-color: AntiqueWhite;
 }
 .colors .FuchsiaButton{
-border: 1px solid Fuchsia;
-border-radius: 2px;
-background-color: Fuchsia;
+    border: 1px solid Fuchsia;
+    border-radius: 2px;
+    background-color: Fuchsia;
 }
 .colors .GreenYellowButton{
-border: 1px solid GreenYellow;
-border-radius: 2px;
-background-color: GreenYellow;
+    border: 1px solid GreenYellow;
+    border-radius: 2px;
+    background-color: GreenYellow;
 }
 button.selected {
     opacity: 1;
@@ -212,48 +210,49 @@ button.selected {
 .dropdown {
     position: relative;
     display: inline-block;
+    padding-left: 30px;
 }
 .dropdown-content {
     display: none;
     position: relative;
-    background-color: #474747;
+    background-color: black;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-
-  }
+    margin-top: 5px;
+}
 .dropdown-content select {
     color: black;
-    padding: 6px 10px;
     text-decoration: none;
     display: block;
-  }
-  .dropdown-content form {
+    margin-top: 5px;
+}
+.dropdown-content form {
     color: black;
-    padding: 6px 10px;
     text-decoration: none;
     display: block;
-  }
-  .show {
+    margin-top: 5px;
+}
+
+.show {
     display: none;
-  }
-  #fBtn {
+}
+#fBtn {
     background-color: RED;
     border: 1px solid;
-    border-color: black;
-    color: white;
-    height: 45px;
-    width: 65px;
+    border-color: red;
+    height: 35px;
+    width: 75px;
     border-radius: 2px;
     opacity: 0.7;
-  }
+    margin-top: 5px;
+}
   /* LINE */
 .lineWidth {
     padding-left: 12%;
     padding-right: 10%;
 }
-
 .lineWidth #p3 {
     padding-left: 20%;
     margin-top: 10%
@@ -265,4 +264,8 @@ button.selected {
     border-radius: 2px;
     opacity: 0.7;
     background-color: red;
+}
+
+#fBtn:hover {
+    opacity: 1;
 }

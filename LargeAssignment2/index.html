@@ -41,51 +41,52 @@
             <div class="icon right" id="line-btn" data-shape="line">
                 <i class="fa fa-window-minimize" aria-hidden="true"></i>
             </div>
+            <br><br>
+            <div class="icon right textFunction" id="text-btn" data-shape="text">
+                    <i class="fa fa fa-font" aria-hidden="true"></i>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-content myDropDown">
+
+                        <select name="Font" id="textFontForm">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                        <!-- Font Size -->
+                        <select name="Size" id="fontSizeForm">
+                            <option value="8px">8px</option>
+                            <option value="10px">10px</option>
+                            <option value="15px">15px</option>
+                            <option value="20px">20px</option>
+                        </select>
+                        <!-- Form Input -->
+                        <form id="textform">
+                            <input type="text" id="textInput" name="finput" placeholder="Write here..">
+                            <br>
+                            <button class="textSubmitFunction" type="button" id="fBtn">Submit</button>
+                            <button class="textFunction" type="button" id="fBtn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            <br><br>
             <div class="icon right" id="rect-btn" data-shape="rectangle">
                 <i class="fa fa-square-o" aria-hidden="true"></i>
             </div>
             <div class="icon right" id="circle-btn" data-shape="circle">
                 <i class="fa fa-circle-thin" aria-hidden="true"></i>
-            </div>
-            <div class="icon right textFunction" id="text-btn" data-shape="text">
-                <i class="fa fa fa-font" aria-hidden="true"></i>
-            </div>
-            <div class="dropdown">
-                <div class="dropdown-content myDropDown">
-                    <!-- Font Style -->
-                    <select name="Font" id="textFontForm">
-                        <option value="Arial">Arial</option>
-                        <option value="Helvetica">Helvetica</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Verdana">Verdana</option>
-                    </select>
-                    <!-- Font Size -->
-                    <select name="Size" id="fontSizeForm">
-                        <option value="8px">8px</option>
-                        <option value="10px">10px</option>
-                        <option value="15px">15px</option>
-                        <option value="20px">20px</option>
-                    </select>
-                    <!-- Form Input -->
-                    <form id="textform">
-                        <input type="text" id="textInput" name="finput" placeholder="Write here..">
-                        <br><br>
-                        <button class="textSubmitFunction" type="button" id="fBtn">Submit</button>
-                        <button class="textFunction" type="button" id="fBtn">Close</button>
-                    </form>
-                </div>
-            </div>
-            <br><br>
+            </div><br><br>
+            <div id="visability" class="hide">
+            <button id="fill" class="fillOrNoFill" type="button">Fill</button>
+            <button id="noFill" class="fillOrNoFill" type="button">No fill</button>
+            </div> 
             <div class="icon right" id="erase-btn" data-shape="erase">
                     <i class="fa fa fa-times-circle-o" aria-hidden="true"></i>
             </div>
             <div class="icon right" id="move-btn" data-shape="move">
                     <i class="fa fa fa-hand-o-down" aria-hidden="true"></i>
             </div><br><br>
-            <div id="visability" class="hide">
-            <button id="fill" class="fillOrNoFill" type="button">Fill</button>
-            <button id="noFill" class="fillOrNoFill" type="button">No fill</button>
-            </div> <br><br>
             <!-- colors -->
             <div class="colors">                    
                 <p id="p2"> Colors</p>

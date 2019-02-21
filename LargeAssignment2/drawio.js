@@ -260,14 +260,13 @@ $(function() {
     });
   
    //Toggles dropdown on and off
-   $('.textFunction').click(function() {
+    $('.textFunction').click(function() {
         $('.myDropDown').toggle("show");
-    });
+    }); 
   
     //Onclick on submit button then dropdown closes and
     //input the data from the form
     $('.textSubmitFunction').click(function() {
-        $('.myDropDown').toggle("show");
         textData = $('#textInput').val();
         textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
     });
