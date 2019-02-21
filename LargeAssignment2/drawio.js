@@ -62,12 +62,10 @@ $(function() {
         }
     });
     
-
-    
-    $('button').on('click', function(){
+    /*$('button').on('click', function(){
         $('button').removeClass('selected');
         $(this).addClass('selected');
-    })
+    })*/
 
     //Select a file, load and save functions
     function selectedListClicks(){
@@ -259,7 +257,6 @@ $(function() {
         $('.lineButton').removeClass('selected');
         $(this).addClass('selected');
         drawio.selectedLineWidth = $(this).html();
-        console.log(drawio.selectedLineWidth);
     });
   
    //Toggles dropdown on and off
