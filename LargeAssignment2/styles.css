@@ -243,17 +243,12 @@ button.selected {
     border: 1px solid;
     border-color: black;
     color: white;
-    /*padding: 10px 20px;*/
     height: 45px;
     width: 65px;
-    /*text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;  */
     border-radius: 2px;
     opacity: 0.7;
   }
-  /*Mættir laga css fyrir dropdown menu*/
+  /* LINE */
 .lineWidth {
     padding-left: 12%;
     padding-right: 10%;
