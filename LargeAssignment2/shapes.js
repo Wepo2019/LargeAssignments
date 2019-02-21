@@ -104,10 +104,6 @@ Text.prototype.resize = function (x,y) {
     this.position.y = y;
 }
 
-Text.prototype.move = function() {
-    this.position.x = x;
-    this.position.y = y;
-}
 //Line Shape
 function Line(position, endPositionX, endPositionY, color, lineLineWidth) {
     this.type = 'line';
@@ -190,6 +186,11 @@ Circle.prototype.move = function (x, y) {
 
 Line.prototype.move = function (x,y) {
     
+}
+
+Text.prototype.move = function(x,y) {
+    this.position.x = x;
+    this.position.y = y;
 }
 
 

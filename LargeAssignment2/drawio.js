@@ -215,6 +215,7 @@ $(function() {
             (drawio.shapes[i].position.y <= (mousePos.y) && drawio.shapes[i].position.y + drawio.shapes[i].radius >= (mousePos.y))) {
                 return drawio.shapes[i];
             }
+            
     }
 }
 
