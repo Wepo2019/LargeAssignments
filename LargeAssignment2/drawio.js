@@ -1,3 +1,5 @@
+//Authors: Hjörtur Jóhann Vignisson, Ívar Kristinn Hallsson, Guðrún Margrét Ívansdóttir 
+
 storageDrawio = window.localStorage;
 
 window.drawio = {
