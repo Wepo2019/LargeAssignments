@@ -185,7 +185,7 @@ $(function() {
                 drawio.selectedElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, drawio.selectedColor, drawio.fillShapes, drawio.selectedLineWidth);
                 break;
             case drawio.availableShapes.TEXT:
-                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, textData, textFont);
+                drawio.selectedElement = new Text({x: mouseEvent.offsetX, y: mouseEvent.offsetY}, drawio.selectedColor, textData, textFont);
                 break;
             case drawio.availableShapes.LINE:
                 drawio.selectedElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0, 0, drawio.selectedColor, drawio.selectedLineWidth);
@@ -267,7 +267,6 @@ $(function() {
     //Onclick on submit button then dropdown closes and
     //input the data from the form
     $('.textSubmitFunction').click(function() {
-        $('.myDropDown').toggle("show");
         textData = $('#textInput').val();
         textFont = $('#fontSizeForm').val().concat(' ', $('#textFontForm').val());
     });

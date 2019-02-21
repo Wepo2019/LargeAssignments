@@ -79,11 +79,9 @@ Circle.prototype.resize = function (x, y) {
 }
 
 //Text shape
-function Text(position, width, height, color, textData, textFont) {
+function Text(position, color, textData, textFont) {
     this.type = 'text';
     Shape.call(this, position);
-    this.width = width;
-    this.height = height;
     this.color = color;
     this.textData = textData;
     this.textFont = textFont;
@@ -92,6 +90,7 @@ function Text(position, width, height, color, textData, textFont) {
 Text.prototype = Object.create(Shape.prototype);
 Text.prototype.constructor = Text;
 
+//strokeText
 Text.prototype.render = function () {
     drawio.ctx.font = this.textFont;
     drawio.ctx.fillStyle = this.color;
