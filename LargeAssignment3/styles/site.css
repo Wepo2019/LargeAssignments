@@ -1,1 +1,26 @@
-/* You can add styles here */
+/*Body*/
+body {
+    background-color: rgb(52, 89, 244)
+}
+
+
+/* NavigationBar css*/
+.navigation-bar {
+    background-color: rgb(159, 159, 159);
+    display: block;
+    height: 150px;
+    border-bottom: solid 2px white;
+}
+
+/* NavigationBar-links css*/
+ul.navigation-links {
+    float:right
+}
+
+ul.navigation-links li {
+    display: inline-block;
+    color: black;
+    padding: 10px;
+}
+
+
