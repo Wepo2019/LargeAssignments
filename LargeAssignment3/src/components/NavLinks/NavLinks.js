@@ -13,7 +13,7 @@ const NavLinks = () => {
                 <NavLink  className="nav-link" to="/">Product</NavLink>
             </li>
             <li className="nav-item active">
-                <NavLink className="nav-link" to="/">Bubbles</NavLink>
+                <NavLink className="nav-link" to="/">Bundles</NavLink>
             </li>
             <li className="nav-item active">
                 <NavLink className="nav-link" to="/about">About Us</NavLink>
