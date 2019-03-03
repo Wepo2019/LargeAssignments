@@ -9,7 +9,7 @@ This is the apps CSS stylesheet though i was thinking about using
 
 /*Body*/
 body {
-    background-color: rgb(52, 89, 244)
+    background-color: rgb(147, 147, 147)
 }
 
 /* NavigationBar css*/
@@ -33,7 +33,7 @@ ul.navigation-links li {
 
 /*Data Container*/
 .container {
-    background-color: rgb(67, 232, 227);
+    background-color: rgb(208, 208, 208);
     width:1196px;
     height: 1000px;
     margin: 0 auto;
