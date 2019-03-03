@@ -1,13 +1,11 @@
 /*
-This is the apps CSS stylesheet though i was thinking about using 
+This is the apps CSS stylesheet though i was thinking about using
 .less doc for more clarity
 */
-
 /*Body*/
 body {
     background-color: rgb(52, 89, 244)
 }
-
 
 /* NavigationBar css*/
 .navigation-bar {
@@ -19,7 +17,7 @@ body {
 
 /* NavigationBar-links css*/
 ul.navigation-links {
-    float:right
+    float: right
 }
 
 ul.navigation-links li {
@@ -28,4 +26,11 @@ ul.navigation-links li {
     padding: 10px;
 }
 
-
+/*Data Container*/
+.container {
+    background-color: rgb(67, 232, 227);
+    width:auto;
+    height: 1000px;
+    margin: 0 auto;
+    border: solid 2px black;
+}
