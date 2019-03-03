@@ -6,8 +6,7 @@ import NavLinks from '../NavLinks/NavLinks';
 
 const NavigationBar = () => {
   return (
-    <nav className="navigation-bar">
-        <p>NAVBAR</p>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light navigation-bar">
         <NavLinks />
     </nav>
   )

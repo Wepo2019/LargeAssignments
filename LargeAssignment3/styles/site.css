@@ -2,6 +2,11 @@
 This is the apps CSS stylesheet though i was thinking about using
 .less doc for more clarity
 */
+/*All*/
+* {
+    box-sizing: border-box;
+}
+
 /*Body*/
 body {
     background-color: rgb(52, 89, 244)
@@ -9,28 +14,29 @@ body {
 
 /* NavigationBar css*/
 .navigation-bar {
-    background-color: rgb(159, 159, 159);
+    background-color: rgb(41, 41, 41);
     display: block;
-    height: 150px;
+    height: 75px;
     border-bottom: solid 2px white;
 }
 
 /* NavigationBar-links css*/
 ul.navigation-links {
-    float: right
+    float:left
 }
 
 ul.navigation-links li {
     display: inline-block;
-    color: black;
+    color: white;
     padding: 10px;
 }
 
 /*Data Container*/
 .container {
     background-color: rgb(67, 232, 227);
-    width:auto;
+    width:1196px;
     height: 1000px;
     margin: 0 auto;
     border: solid 2px black;
+    padding-top: 15px;
 }
