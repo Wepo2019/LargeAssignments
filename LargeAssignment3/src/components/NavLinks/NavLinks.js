@@ -10,7 +10,7 @@ const NavLinks = () => {
     return (
         <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-                <NavLink  className="nav-link" to="/">Product</NavLink>
+                <NavLink  className="nav-link" to="/bubbles">Products</NavLink>
             </li>
             <li className="nav-item active">
                 <NavLink className="nav-link" to="/">Bundles</NavLink>
