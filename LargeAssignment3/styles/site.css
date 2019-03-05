@@ -9,15 +9,15 @@ This is the apps CSS stylesheet though i was thinking about using
 
 /*Body*/
 body {
-    background-color: rgb(147, 147, 147)
+    background-color: #D8D0FF;
 }
 
 /* NavigationBar css*/
 .navigation-bar {
-    background-color: rgb(41, 41, 41);
+    background-color: black;
     display: block;
     height: 75px;
-    border-bottom: solid 2px white;
+    border-bottom: solid 2px black;
 }
 
 /* NavigationBar-links css*/
@@ -33,10 +33,26 @@ ul.navigation-links li {
 
 /*Data Container*/
 .container {
-    background-color: rgb(208, 208, 208);
+    background-color: #F1F2F2;
     width:1196px;
     height: 1000px;
     margin: 0 auto;
     border: solid 2px black;
     padding-top: 15px;
+    margin-top: 10px;
+}
+
+.nav-link {
+    color: white;
+    font-size: 25px;
+}
+
+.nav-link:hover {
+    color: #C4AAFF;
+}
+
+
+#logo {
+    float: left;
+    width: 140px;
 }
