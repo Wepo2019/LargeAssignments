@@ -31,6 +31,20 @@ ul.navigation-links li {
     padding: 10px;
 }
 
+.nav-link {
+    color: white;
+    font-size: 25px;
+}
+
+.nav-link:hover {
+    color: #C4AAFF;
+}
+
+#logo {
+    float: left;
+    width: 140px;
+}
+
 /*Data Container*/
 .container {
     background-color: #F1F2F2;
@@ -42,17 +56,3 @@ ul.navigation-links li {
     margin-top: 10px;
 }
 
-.nav-link {
-    color: white;
-    font-size: 25px;
-}
-
-.nav-link:hover {
-    color: #C4AAFF;
-}
-
-
-#logo {
-    float: left;
-    width: 140px;
-}
