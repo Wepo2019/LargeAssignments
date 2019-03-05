@@ -4,13 +4,11 @@ import NavigationBar from './NavigationBar/NavigationBar';
 import Home from './Home/Home';
 import About from './About/About';
 import Products from './Products/Products';
+import BubbleDetail from './BubbleDetail/BubbleDetail';
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
 /*
-<Route exact path="/" component={ Home } />
-<Route exact path="/about" component={ About } />
-<Route exact path="/bubbles" component={ Products } />
 <Route exact path="/bubbles/:bubbleid" component={ Bubble } />
 <Route exact path="/bundles" component={ Bundles } />
 <Route exact path="/cart" component={ Cart } />
@@ -41,6 +39,7 @@ class App extends React.Component {
                   <Route exact path="/" component={ Home } />
                   <Route exact path="/about" component={ About } />
                   <Route exact path="/bubbles" component={ Products } />
+                  <Route exact path="/bubbles/:bubbleid" component={ BubbleDetail } />
               </Switch>
           </div>
         </div>

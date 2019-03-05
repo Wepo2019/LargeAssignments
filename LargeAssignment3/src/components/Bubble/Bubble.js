@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { BubbleConsumer } from '../../context/BubbleContext';
 
 const Bubble = (props) => {
@@ -10,7 +11,7 @@ const Bubble = (props) => {
         {
             BubbleContext => {
                 return (
-                <h3> {name} </h3>
+                    <h3><Link to={'/bubbles/' + id}>{name}</Link></h3>
                 )
             }
         }
