@@ -1,22 +1,9 @@
 import React from 'react';
-import { BubbleConsumer } from '../../context/BubbleContext';
-
-/*
-Ok, kannski viljum við ekki nota context til að fá allan listann og svo filterann hann í 1 item
-Super messed up ef við gerum bubble consumer í render þá virkar það en verður undefined þegar við reynum að returna html element með value
-*/
+import bubbleService from '../../services/bubbleService';
 
 class BubbleDetail extends React.Component {
     componentDidMount() {
-        <BubbleConsumer>
-        {
-            (context) => { 
-                const item = context.list.filter(item => item.id == this.props.match.params.bubbleid);
-                console.log("Shit");
-                this.setState({bubble: item});
-            }
-        }
-        </BubbleConsumer>
+        bubbleService.getSingleBubble(this.props.match.params.bubbleid).then(data => this.setState({ bubble: data}));
     }
 
     constructor(props) {
@@ -27,7 +14,6 @@ class BubbleDetail extends React.Component {
     }
 
     render() {
-        console.log(this.state.bubble);
         return (
             <h3>{this.state.bubble.name}</h3>
         );
