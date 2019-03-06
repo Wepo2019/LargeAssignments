@@ -26,8 +26,14 @@ class BubbleDetail extends React.Component {
     }
 
     handleClick(e) {
-        e.preventDefault();
-        console.log('The link was clicked');
+        localStorage.clear(); // Taka út fyrir final product
+        if(localStorage.getItem('cart') === null) {
+            let item = {bubbles: [], bundles: [] };
+            localStorage.setItem('cart', JSON.stringify(item));
+        }
+       let item = JSON.parse(localStorage.getItem('cart'));
+       item.bubbles.push(this.state.bubble);
+       localStorage.setItem('cart', JSON.stringify(item));
     }
 
     render() {
@@ -37,7 +43,7 @@ class BubbleDetail extends React.Component {
             <span>{this.state.bubble.description}</span>
             <span>{this.state.bubble.price}</span>
             <img src={this.state.bubble.image} alt=""></img>
-            <button onClick={ this.handleClick }>Add to Cart</button>
+            <button onClick={ e => this.handleClick(e) }>Add to Cart</button>
             </>
         );
     }
