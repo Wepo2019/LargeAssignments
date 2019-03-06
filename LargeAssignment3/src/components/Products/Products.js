@@ -6,7 +6,7 @@ const Products = (props) => {
     return (
         <BubbleConsumer>
             { 
-                BubbleContext => console.log(BubbleContext.list.map(item => <Bubble key={ item.id } { ...item } />))
+                BubbleContext => BubbleContext.list.map(item => <Bubble key={ item.id } { ...item } />)
             }
         </BubbleConsumer>
     )
