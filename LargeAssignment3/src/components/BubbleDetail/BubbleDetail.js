@@ -15,7 +15,12 @@ class BubbleDetail extends React.Component {
 
     render() {
         return (
-            <h3>{this.state.bubble.name}</h3>
+            <>
+            <h4>{this.state.bubble.name}</h4>
+            <p>{this.state.bubble.description}</p>
+            <p>{this.state.bubble.price}</p>
+            <img src={this.state.bubble.image} alt=""></img>
+            </>
         );
     }
 };
