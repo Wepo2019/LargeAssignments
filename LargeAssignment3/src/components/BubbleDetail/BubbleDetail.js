@@ -37,14 +37,24 @@ class BubbleDetail extends React.Component {
     }
 
     render() {
-        return (
+
+        let htmlElements = [
             <>
-            <div className="detail-products" style={{ width: 900 }} >
             <div className="detail-header">{this.state.bubble.name}</div><br></br>
             <div className="detail-description">{this.state.bubble.description}</div><br></br>
             <div className="detail-price">{this.state.bubble.price} kr. </div><br></br>
             <img src={this.state.bubble.image} alt="" style={{ width: 120 }}></img><br></br>
-            <button  className="cart-button" onClick={ e => this.handleClick(e) }>Add to Cart!</button>
+            </>
+        ];
+
+        if(this.props.match) {
+            htmlElements.push(<button  className="cart-button" onClick={ e => this.handleClick(e) }>Add to Cart!</button>);
+        }
+
+        return (
+            <>
+            <div className="detail-products" style={{ width: 900 }} >
+            {htmlElements}
             </div>
             </>
         );
