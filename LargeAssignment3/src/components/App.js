@@ -6,6 +6,7 @@ import About from './About/About';
 import Products from './Products/Products';
 import Bundles from './Bundles/Bundles';
 import BubbleDetail from './BubbleDetail/BubbleDetail';
+import Cart from './Cart/Cart';
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
@@ -50,6 +51,7 @@ class App extends React.Component {
                   <Route exact path="/bubbles" component={ Products } />
                   <Route exact path="/bundles" component={ Bundles } />
                   <Route exact path="/bubbles/:bubbleid" component={ BubbleDetail } />
+                  <Route exact path="/cart" component={ Cart } />
               </Switch>
           </div>
         </div>
