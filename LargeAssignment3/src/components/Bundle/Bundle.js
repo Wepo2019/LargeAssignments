@@ -21,7 +21,7 @@ const Bundle = (props) => {
                         <div className="bundle-div" style={{ width: 1000 }}>
                         <p id="bundle-name">{name}</p>
                         {bubbles}
-                        <button type="button" className="cart-button">Add to cart!</button>
+                        <button type="button" className="cart-button">Add to cart!</button> 
                         </div>
                     </>
                 )

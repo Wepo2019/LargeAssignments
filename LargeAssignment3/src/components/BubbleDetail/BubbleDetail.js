@@ -44,7 +44,7 @@ class BubbleDetail extends React.Component {
             <div className="detail-description">{this.state.bubble.description}</div><br></br>
             <div className="detail-price">{this.state.bubble.price} kr. </div><br></br>
             <img src={this.state.bubble.image} alt="" style={{ width: 120 }}></img><br></br>
-            <button onClick={ e => this.handleClick(e) }>Add to Cart</button>
+            <button  className="cart-button" onClick={ e => this.handleClick(e) }>Add to Cart!</button>
             </div>
             </>
         );

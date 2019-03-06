@@ -107,7 +107,8 @@ ul.navigation-links li {
     color: white;
     height: 40px;
     width: 150px;
-    margin-left: 800px;
+    margin-left: 740px;
+    margin-bottom: 10px;
 }
 
 .cart-button:hover {
