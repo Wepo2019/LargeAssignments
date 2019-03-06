@@ -13,7 +13,6 @@ import bundlesService from '../services/bundlesService';
 import { BundlesProvider } from '../context/BundlesContext';
 
 /*
-<Route exact path="/bubbles/:bubbleid" component={ Bubble } />
 <Route exact path="/bundles" component={ Bundles } />
 <Route exact path="/cart" component={ Cart } />
 <Route exact path="/orders/:telephone" component={ Orders } />
