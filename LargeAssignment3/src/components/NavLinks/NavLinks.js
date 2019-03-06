@@ -15,7 +15,7 @@ const NavLinks = () => {
                 <NavLink  className="nav-link" to="/bubbles">Products</NavLink>
             </li>
             <li className="nav-item active">
-                <NavLink className="nav-link" to="/">Bundles</NavLink>
+                <NavLink className="nav-link" to="/bundles">Bundles</NavLink>
             </li>
             <li className="nav-item active">
                 <NavLink className="nav-link" to="/about">About Us</NavLink>
