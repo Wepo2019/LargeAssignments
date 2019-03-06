@@ -7,7 +7,7 @@ const About = () => {
             <p>We @ Bubblify are gonna bring you Bubbles this summer!<br></br>
                 Comming Soon!<br></br>
                 Watch This space!</p>
-            <img src="../../moreBubbles.png" className="home-logo" style={{ width: 700 }}></img>
+            <img src="../../US.png" className="home-logo" style={{ width: 700 }}></img>
         </div>
     
     )

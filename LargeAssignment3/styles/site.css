@@ -107,7 +107,7 @@ ul.navigation-links li {
     color: white;
     height: 40px;
     width: 150px;
-    margin-left: 740px;
+    margin-left: 700px;
     margin-bottom: 10px;
 }
 
@@ -128,5 +128,5 @@ ul.navigation-links li {
 }
 
 .cart-right {
-    margin-left: 950px;
+    margin-left: 800px;
 }
