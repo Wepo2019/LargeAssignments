@@ -11,8 +11,6 @@ class BubbleDetail extends React.Component {
         else {
             id = this.props.bubbleid;
         }
-
-        console.log(id);
         bubbleService.getSingleBubble(id).then(data => this.setState({ bubble: data}));
 
 
@@ -39,23 +37,23 @@ class BubbleDetail extends React.Component {
     render() {
 
         let htmlElements = [
-            <>
-            <div className="detail-header">{this.state.bubble.name}</div><br></br>
-            <div className="detail-description">{this.state.bubble.description}</div><br></br>
-            <div className="detail-price">{this.state.bubble.price} kr. </div><br></br>
-            <img src={this.state.bubble.image} alt="" style={{ width: 120 }}></img><br></br>
-            </>
+            <div key={1}>
+                <div key={this.state.bubble.id} className="detail-header">{this.state.bubble.name}</div>
+                <div key={"mykey" + this.state.bubble.id + 1} className="detail-description">{this.state.bubble.description}</div>
+                <div key={"mykey" + this.state.bubble.id + 2} className="detail-price">{this.state.bubble.price} kr. </div>
+                <img key={"mykey" + this.state.bubble.id + 3} src={this.state.bubble.image} alt="" style={{ width: 120 }}></img>
+            </div>
         ];
 
         if(this.props.match) {
-            htmlElements.push(<button  className="cart-button" onClick={ e => this.handleClick(e) }>Add to Cart!</button>);
+            htmlElements.push(<button key={2} className="cart-button" onClick={ e => this.handleClick(e) }>Add to Cart!</button>);
         }
 
         return (
             <>
-            <div className="detail-products" style={{ width: 900 }} >
-            {htmlElements}
-            </div>
+                <div className="detail-products" style={{ width: 900 }} >
+                {htmlElements}
+                </div>
             </>
         );
     }
