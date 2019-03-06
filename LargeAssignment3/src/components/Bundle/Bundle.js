@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BundlesConsumer } from '../../context/BundlesContext';
+import BubbleDetail from '../BubbleDetail/BubbleDetail';
 
 const Bundle = (props) => {
     const { id, name, items} = props;
@@ -10,8 +11,16 @@ const Bundle = (props) => {
     <BundlesConsumer>
         {
             BundlesContext => {
+                const bubbles = [];
+                for(let i = 0; i < items.length; i++) {
+                    bubbles.push(<span key={items[i]}>{<BubbleDetail bubbleid={items[i]}/>}</span>);
+                }
+
                 return (
-                    <h3><Link to={'/bundles/' + id}>{name}</Link></h3>
+                    <>
+                        <p>{name}</p>
+                        {bubbles}
+                    </>
                 )
             }
         }

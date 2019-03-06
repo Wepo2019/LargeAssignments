@@ -3,7 +3,19 @@ import bubbleService from '../../services/bubbleService';
 
 class BubbleDetail extends React.Component {
     componentDidMount() {
-        bubbleService.getSingleBubble(this.props.match.params.bubbleid).then(data => this.setState({ bubble: data}));
+        let id;
+        
+        if(this.props.match) {
+            id = this.props.match.params.bubbleid;
+        }
+        else {
+            id = this.props.bubbleid;
+        }
+        
+        console.log(id);
+        bubbleService.getSingleBubble(id).then(data => this.setState({ bubble: data}));
+
+        
     }
 
     constructor(props) {
@@ -16,9 +28,9 @@ class BubbleDetail extends React.Component {
     render() {
         return (
             <>
-            <h4>{this.state.bubble.name}</h4>
-            <p>{this.state.bubble.description}</p>
-            <p>{this.state.bubble.price}</p>
+            <span>{this.state.bubble.name}</span>
+            <span>{this.state.bubble.description}</span>
+            <span>{this.state.bubble.price}</span>
             <img src={this.state.bubble.image} alt=""></img>
             </>
         );
