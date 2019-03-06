@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const NavLinks = () => {
     return (
     <>
-        <img src="../../Bubblify2.png" id="logo"></img>
+        <NavLink to='/'><img src="../../Bubblify2.png" id="logo"></img></NavLink>
         <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
                 <NavLink  className="nav-link" to="/bubbles">Products</NavLink>
@@ -21,7 +21,7 @@ const NavLinks = () => {
                 <NavLink className="nav-link" to="/about">About Us</NavLink>
             </li>
             <li className="nav-item active">
-                <NavLink className="nav-link" to="/">Cart</NavLink>
+                <NavLink className="nav-link cart-right" to="/">Cart</NavLink>
             </li>
         </ul>
     </>

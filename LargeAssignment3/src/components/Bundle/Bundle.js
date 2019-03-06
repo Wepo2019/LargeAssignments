@@ -13,13 +13,16 @@ const Bundle = (props) => {
             BundlesContext => {
                 const bubbles = [];
                 for(let i = 0; i < items.length; i++) {
-                    bubbles.push(<span key={items[i]}>{<BubbleDetail bubbleid={items[i]}/>}</span>);
+                    bubbles.push(<div key={items[i]}>{<BubbleDetail bubbleid={items[i]}/>}</div>); //endi á push
                 }
 
                 return (
                     <>
-                        <p>{name}</p>
+                        <div className="bundle-div" style={{ width: 1000 }}>
+                        <p id="bundle-name">{name}</p>
                         {bubbles}
+                        <button type="button" className="cart-button">Add to cart!</button>
+                        </div>
                     </>
                 )
             }

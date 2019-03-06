@@ -12,7 +12,8 @@ const Bubble = (props) => {
         {
             BubbleContext => {
                 return (
-                    <h3><Link to={'/bubbles/' + id}>{name}</Link></h3>
+                    <h3><Link className="bubble-link" to={'/bubbles/' + id}>{name}</Link></h3>
+
                 )
             }
         }

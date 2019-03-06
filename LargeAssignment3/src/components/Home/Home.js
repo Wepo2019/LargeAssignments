@@ -2,9 +2,8 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Homepage</h1>
-            <p>THIS IS HOMEPAGE/FRONTPAGE</p>
+        <div className="about-div">
+            <img src="../../Bubbles.png" className="home-logo" style={{ width: 1000 }}></img>
         </div>
     )
 };

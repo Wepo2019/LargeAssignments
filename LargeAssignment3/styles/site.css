@@ -9,7 +9,7 @@ This is the apps CSS stylesheet though i was thinking about using
 
 /*Body*/
 body {
-    background-color: #D8D0FF;
+    background-color:#E3DCFF;
 }
 
 /* NavigationBar css*/
@@ -47,12 +47,85 @@ ul.navigation-links li {
 
 /*Data Container*/
 .container {
-    background-color: #F1F2F2;
+    background-color: black;
     width:1196px;
     height: 1000px;
     margin: 0 auto;
-    border: solid 2px black;
+    border: solid 2px white;
     padding-top: 15px;
     margin-top: 10px;
+    overflow-y: scroll;
 }
 
+.detail-products {
+    background-color:#E3DCFF;
+    overflow-y: scroll;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+.detail-header {
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.detail-description {
+    padding-left: 10px;
+}
+
+.detail-price {
+    padding-left: 10px;
+}
+
+#bundle-name {
+    font-size: 50px;
+    padding-left: 325px;
+    color: black;
+}
+
+.bubble-link {
+    color: white;
+    text-decoration: none;
+}
+
+.bubble-link:hover {
+    color: #C4AAFF;
+    text-decoration: none;
+}
+
+.bundle-div {
+    background-color: white;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    margin-left: 50px;
+}
+
+.cart-button {
+    background-color: black;
+    color: white;
+    height: 40px;
+    width: 150px;
+    margin-left: 800px;
+}
+
+.cart-button:hover {
+    color: #C4AAFF;
+}
+
+.about-div h1 {
+    color: white;
+}
+
+.about-div p {
+    color: white;
+}
+
+.home-logo {
+    margin-left: 50px;
+}
+
+.cart-right {
+    margin-left: 950px;
+}

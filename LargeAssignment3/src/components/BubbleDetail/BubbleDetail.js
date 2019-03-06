@@ -28,10 +28,12 @@ class BubbleDetail extends React.Component {
     render() {
         return (
             <>
-            <span>{this.state.bubble.name}</span>
-            <span>{this.state.bubble.description}</span>
-            <span>{this.state.bubble.price}</span>
-            <img src={this.state.bubble.image} alt=""></img>
+            <div className="detail-products" style={{ width: 900 }} >
+            <div className="detail-header">{this.state.bubble.name}</div><br></br>
+            <div className="detail-description">{this.state.bubble.description}</div><br></br>
+            <div className="detail-price">{this.state.bubble.price} kr. </div><br></br>
+            <img src={this.state.bubble.image} alt="" style={{ width: 120 }}></img><br></br>
+            </div>
             </>
         );
     }

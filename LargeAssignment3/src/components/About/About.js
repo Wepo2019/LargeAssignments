@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div>
+        <div className="about-div">
             <h1>About us</h1>
             <p>We @ Bubblify are gonna bring you Bubbles this summer!<br></br>
                 Comming Soon!<br></br>
