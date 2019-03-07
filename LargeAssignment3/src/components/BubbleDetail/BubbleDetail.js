@@ -24,7 +24,7 @@ class BubbleDetail extends React.Component {
     }
 
     handleClick(e) {
-        localStorage.clear(); // Taka út fyrir final product
+        //localStorage.clear(); // Taka út fyrir final product
         if(localStorage.getItem('cart') === null) {
             let item = {bubbles: [], bundles: [] };
             localStorage.setItem('cart', JSON.stringify(item));
