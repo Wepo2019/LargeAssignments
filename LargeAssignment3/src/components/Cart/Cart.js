@@ -31,13 +31,13 @@ class Cart extends React.Component {
             if(cartItems.bundles.length > 0) {
                 let cartSection = [];
                 cartSection.push(<h4 key="bundlesTitle" className="detail-header">Bundles:</h4>);
-    
+
                 for(let i = 0; i < cartItems.bundles.length; i++) {
                     console.log("bundle number: " + i);
                     let innerBundleInfo = [];
                     innerBundleInfo.push(<p key={cartItems.bundles[i].name + i}>{cartItems.bundles[i].name}</p>);
-                    
-                    
+
+
                     for(let j = 0; j < cartItems.bundles[i].items.length; j++) {
                         console.log(cartItems.bundles[i].items[j]);
                         innerBundleInfo.push(<div key={"myBundleItems" + (cartItems.bundles[i].items[j])}>{<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}</div>);
@@ -58,7 +58,7 @@ class Cart extends React.Component {
             renderItems: []
         }
     }
-    
+
     render() {
         return (
             <>
@@ -68,7 +68,7 @@ class Cart extends React.Component {
             </div>
             <div className="checkout-div" style={{ width: 700 }}>
             <h2>Do you wish to check out?</h2>
-            <button class="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+            <button className="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
             </div>
             </>
         )

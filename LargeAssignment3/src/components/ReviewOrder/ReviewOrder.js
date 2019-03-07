@@ -1,10 +1,15 @@
 import React from 'react';
 
 const ReviewOrder = (props) => {
-    console.log(props);
+    const user = JSON.stringify(localStorage.getItem('user'));
+    console.log(user.name);
     return (
         <div>
-            <p>HELLO REVIEW ORDER</p>
+            <h3>{user.name}</h3>
+            <p>{user.address}</p>
+            <p>{user.city}</p>
+            <p>{user.telephone}</p>
+            <p>{user.region}</p>
         </div>
     )
 };

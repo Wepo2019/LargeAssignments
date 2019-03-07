@@ -25,7 +25,7 @@ class  DeliveredForm extends React.Component {
             }
         };
     }
-    
+
     onInput(e) {
         this.setState({
             fields: {
@@ -54,12 +54,11 @@ class  DeliveredForm extends React.Component {
     submitForm(e) {
         e.preventDefault();
         if (this.validate()) {
-            console.log("WIN");
-            toastr.success('Successfully submitted!', 'Success!');
+            //toastr.success('Successfully submitted!', 'Success!');
+            localStorage.setItem('user', JSON.stringify(this.state.fields));
             this.props.history.push('/review');
         } else {
-            console.log("LOST");
-            toastr.error('Failed to be submitted!', 'Failed!');
+            //toastr.error('Failed to be submitted!', 'Failed!');
         }
     }
 
