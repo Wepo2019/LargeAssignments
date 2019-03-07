@@ -1,5 +1,6 @@
 import React from 'react';
 import bubbleService from '../../services/bubbleService';
+import PropTypes from 'prop-types';
 
 class BubbleDetail extends React.Component {
     componentDidMount() {
@@ -22,7 +23,6 @@ class BubbleDetail extends React.Component {
     }
 
     handleClick(e) {
-        //localStorage.clear(); // Taka út fyrir final product
         if(localStorage.getItem('cart') === null) {
             let item = {bubbles: [], bundles: [] };
             localStorage.setItem('cart', JSON.stringify(item));
@@ -55,6 +55,14 @@ class BubbleDetail extends React.Component {
             </>
         );
     }
+};
+
+BubbleDetail.propTypes = {
+    //The bubbleid provided as props, but not as default
+    //when we are rending the bubble componet in other components
+    //not when selecting from the product list
+    //The bubbleid of the Bubbledetail
+    bubbleid: PropTypes.number
 };
 
 export default BubbleDetail;

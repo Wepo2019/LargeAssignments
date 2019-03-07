@@ -1,5 +1,4 @@
 import React from 'react';
-import CheckOut from '../CheckOut/CheckOut';
 import BubbleDetail from '../BubbleDetail/BubbleDetail';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -46,7 +45,6 @@ class Cart extends React.Component {
                             {<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}
                         </div>
                         );
-                        //<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
                     }
                     cartSection.push(<div key={cartItems.bundles[i].name + i}>{innerBundleInfo}</div>);
                 }
@@ -72,7 +70,6 @@ class Cart extends React.Component {
     }
 
     constructor(props) {
-        //localStorage.clear(); // Taka út fyrir final product
         super(props);
         this.state = {
             storage: JSON.parse(localStorage.getItem("cart")),
@@ -98,7 +95,11 @@ class Cart extends React.Component {
 };
 
 Cart.propTypes = {
+    //The reviewStatus provided as props, the review status is used to cut down the 
+    //render process
     reviewStatus: PropTypes.shape({
+        //The boolean to see if we came from the reviewOrder component, so we dont render the 
+        //checkout button again.
         review: PropTypes.bool.isRequired
     })
 };

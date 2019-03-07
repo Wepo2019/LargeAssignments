@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
-import toastr from 'toastr';
 
 class  DeliveredForm extends React.Component {
     constructor(props) {
@@ -55,11 +53,8 @@ class  DeliveredForm extends React.Component {
     submitForm(e) {
         e.preventDefault();
         if (this.validate()) {
-            //toastr.success('Successfully submitted!', 'Success!');
             localStorage.setItem('user', JSON.stringify(this.state.fields));
             this.props.history.push('/review');
-        } else {
-            //toastr.error('Failed to be submitted!', 'Failed!');
         }
     }
 
