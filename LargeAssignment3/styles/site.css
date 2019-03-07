@@ -47,7 +47,7 @@ ul.navigation-links li {
 
 /*Data Container*/
 .container {
-    background-color: lightblue;
+    background-color: black;
     width:1196px;
     height: 1000px;
     margin: 0 auto;
@@ -131,12 +131,73 @@ ul.navigation-links li {
     margin-left: 800px;
 }
 .checkout-button {
-    background-color: black;
+    background-color: #E3DCFF;
+    border-color: #E3DCFF;
+    height: 40px;
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 140px;
+}
+.checkout-div {
+    margin-left: 300px;
+    margin-top: 20px;
+}
+.checkout-div h2 {
+   color: white;
+}
+
+.pickup-button {
+    background-color: #E3DCFF;
+    border-color: #E3DCFF;
+    height: 40px;
+    width: 150px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+
+}
+.delivered-button {
+    background-color:#E3DCFF;
+    border-color: #E3DCFF;
+    height: 40px;
+    width: 150px;
+    margin-left: 390px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    
+}
+.dp-div {
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.dp-div h2{
     color: white;
+}
+
+.submit-button {
+    background-color:#E3DCFF;
+    border-color: #E3DCFF;
+    color: black;
     height: 40px;
     width: 150px;
 }
+.submit-button:hover {
+    color:#C4AAFF;
+}
 
-.checkout-button:hover {
+.form h1 {
+    color: white;
+}
+.form {
     color: #C4AAFF;
+}
+
+.bubble-link-black {
+    color: black;
+    text-decoration: none;
+}
+
+.bubble-link-black:hover {
+    color: #C4AAFF;
+    text-decoration: none;
 }
