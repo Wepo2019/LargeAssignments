@@ -12,8 +12,6 @@ class BubbleDetail extends React.Component {
             id = this.props.bubbleid;
         }
         bubbleService.getSingleBubble(id).then(data => this.setState({ bubble: data}));
-
-
     }
 
     constructor(props) {

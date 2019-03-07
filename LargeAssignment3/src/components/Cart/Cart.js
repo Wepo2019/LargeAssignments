@@ -1,37 +1,52 @@
 import React from 'react';
 import CheckOut from '../CheckOut/CheckOut';
+import BubbleDetail from '../BubbleDetail/BubbleDetail';
 import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
     componentDidMount() {
-        console.log(this.state.storage.bubbles);
         const cartItems = this.state.storage;
+        console.log(cartItems);
         let htmlItems = [];
 
         if(cartItems) {
             //Bubbles
-
             if(cartItems.bubbles.length > 0) {
-                htmlItems.push(<p key="bubbles" className="detail-header">Bubbles:</p>);
+                let eachBubbleInfo = [];
+                let cartSection = [];
+                cartSection.push(<p key="bubblesTitle" className="detail-header">Bubbles:</p>);
 
                 for(let i = 0; i < cartItems.bubbles.length; i++) {
-                    htmlItems.push(<p key={"myBubble" + cartItems.bubbles[i].id}>{cartItems.bubbles[i].name}</p>);
+                    eachBubbleInfo.push(
+                            <div key={"myBubble" + i}>
+                            <p key={"myBubble" + i}>{cartItems.bubbles[i].name}</p>
+                            </div>
+                        );
                 }
+                cartSection.push(<div key="bubblesChild">{eachBubbleInfo}</div>);
+                htmlItems.push(<div key="bubbles">{cartSection}</div>);
             }
 
             //Bundles
             if(cartItems.bundles.length > 0) {
-                htmlItems.push(<p key="bundles" className="detail-header">Bundles:</p>);
+                let cartSection = [];
+                cartSection.push(<h4 key="bundlesTitle" className="detail-header">Bundles:</h4>);
     
                 for(let i = 0; i < cartItems.bundles.length; i++) {
-                    htmlItems.push(<p>{cartItems.bundles[i].name}</p>);
-    
-                    for(let j = 0; j < cartItems.bundles.items.length; j++) {
-                        htmlItems.push(<p key={"myBundleItems" + cartItems.bundles[i].id + j}>{cartItems.bundles[i].items[j].name}</p>);
+                    console.log("bundle number: " + i);
+                    let innerBundleInfo = [];
+                    innerBundleInfo.push(<p key={cartItems.bundles[i].name + i}>{cartItems.bundles[i].name}</p>);
+                    
+                    
+                    for(let j = 0; j < cartItems.bundles[i].items.length; j++) {
+                        console.log(cartItems.bundles[i].items[j]);
+                        innerBundleInfo.push(<div key={"myBundleItems" + (cartItems.bundles[i].items[j])}>{<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}</div>);
+                        <BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
                     }
+                    cartSection.push(<div key={cartItems.bundles[i].name + i}>{innerBundleInfo}</div>);
                 }
+                htmlItems.push(<div key="bundles">{cartSection}</div>);
             }
-
             this.setState({renderItems: htmlItems});
         }
     }
