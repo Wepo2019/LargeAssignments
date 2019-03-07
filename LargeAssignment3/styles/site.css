@@ -204,9 +204,6 @@ ul.navigation-links li {
     text-decoration: none;
 }
 
-.order-div h2 {
-   color: white;
-}
 
 .items {
     color: black;
@@ -220,4 +217,38 @@ ul.navigation-links li {
 .items p {
     margin-left: 10px;
     font-size: 25px;
+}
+.confirm-button {
+    background-color:#E3DCFF;
+    border-color: #E3DCFF;
+    height: 40px;
+    width: 150px;
+    margin-left: 700px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.cancel-button {
+    background-color: #E3DCFF;
+    border-color: #E3DCFF;
+    height: 40px;
+    width: 150px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-left: 55px;
+}
+
+#empty {
+    margin-left: 350px;
+}
+
+#order {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.confirmation {
+    color: #C4AAFF;
+    margin-left: 55px;
 }
