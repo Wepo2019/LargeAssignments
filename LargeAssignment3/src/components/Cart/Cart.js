@@ -1,18 +1,78 @@
 import React from 'react';
 import CheckOut from '../CheckOut/CheckOut';
+import BubbleDetail from '../BubbleDetail/BubbleDetail';
 import { Link } from 'react-router-dom';
 
-const Cart = () => {
+class Cart extends React.Component {
+    componentDidMount() {
+        const cartItems = this.state.storage;
+        console.log(cartItems);
+        let htmlItems = [];
 
-    let cartItems = localStorage.getItem('cart');
-    console.log(cartItems);
+        if(cartItems) {
+            //Bubbles
+            if(cartItems.bubbles.length > 0) {
+                let eachBubbleInfo = [];
+                let cartSection = [];
+                cartSection.push(<p key="bubblesTitle" className="detail-header">Bubbles:</p>);
 
-    return (
-        <>
-        <div>Bla</div>
-       <button><Link className="bubble-link" to='/checkout'>Checkout</Link></button>
-        </>
-    )
+                for(let i = 0; i < cartItems.bubbles.length; i++) {
+                    eachBubbleInfo.push(
+                            <div key={"myBubble" + i}>
+                            <p key={"myBubble" + i}>{cartItems.bubbles[i].name}</p>
+                            </div>
+                        );
+                }
+                cartSection.push(<div key="bubblesChild">{eachBubbleInfo}</div>);
+                htmlItems.push(<div key="bubbles">{cartSection}</div>);
+            }
+
+            //Bundles
+            if(cartItems.bundles.length > 0) {
+                let cartSection = [];
+                cartSection.push(<h4 key="bundlesTitle" className="detail-header">Bundles:</h4>);
+    
+                for(let i = 0; i < cartItems.bundles.length; i++) {
+                    console.log("bundle number: " + i);
+                    let innerBundleInfo = [];
+                    innerBundleInfo.push(<p key={cartItems.bundles[i].name + i}>{cartItems.bundles[i].name}</p>);
+                    
+                    
+                    for(let j = 0; j < cartItems.bundles[i].items.length; j++) {
+                        console.log(cartItems.bundles[i].items[j]);
+                        innerBundleInfo.push(<div key={"myBundleItems" + (cartItems.bundles[i].items[j])}>{<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}</div>);
+                        <BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
+                    }
+                    cartSection.push(<div key={cartItems.bundles[i].name + i}>{innerBundleInfo}</div>);
+                }
+                htmlItems.push(<div key="bundles">{cartSection}</div>);
+            }
+            this.setState({renderItems: htmlItems});
+        }
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            storage: JSON.parse(localStorage.getItem("cart")),
+            renderItems: []
+        }
+    }
+    
+    render() {
+        return (
+            <>
+            <div>
+                <h4>Your order:</h4>
+                {this.state.renderItems}
+            </div>
+            <div className="checkout-div" style={{ width: 700 }}>
+            <h2>Do you wish to check out?</h2>
+            <button class="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+            </div>
+            </>
+        )
+    }
 };
 
 export default Cart;

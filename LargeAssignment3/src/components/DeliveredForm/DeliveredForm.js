@@ -68,6 +68,7 @@ class  DeliveredForm extends React.Component {
         const { nameError, addressError, cityError, telephoneError, regionError } = this.state.errors;
         return (
             <>
+            <div className="form">
             <h1>Please fill out this form!</h1>
             <Form onSubmit={ e => this.submitForm(e)} >
                 <Input
@@ -110,8 +111,9 @@ class  DeliveredForm extends React.Component {
                     label="Enter your region"
                     errorMessage={ regionError }
                     onInput={e => this.onInput(e)} />
-                <input type="submit" value="Submit!" className="btn btn-primary" style={{ float: 'right', marginTop: 10 }} />
+                <input type="submit" value="Submit!" className="submit-button" style={{ float: 'right', marginTop: 10}} />
             </Form>
+            </div>
             </>
          )
     }

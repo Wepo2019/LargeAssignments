@@ -7,10 +7,25 @@ import BubbleDetail from '../BubbleDetail/BubbleDetail';
 class Bundle extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            bundle: this.props
+        }
+    }
+
+    handleClick(e) {
+        //localStorage.clear(); // Taka út fyrir final product
+        if(localStorage.getItem('cart') === null) {
+            let item = {bubbles: [], bundles: [] };
+            localStorage.setItem('cart', JSON.stringify(item));
+        }
+       let item = JSON.parse(localStorage.getItem('cart'));
+       item.bundles.push(this.state.bundle);
+       localStorage.setItem('cart', JSON.stringify(item));
+       console.log(item);
     }
 
     render() {
-        const { id, name, items} = this.props;
+        const { id, name, items} = this.state.bundle;
         return (
         <BundlesConsumer>
             {
@@ -23,9 +38,9 @@ class Bundle extends React.Component {
                     return (
                         <>
                             <div className="bundle-div" style={{ width: 1000 }}>
-                            <p id="bundle-name">{this.props.name}</p>
+                            <p id="bundle-name">{name}</p>
                             {bubbles}
-                            <button type="button" className="cart-button">Add to cart!</button>
+                            <button type="button" className="cart-button" onClick={ e => this.handleClick(e) }>Add to cart!</button>
                             </div>
                         </>
                     )
