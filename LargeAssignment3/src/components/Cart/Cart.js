@@ -50,7 +50,7 @@ class Cart extends React.Component {
                 }
                 htmlItems.push(<div key="bundles">{cartSection}</div>);
             }
-            console.log(this.props);
+            
             if(this.props.reviewStatus.review !== true || ((this.state.storage.bubbles.length < 0) && (this.state.storage.bundles.length < 0))) {
                 const checkOutButton = [
                     <>
