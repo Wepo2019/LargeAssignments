@@ -5,7 +5,7 @@ const CheckOut = () => {
     return (
         <>
         <div> Check out Bla</div>
-        <button><Link className="checkout-button" to='/'>Store pickup</Link></button>
+        <button><Link className="checkout-button" to='/pickup'>Store pickup</Link></button>
         <button><Link className="checkout-button" to='/delivered'>Delivered</Link></button>
         </>
     )
