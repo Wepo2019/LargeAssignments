@@ -10,7 +10,7 @@ class ReviewOrder extends React.Component {
         }
     }
 
-    handleClick(e) {
+    confirm(e) {
         //localStorage.clear(); // Taka út fyrir final product
         /*if(localStorage.getItem('cart') === null) {
             let item = {bubbles: [], bundles: [] };
@@ -21,6 +21,11 @@ class ReviewOrder extends React.Component {
        localStorage.setItem('cart', JSON.stringify(item));
        */
       console.log("HELLO DARKNESS MY OLD FRIEND");
+    }
+
+    cancel(e) {
+        localStorage.clear();
+        this.props.history.push('/cart');
     }
 
 
@@ -38,7 +43,8 @@ class ReviewOrder extends React.Component {
                 <Cart reviewStatus={{review:true}} />
             </div>
             <div>
-                <button className="cart-button" onClick={ e => this.handleClick(e) }>Confirm</button>
+                <button className="cart-button" onClick={ e => this.confirm(e) }>Confirm</button>
+                <button className="cart-button" onClick={ e => this.cancel(e) }>Cancel Order</button>
             </div>
             </>
         )

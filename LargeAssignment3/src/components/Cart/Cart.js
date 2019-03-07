@@ -22,7 +22,7 @@ class Cart extends React.Component {
                 for(let i = 0; i < cartItems.bubbles.length; i++) {
                     eachBubbleInfo.push(
                             <div key={"myBubble" + i}>
-                            {<BubbleDetail bubbleid={cartItems.bubbles[i].id}/>}
+                                {<BubbleDetail bubbleid={cartItems.bubbles[i].id}/>}
                             </div>
                         );
                 }
@@ -53,12 +53,12 @@ class Cart extends React.Component {
             console.log(this.props);
             if(this.props.reviewStatus.review !== true || ((this.state.storage.bubbles.length < 0) && (this.state.storage.bundles.length < 0))) {
                 const checkOutButton = [
-                    <div key="checkout-div" className="checkout-div" style={{ width: 700 }}>
+                    <>
                         <h2 key="checkout-title" >Do you wish to check out?</h2>
                         <button key="checkout-btn" className="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
-                    </div>
+                    </>
                     ];
-                htmlItems.push(checkOutButton);
+                this.setState({checkoutBtn: checkOutButton});
             }
 
             this.setState({renderItems: htmlItems});
@@ -74,7 +74,8 @@ class Cart extends React.Component {
         super(props);
         this.state = {
             storage: JSON.parse(localStorage.getItem("cart")),
-            renderItems: []
+            renderItems: [],
+            checkoutBtn: []
         }
     }
 
@@ -82,12 +83,12 @@ class Cart extends React.Component {
         return (
             <>
                 <div className="order-div">
-                    <h2>Your order:</h2>
-                    <div className="items">{this.state.renderItems} </div>
+                    <div className="items">
+                        {this.state.renderItems} 
+                    </div>
                 </div>
                 <div className="checkout-div" style={{ width: 700 }}>
-                    <h2>Do you wish to check out?</h2>
-                <button className="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+                    {this.state.checkoutBtn}
                 </div>
             </>
         )
