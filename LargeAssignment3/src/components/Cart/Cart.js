@@ -45,7 +45,6 @@ class Cart extends React.Component {
                             {<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}
                         </div>
                         );
-                        //<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
                     }
                     cartSection.push(<div key={cartItems.bundles[i].name + i}>{innerBundleInfo}</div>);
                 }
@@ -71,7 +70,6 @@ class Cart extends React.Component {
     }
 
     constructor(props) {
-        //localStorage.clear(); // Taka út fyrir final product
         super(props);
         this.state = {
             storage: JSON.parse(localStorage.getItem("cart")),

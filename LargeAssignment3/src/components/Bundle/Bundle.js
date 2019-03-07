@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { BundlesConsumer } from '../../context/BundlesContext';
 import BubbleDetail from '../BubbleDetail/BubbleDetail';
 
@@ -13,11 +12,10 @@ class Bundle extends React.Component {
     }
 
     handleClick(e) {
-        //localStorage.clear(); // Taka út fyrir final product
-        if(localStorage.getItem('cart') === null) {
-            let item = {bubbles: [], bundles: [] };
-            localStorage.setItem('cart', JSON.stringify(item));
-        }
+    if(localStorage.getItem('cart') === null) {
+        let item = {bubbles: [], bundles: [] };
+        localStorage.setItem('cart', JSON.stringify(item));
+    }
        let item = JSON.parse(localStorage.getItem('cart'));
        item.bundles.push(this.state.bundle);
        localStorage.setItem('cart', JSON.stringify(item));
@@ -31,7 +29,7 @@ class Bundle extends React.Component {
                 BundlesContext => {
                     const bubbles = [];
                     for(let i = 0; i < items.length; i++) {
-                        bubbles.push(<div key={i}>{<BubbleDetail bubbleid={this.props.items[i]}/>}</div>); //endi á push
+                        bubbles.push(<div key={i}>{<BubbleDetail bubbleid={this.props.items[i]}/>}</div>);
                     }
 
                     return (

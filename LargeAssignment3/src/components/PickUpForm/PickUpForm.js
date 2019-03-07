@@ -2,7 +2,6 @@ import React from 'react';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
-
 class  PickUpForm extends React.Component {
     constructor(props) {
         super(props);
