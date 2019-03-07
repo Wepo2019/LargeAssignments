@@ -37,9 +37,9 @@ class Bundle extends React.Component {
                     return (
                         <>
                             <div className="bundle-div" style={{ width: 1000 }}>
-                            <p id="bundle-name">{name}</p>
-                            {bubbles}
-                            <button type="button" className="cart-button" onClick={ e => this.handleClick(e) }>Add to cart!</button>
+                                <p id="bundle-name">{name}</p>
+                                {bubbles}
+                                <button type="button" className="cart-button" onClick={ e => this.handleClick(e) }>Add to cart!</button>
                             </div>
                         </>
                     )
