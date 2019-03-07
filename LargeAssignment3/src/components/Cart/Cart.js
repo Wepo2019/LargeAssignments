@@ -12,7 +12,7 @@ class Cart extends React.Component {
         let htmlItems = [];
 
         if(cartItems) {
-            htmlItems.push(<h4 key='yourOrder'>Your order:</h4>);
+            htmlItems.push(<h4 id="order" key='yourOrder'>Your order:</h4>);
             //Bubbles
             if(cartItems.bubbles.length > 0) {
                 let eachBubbleInfo = [];
@@ -64,7 +64,7 @@ class Cart extends React.Component {
             this.setState({renderItems: htmlItems});
         }
         else {
-            htmlItems.push(<h4 key='yourOrder'>Your cart is empty:</h4>);
+            htmlItems.push(<h4 id="empty" key='yourOrder'>Your cart is empty!</h4>);
         }
         this.setState({renderItems: htmlItems});
     }

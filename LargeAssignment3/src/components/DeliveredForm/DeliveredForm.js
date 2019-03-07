@@ -14,14 +14,14 @@ class  DeliveredForm extends React.Component {
                 address: '',
                 city: '',
                 telephone: '',
-                region: ''
+                code: ''
             },
             errors: {
                 nameError: '',
                 addressError: '',
                 cityError: '',
                 telephoneError: '',
-                regionError: ''
+                codeError: ''
             }
         };
     }
@@ -35,14 +35,15 @@ class  DeliveredForm extends React.Component {
     };
 
     validate() {
-        const {name, address, city, telephone, region} = this.state.fields;
+        const {name, address, city, telephone, code} = this.state.fields;
         const errors = {};
         if(name === '') { errors.nameError = 'You need to enter your name'; }
         if(address === '') { errors.addressError = 'You need to enter your address'; }
         if(city === '') { errors.cityError = 'You need to enter your city'; }
         if(telephone === '') { errors.telephoneError = 'You need to enter your phone number'; }
-        if(region === '' ) { errors.regionError = 'You need to enter your postal code'; }
-        if(!validator.isLength(telephone,{min:7}, {max:14})) { errors.telephoneError = 'Phone number must be seven numbers'}
+        if(code === '' ) { errors.codeError = 'You need to enter your postal code'; }
+        if(!validator.isLength(telephone,{min:7}, {max:14})) { errors.telephoneError = 'Phone number must be at least 7 numbers'}
+        if(!validator.isLength(code,{min:3}, {max:6})) { errors.codeError = 'Phone number must be at least 3 numbers'}
 
         if(Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
@@ -63,8 +64,8 @@ class  DeliveredForm extends React.Component {
     }
 
     render() {
-        const { name, address, city, telephone, region } = this.state.fields;
-        const { nameError, addressError, cityError, telephoneError, regionError } = this.state.errors;
+        const { name, address, city, telephone, code } = this.state.fields;
+        const { nameError, addressError, cityError, telephoneError, codeError } = this.state.errors;
         return (
             <>
             <div className="form">
@@ -103,12 +104,12 @@ class  DeliveredForm extends React.Component {
                     errorMessage={ telephoneError }
                     onInput={e => this.onInput(e)} />
                  <Input
-                    type="text"
-                    name="region"
-                    value={ region }
-                    htmlId="region"
-                    label="Enter your region"
-                    errorMessage={ regionError }
+                    type="number"
+                    name="code"
+                    value={ code }
+                    htmlId="code"
+                    label="Enter your postal code"
+                    errorMessage={ codeError }
                     onInput={e => this.onInput(e)} />
                 <input type="submit" value="Submit!" className="submit-button" style={{ float: 'right', marginTop: 10}} />
             </Form>

@@ -33,19 +33,20 @@ class ReviewOrder extends React.Component {
     render() {
         return (
             <>
-            <div>
+            <div className="confirmation">
+                <h1>Your confirmation details</h1>
                 <h3>{this.state.userInfo.name}</h3>
                 <p>{this.state.userInfo.address}</p>
                 <p>{this.state.userInfo.city}</p>
                 <p>{this.state.userInfo.telephone}</p>
-                <p>{this.state.userInfo.region}</p>
+                <p>{this.state.userInfo.code}</p>
             </div>
             <div>
                 <Cart reviewStatus={{review:true}} />
             </div>
             <div>
-                <button className="cart-button" onClick={ e => this.confirm(e) }>Confirm</button>
-                <button className="cart-button" onClick={ e => this.cancel(e) }>Cancel Order</button>
+                <button className="cancel-button bubble-link-black" onClick={ e => this.cancel(e) }>Cancel Order</button>
+                <button className="confirm-button bubble-link-black" onClick={ e => this.confirm(e) }>Confirm</button>
             </div>
             </>
         )
