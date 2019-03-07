@@ -25,7 +25,6 @@ const Input = props => {
 };
 
 Input.propTypes = {
-  /* The value provided to the input HTML tag */
   value: PropTypes.string.isRequired,
   htmlId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

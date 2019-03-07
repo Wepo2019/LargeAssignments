@@ -22,7 +22,7 @@ class Cart extends React.Component {
                 for(let i = 0; i < cartItems.bubbles.length; i++) {
                     eachBubbleInfo.push(
                             <div key={"myBubble" + i}>
-                            <p key={"myBubble" + i}>{cartItems.bubbles[i].name}</p>
+                            {<BubbleDetail bubbleid={cartItems.bubbles[i].id}/>}
                             </div>
                         );
                 }
@@ -81,10 +81,14 @@ class Cart extends React.Component {
     render() {
         return (
             <>
-            <div>
-                {this.state.renderItems}
-            </div>
-
+                <div className="order-div">
+                    <h2>Your order:</h2>
+                    <div className="items">{this.state.renderItems} </div>
+                </div>
+                <div className="checkout-div" style={{ width: 700 }}>
+                    <h2>Do you wish to check out?</h2>
+                <button className="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+                </div>
             </>
         )
     }
