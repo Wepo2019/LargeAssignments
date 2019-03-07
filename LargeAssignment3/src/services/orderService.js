@@ -10,7 +10,6 @@ const sendOrder = (user, cart) => {
             order: cart
         })
     }).then((response) => response.json()).then((responseData) => {
-      console.log(responseData);
       return responseData;
     }).catch(err => err);
 };

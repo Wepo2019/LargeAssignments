@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
     componentDidMount() {
-        console.log(this.props);
         const cartItems = this.state.storage;
-        console.log(cartItems);
+
         let htmlItems = [];
 
         if(cartItems) {
@@ -36,15 +35,18 @@ class Cart extends React.Component {
                 cartSection.push(<h4 key="bundlesTitle" className="detail-header">Bundles:</h4>);
 
                 for(let i = 0; i < cartItems.bundles.length; i++) {
-                    console.log("bundle number: " + i);
+
                     let innerBundleInfo = [];
                     innerBundleInfo.push(<p key={cartItems.bundles[i].name + i}>{cartItems.bundles[i].name}</p>);
 
 
                     for(let j = 0; j < cartItems.bundles[i].items.length; j++) {
-                        console.log(cartItems.bundles[i].items[j]);
-                        innerBundleInfo.push(<div key={"myBundleItems" + (cartItems.bundles[i].items[j])}>{<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}</div>);
-                        <BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
+                        innerBundleInfo.push(
+                        <div key={"myBundleItems" + (cartItems.bundles[i].items[j])}>
+                            {<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>}
+                        </div>
+                        );
+                        //<BubbleDetail bubbleid={cartItems.bundles[i].items[j]}/>
                     }
                     cartSection.push(<div key={cartItems.bundles[i].name + i}>{innerBundleInfo}</div>);
                 }
@@ -53,10 +55,10 @@ class Cart extends React.Component {
             
             if(this.props.reviewStatus.review !== true || ((this.state.storage.bubbles.length < 0) && (this.state.storage.bundles.length < 0))) {
                 const checkOutButton = [
-                    <>
-                        <h2 key="checkout-title" >Do you wish to check out?</h2>
-                        <button key="checkout-btn" className="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
-                    </>
+                    <div key="checkoutDiv">
+                        <h2 key="checkoutTitle" >Do you wish to check out?</h2>
+                        <button key="checkoutBtn" className="checkout-button"><Link key="checkoutBtnLink" className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+                    </div>
                     ];
                 this.setState({checkoutBtn: checkOutButton});
             }
