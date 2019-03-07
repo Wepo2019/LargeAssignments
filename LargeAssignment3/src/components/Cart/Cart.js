@@ -65,10 +65,10 @@ class Cart extends React.Component {
             <div>
                 <h4>Your order:</h4>
                 {this.state.renderItems}
-            </div>
+            </div>  
             <div className="checkout-div" style={{ width: 700 }}>
-            <h2>Do you wish to check out?</h2>
-            <button class="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
+                <h2>Do you wish to check out?</h2>
+                <button class="checkout-button"><Link className="bubble-link-black" to='/checkout'>Checkout</Link></button>
             </div>
             </>
         )
