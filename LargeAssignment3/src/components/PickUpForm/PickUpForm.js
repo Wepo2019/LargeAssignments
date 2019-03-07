@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
@@ -47,7 +45,6 @@ class  PickUpForm extends React.Component {
         if (this.validate()) {
             localStorage.setItem('user', JSON.stringify(this.state.fields));
             this.props.history.push('/review');
-        } else {
         }
     }
 

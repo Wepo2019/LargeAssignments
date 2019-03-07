@@ -51,8 +51,12 @@ class Bundle extends React.Component {
 }
 
 Bundle.propTypes = {
+    //The bunble provided as props
+    //The id of the bunble
     id: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
+    //The name of the bunble
     name: PropTypes.string.isRequired,
+    //The items in the bunble
     items: PropTypes.array.isRequired
 };
 

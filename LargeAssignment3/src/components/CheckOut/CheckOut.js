@@ -11,7 +11,6 @@ const CheckOut = () => {
         </div>
         </>
     )
-
 };
 
 export default CheckOut;
