@@ -254,3 +254,18 @@ ul.navigation-links li {
     color: white;
     margin-left: 55px;
 }
+
+.bubble-list {
+    padding-bottom: 40px;
+    margin-left: 15px;
+}
+
+.name-span {
+    font-weight: bold;
+}
+
+.price-span {
+    font-size: 25px;
+}
+
+
