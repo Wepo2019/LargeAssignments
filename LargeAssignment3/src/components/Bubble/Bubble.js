@@ -7,11 +7,19 @@ const Bubble = (props) => {
     const { id, name, description, price, image } = props;
 
     return (
+      
     <BubbleConsumer>
         {
             BubbleContext => {
                 return (
-                    <h3><Link className="bubble-link" to={'/bubbles/' + id}>{name}</Link></h3>
+                    <div className="bubble-list">
+                        <h3><Link className="bubble-link" to={'/bubbles/' + id}>
+                            <span className="name-span">{name}</span><br></br>
+                            <span className="price-span">{price} kr.</span><br></br>
+                            <img src={image} alt="" style={{ width: 120 }}></img>
+                            </Link>
+                        </h3>
+                    </div>
                 )
             }
         }
