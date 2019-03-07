@@ -34,11 +34,11 @@ class ReviewOrder extends React.Component {
             <>
             <div className="confirmation">
                 <h1>Your confirmation details</h1>
-                <h3>{this.state.userInfo.name}</h3>
-                <p>{this.state.userInfo.address}</p>
-                <p>{this.state.userInfo.city}</p>
-                <p>{this.state.userInfo.telephone}</p>
-                <p>{this.state.userInfo.code}</p>
+                <p>Name: {this.state.userInfo.name}</p>
+                <p>Address: {this.state.userInfo.address}</p>
+                <p>City: {this.state.userInfo.city}</p>
+                <p>Telephone: {this.state.userInfo.telephone}</p>
+                <p>Postal code: {this.state.userInfo.code}</p>
             </div>
             <div>
                 <Cart reviewStatus={{review:true}} />
