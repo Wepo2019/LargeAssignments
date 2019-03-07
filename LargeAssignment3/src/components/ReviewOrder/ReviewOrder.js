@@ -1,26 +1,27 @@
 import React from 'react';
 import Cart from '../Cart/Cart';
+import orderService from '../../services/orderService';
 
 class ReviewOrder extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: JSON.parse(localStorage.getItem('user'))
+            userInfo: JSON.parse(localStorage.getItem('user')),
+            cart: JSON.parse(localStorage.getItem('cart'))
         }
     }
 
     confirm(e) {
-        //localStorage.clear(); // Taka út fyrir final product
-        /*if(localStorage.getItem('cart') === null) {
-            let item = {bubbles: [], bundles: [] };
-            localStorage.setItem('cart', JSON.stringify(item));
+        let wasSuccessfull = orderService.sendOrder(this.state.userInfo, this.state.cart);
+
+        if(wasSuccessfull) {
+            localStorage.clear();
+            this.props.history.push('/');
         }
-       let item = JSON.parse(localStorage.getItem('cart'));
-       item.bubbles.push(this.state.bubble);
-       localStorage.setItem('cart', JSON.stringify(item));
-       */
-      console.log("HELLO DARKNESS MY OLD FRIEND");
+        else {
+            //redirect to something went wrong page
+        }
     }
 
     cancel(e) {

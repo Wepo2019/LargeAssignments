@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
-import toastr from 'toastr';
 
 class  PickUpForm extends React.Component {
     constructor(props) {
@@ -46,13 +45,9 @@ class  PickUpForm extends React.Component {
     submitForm(e) {
         e.preventDefault();
         if (this.validate()) {
-            //console.log("WIN");
-            //toastr.success('Successfully submitted!', 'Success!');
             localStorage.setItem('user', JSON.stringify(this.state.fields));
             this.props.history.push('/review');
         } else {
-            //console.log("LOST");
-            //toastr.error('Failed to be submitted!', 'Failed!');
         }
     }
 
