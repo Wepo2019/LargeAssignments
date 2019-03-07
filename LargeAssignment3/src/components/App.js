@@ -8,6 +8,7 @@ import Bundles from './Bundles/Bundles';
 import BubbleDetail from './BubbleDetail/BubbleDetail';
 import Cart from './Cart/Cart';
 import CheckOut from './CheckOut/CheckOut';
+import DeliveredForm from './DeliveredForm/DeliveredForm';
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
@@ -54,7 +55,8 @@ class App extends React.Component {
                   <Route exact path="/bundles" component={ Bundles } />
                   <Route exact path="/bubbles/:bubbleid" component={ BubbleDetail } />
                   <Route exact path="/cart" component={ Cart } />
-                  <Route exact path="/checkout" component={CheckOut} />
+                  <Route exact path="/checkout" component={ CheckOut } />
+                  <Route exact path="/delivered" component={ DeliveredForm } />
               </Switch>
           </div>
         </div>

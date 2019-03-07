@@ -130,3 +130,13 @@ ul.navigation-links li {
 .cart-right {
     margin-left: 800px;
 }
+.checkout-button {
+    background-color: black;
+    color: white;
+    height: 40px;
+    width: 150px;
+}
+
+.checkout-button:hover {
+    color: #C4AAFF;
+}
