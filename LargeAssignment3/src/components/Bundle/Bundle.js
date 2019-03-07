@@ -21,7 +21,6 @@ class Bundle extends React.Component {
        let item = JSON.parse(localStorage.getItem('cart'));
        item.bundles.push(this.state.bundle);
        localStorage.setItem('cart', JSON.stringify(item));
-       console.log(item);
     }
 
     render() {
