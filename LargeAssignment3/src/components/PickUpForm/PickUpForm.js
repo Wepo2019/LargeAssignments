@@ -30,7 +30,7 @@ class  PickUpForm extends React.Component {
         const errors = {};
         if(name === '') { errors.nameError = 'You need to enter your name'; }
         if(telephone === '') { errors.telephoneError = 'You need to enter your phone number'; }
-        if(!validator.isLength(telephone,{min:7}, {max:14})) {errors.telephone = 'Phone number must be seven numbers'} 
+        if(!validator.isLength(telephone,{min:7}, {max:14})) {errors.telephoneError = 'Phone number must be seven numbers'} 
 
         if(Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
