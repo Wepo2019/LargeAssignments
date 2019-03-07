@@ -35,7 +35,7 @@ class ReviewOrder extends React.Component {
             <>
             <div className="confirmation">
                 <h1>Your confirmation details</h1>
-                <h3>{this.state.userInfo.name}</h3>
+                <p>{this.state.userInfo.name}</p>
                 <p>{this.state.userInfo.address}</p>
                 <p>{this.state.userInfo.city}</p>
                 <p>{this.state.userInfo.telephone}</p>
