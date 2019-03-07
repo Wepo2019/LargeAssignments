@@ -10,19 +10,16 @@ import Cart from './Cart/Cart';
 import CheckOut from './CheckOut/CheckOut';
 import DeliveredForm from './DeliveredForm/DeliveredForm';
 import PickUpForm from './PickUpForm/PickUpForm';
+import Order from './Order/Order';
+import History from './History/History';
 import ReviewOrder from './ReviewOrder/ReviewOrder';
+
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
 import bundlesService from '../services/bundlesService';
 import { BundlesProvider } from '../context/BundlesContext';
 
-
-/*
-<Route exact path="/bundles" component={ Bundles } />
-<Route exact path="/cart" component={ Cart } />
-<Route exact path="/orders/:telephone" component={ Orders } />
-*/
 
 class App extends React.Component {
   componentDidMount() {
@@ -61,6 +58,8 @@ class App extends React.Component {
                   <Route exact path="/pickup" component={ PickUpForm } />
                   <Route exact path="/delivered" component={ DeliveredForm } />
                   <Route exact path="/review" component={ ReviewOrder }/>
+                  <Route exact path="/history" component={ History } />
+                  <Route exact path="/orders/:telephone" component={ Order } />
               </Switch>
           </div>
         </div>
