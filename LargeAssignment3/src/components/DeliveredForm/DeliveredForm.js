@@ -4,8 +4,6 @@ import Input from '../Input/Input';
 import validator from 'validator';
 import toastr from 'toastr';
 
-
-
 class  DeliveredForm extends React.Component {
     constructor(props) {
         super(props);
@@ -41,7 +39,7 @@ class  DeliveredForm extends React.Component {
         if(city === '') { errors.cityError = 'You need to enter your city'; }
         if(telephone === '') { errors.telephoneError = 'You need to enter your phone number'; }
         if(region === '' ) { errors.regionError = 'You need to enter your postal code'; }
-        if(!validator.isLength(telephone,{min:0}, {max:7})) {errors.telephone = 'Phone number must be seven numbers'} 
+        if(!validator.isLength(telephone,{min:7}, {max:14})) { errors.telephoneError = 'Phone number must be seven numbers'} 
 
         if(Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
@@ -63,6 +61,7 @@ class  DeliveredForm extends React.Component {
         const { nameError, addressError, cityError, telephoneError, regionError } = this.state.errors;
         return (
             <>
+            <div className="form">
             <h1>Please fill out this form!</h1>
             <Form onSubmit={ e => this.submitForm(e)} >
                 <Input 
@@ -105,8 +104,9 @@ class  DeliveredForm extends React.Component {
                     label="Enter your region"
                     errorMessage={ regionError }
                     onInput={e => this.onInput(e)} />
-                <input type="submit" value="Submit!" className="btn btn-primary" style={{ float: 'right', marginTop: 10 }} />
+                <input type="submit" value="Submit!" className="submit-button" style={{ float: 'right', marginTop: 10}} />
             </Form>
+            </div>
             </>
          )
     }

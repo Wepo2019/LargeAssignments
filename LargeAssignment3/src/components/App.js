@@ -9,6 +9,7 @@ import BubbleDetail from './BubbleDetail/BubbleDetail';
 import Cart from './Cart/Cart';
 import CheckOut from './CheckOut/CheckOut';
 import DeliveredForm from './DeliveredForm/DeliveredForm';
+import PickUpForm from './PickUpForm/PickUpForm';
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
@@ -56,6 +57,7 @@ class App extends React.Component {
                   <Route exact path="/bubbles/:bubbleid" component={ BubbleDetail } />
                   <Route exact path="/cart" component={ Cart } />
                   <Route exact path="/checkout" component={ CheckOut } />
+                  <Route exact path="/pickup" component={ PickUpForm } />
                   <Route exact path="/delivered" component={ DeliveredForm } />
               </Switch>
           </div>
