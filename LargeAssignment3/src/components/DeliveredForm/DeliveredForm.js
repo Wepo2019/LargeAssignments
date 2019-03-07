@@ -39,7 +39,7 @@ class  DeliveredForm extends React.Component {
         if(city === '') { errors.cityError = 'You need to enter your city'; }
         if(telephone === '') { errors.telephoneError = 'You need to enter your phone number'; }
         if(region === '' ) { errors.regionError = 'You need to enter your postal code'; }
-        if(!validator.isLength(telephone,{min:0}, {max:7})) {errors.telephone = 'Phone number must be seven numbers'} 
+        if(!validator.isLength(telephone,{min:7}, {max:14})) {errors.telephone = 'Phone number must be seven numbers'} 
 
         if(Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
