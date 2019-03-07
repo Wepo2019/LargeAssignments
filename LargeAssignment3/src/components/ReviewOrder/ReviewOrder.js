@@ -1,17 +1,49 @@
 import React from 'react';
+import Cart from '../Cart/Cart';
 
-const ReviewOrder = (props) => {
-    const user = JSON.stringify(localStorage.getItem('user'));
-    console.log(user.name);
-    return (
-        <div>
-            <h3>{user.name}</h3>
-            <p>{user.address}</p>
-            <p>{user.city}</p>
-            <p>{user.telephone}</p>
-            <p>{user.region}</p>
-        </div>
-    )
-};
+class ReviewOrder extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            userInfo: JSON.parse(localStorage.getItem('user'))
+        }
+    }
+
+    handleClick(e) {
+        //localStorage.clear(); // Taka út fyrir final product
+        /*if(localStorage.getItem('cart') === null) {
+            let item = {bubbles: [], bundles: [] };
+            localStorage.setItem('cart', JSON.stringify(item));
+        }
+       let item = JSON.parse(localStorage.getItem('cart'));
+       item.bubbles.push(this.state.bubble);
+       localStorage.setItem('cart', JSON.stringify(item));
+       */
+      console.log("HELLO DARKNESS MY OLD FRIEND");
+    }
+
+
+    render() {
+        return (
+            <>
+            <div>
+                <h3>{this.state.userInfo.name}</h3>
+                <p>{this.state.userInfo.address}</p>
+                <p>{this.state.userInfo.city}</p>
+                <p>{this.state.userInfo.telephone}</p>
+                <p>{this.state.userInfo.region}</p>
+            </div>
+            <div>
+                <Cart reviewStatus={{review:true}} />
+            </div>
+            <div>
+                <button className="cart-button" onClick={ e => this.handleClick(e) }>Confirm</button>
+            </div>
+            </>
+        )
+    }
+}
+
 
 export default ReviewOrder;
