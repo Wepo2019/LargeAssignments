@@ -1,4 +1,6 @@
 import React from 'react';
+import CheckOut from '../CheckOut/CheckOut';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -6,9 +8,11 @@ const Cart = () => {
     console.log(cartItems);
 
     return (
+        <>
         <div>Bla</div>
+       <button><Link className="bubble-link" to='/checkout'>Checkout</Link></button>
+        </>
     )
-
 };
 
 export default Cart;
