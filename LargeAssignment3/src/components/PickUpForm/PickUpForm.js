@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
@@ -18,13 +20,15 @@ class  PickUpForm extends React.Component {
             }
         };
     }
-        onInput(e) {
-            this.setState({
-              fields: {
+    
+    onInput(e) {
+        this.setState({
+            fields: {
                 ...this.state.fields,
                 [e.target.name]: e.target.value }
         });
     };
+
     validate() {
         const {name, telephone} = this.state.fields;
         const errors = {};
@@ -38,15 +42,19 @@ class  PickUpForm extends React.Component {
         }
         return true;
     };
+
     submitForm(e) {
         e.preventDefault();
         if (this.validate()) {
-          console.log(this.state.fields);
-          toastr.success('Successfully submitted!');
+            console.log("WIN");
+            toastr.success('Successfully submitted!', 'Success!');
+            this.props.history.push('/review');
         } else {
-          toastr.error('Failed to be submitted!');
+            console.log("LOST");
+            toastr.error('Failed to be submitted!', 'Failed!');
         }
-      }
+    }
+
     render() {
         const { name, telephone } = this.state.fields;
         const { nameError, telephoneError } = this.state.errors;
@@ -70,7 +78,7 @@ class  PickUpForm extends React.Component {
                     label="Enter your phone number"
                     errorMessage={ telephoneError }
                     onInput={e => this.onInput(e)} />
-                <input type="submit" value="Submit!" className="btn btn-primary" style={{ float: 'right', marginTop: 10 }} />
+                <input type="submit" value="Submit!" className="btn btn-primary" style={{ float: 'right', marginTop: 10 }}  />
             </Form>
             </>
          )

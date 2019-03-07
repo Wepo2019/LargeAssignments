@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import validator from 'validator';
@@ -24,13 +25,15 @@ class  DeliveredForm extends React.Component {
             }
         };
     }
-        onInput(e) {
-            this.setState({
-              fields: {
-                ...this.state.fields,
-                [e.target.name]: e.target.value }
+    
+    onInput(e) {
+        this.setState({
+            fields: {
+            ...this.state.fields,
+            [e.target.name]: e.target.value }
         });
     };
+
     validate() {
         const {name, address, city, telephone, region} = this.state.fields;
         const errors = {};
@@ -39,7 +42,7 @@ class  DeliveredForm extends React.Component {
         if(city === '') { errors.cityError = 'You need to enter your city'; }
         if(telephone === '') { errors.telephoneError = 'You need to enter your phone number'; }
         if(region === '' ) { errors.regionError = 'You need to enter your postal code'; }
-        if(!validator.isLength(telephone,{min:7}, {max:14})) { errors.telephoneError = 'Phone number must be seven numbers'} 
+        if(!validator.isLength(telephone,{min:7}, {max:14})) { errors.telephoneError = 'Phone number must be seven numbers'}
 
         if(Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
@@ -47,15 +50,19 @@ class  DeliveredForm extends React.Component {
         }
         return true;
     };
+
     submitForm(e) {
         e.preventDefault();
         if (this.validate()) {
-          console.log(this.state.fields);
-          toastr.success('Successfully submitted!');
+            console.log("WIN");
+            toastr.success('Successfully submitted!', 'Success!');
+            this.props.history.push('/review');
         } else {
-          toastr.error('Failed to be submitted!');
+            console.log("LOST");
+            toastr.error('Failed to be submitted!', 'Failed!');
         }
-      }
+    }
+
     render() {
         const { name, address, city, telephone, region } = this.state.fields;
         const { nameError, addressError, cityError, telephoneError, regionError } = this.state.errors;
@@ -63,7 +70,7 @@ class  DeliveredForm extends React.Component {
             <>
             <h1>Please fill out this form!</h1>
             <Form onSubmit={ e => this.submitForm(e)} >
-                <Input 
+                <Input
                     type="text"
                     name="name"
                     value={ name }
@@ -71,7 +78,7 @@ class  DeliveredForm extends React.Component {
                     label="Enter your full name"
                     errorMessage={ nameError }
                     onInput={e => this.onInput(e)} />
-                <Input 
+                <Input
                     type="text"
                     name="address"
                     value={ address }
@@ -79,7 +86,7 @@ class  DeliveredForm extends React.Component {
                     label="Enter your address"
                     errorMessage={ addressError }
                     onInput={e => this.onInput(e)} />
-                <Input 
+                <Input
                     type="text"
                     name="city"
                     value={ city }
@@ -87,7 +94,7 @@ class  DeliveredForm extends React.Component {
                     label="Enter your city"
                     errorMessage={ cityError }
                     onInput={e => this.onInput(e)} />
-                <Input 
+                <Input
                     type="number"
                     name="telephone"
                     value={ telephone }
@@ -95,7 +102,7 @@ class  DeliveredForm extends React.Component {
                     label="Enter your phone number"
                     errorMessage={ telephoneError }
                     onInput={e => this.onInput(e)} />
-                 <Input 
+                 <Input
                     type="text"
                     name="region"
                     value={ region }

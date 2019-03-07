@@ -10,6 +10,7 @@ import Cart from './Cart/Cart';
 import CheckOut from './CheckOut/CheckOut';
 import DeliveredForm from './DeliveredForm/DeliveredForm';
 import PickUpForm from './PickUpForm/PickUpForm';
+import ReviewOrder from './ReviewOrder/ReviewOrder';
 import bubbleService from '../services/bubbleService';
 import { BubbleProvider } from '../context/BubbleContext';
 
@@ -59,6 +60,7 @@ class App extends React.Component {
                   <Route exact path="/checkout" component={ CheckOut } />
                   <Route exact path="/pickup" component={ PickUpForm } />
                   <Route exact path="/delivered" component={ DeliveredForm } />
+                  <Route exact path="/review" component={ ReviewOrder }/>
               </Switch>
           </div>
         </div>
