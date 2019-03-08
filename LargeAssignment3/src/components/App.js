@@ -12,6 +12,7 @@ import DeliveredForm from './DeliveredForm/DeliveredForm';
 import PickUpForm from './PickUpForm/PickUpForm';
 import Order from './Order/Order';
 import History from './History/History';
+import Success from './Success/Success';
 import ReviewOrder from './ReviewOrder/ReviewOrder';
 
 import bubbleService from '../services/bubbleService';
@@ -59,6 +60,7 @@ class App extends React.Component {
                   <Route exact path="/delivered" component={ DeliveredForm } />
                   <Route exact path="/review" component={ ReviewOrder }/>
                   <Route exact path="/history" component={ History } />
+                  <Route exact path="/success" component={ Success } />
                   <Route exact path="/orders/:telephone" component={ Order } />
               </Switch>
           </div>

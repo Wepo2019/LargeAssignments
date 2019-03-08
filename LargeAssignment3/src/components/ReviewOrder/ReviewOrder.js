@@ -17,10 +17,7 @@ class ReviewOrder extends React.Component {
 
         if(wasSuccessfull) {
             localStorage.clear();
-            this.props.history.push('/');
-        }
-        else {
-            //redirect to something went wrong page
+            this.props.history.push('/success');
         }
     }
 

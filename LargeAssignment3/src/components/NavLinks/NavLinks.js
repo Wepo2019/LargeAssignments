@@ -16,8 +16,12 @@ const NavLinks = () => {
                 <NavLink className="nav-link" to="/about">About Us</NavLink>
             </li>
             <li className="nav-item active">
+                <NavLink className="nav-link" to="/history">History</NavLink>
+            </li>
+            <li className="nav-item active">
                 <NavLink className="nav-link cart-right" to="/cart">Cart</NavLink>
             </li>
+            
         </ul>
     </>
     )
