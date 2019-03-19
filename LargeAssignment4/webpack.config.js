@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const myMinify = require("babel-preset-minify");
+const MinifyPreset = require("babel-preset-minify");
 const MinifyPlugin = require("babel-minify-webpack-plugin");;
 
 module.exports = {
@@ -14,15 +14,6 @@ module.exports = {
     module: {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
-            {
-                test: /\.less$/,
-                use: [{
-                    loader: "style-loader"
-                },
-                {
-                    loader: "css-loader"
-                }]
-            },
             {
                 test: /\.css$/,
                 use: [{
@@ -39,7 +30,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ title: 'ChatIO', template: './index.html', inject: 'body' }),
-        new MinifyPlugin({}, myMinify)
+        new MinifyPlugin({}, MinifyPreset)
     ],
     devServer: {
         open: true,
