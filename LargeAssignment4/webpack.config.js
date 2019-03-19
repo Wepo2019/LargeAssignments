@@ -10,6 +10,7 @@ module.exports = {
         filename: 'master.js',
         publicPath: '/'
     },
+    mode: "development",
     module: {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
