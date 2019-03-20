@@ -1,8 +1,7 @@
 import { ADD_USER } from '../constants';
 
 const initialState = {
-    nick: '',
-    socketID: ''
+    name: ''
 };
 
 export default function(state = initialState, action) {

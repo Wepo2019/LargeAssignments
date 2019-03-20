@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
+import { addUser } from '../../action/userActions';
 
 class Login extends React.Component {
+  /*
   componentDidMount() {
     socket.on('users', userList => {
       this.setState({
@@ -9,12 +12,12 @@ class Login extends React.Component {
       });
     });
   }
-
+*/
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      usernames: []
+      name: ''//,
+      //usernames: []
     };
   }
 
@@ -23,6 +26,20 @@ class Login extends React.Component {
       [e.target.name]: e.target.value
     });
   }
+/*
+  addUser(name) {
+    console.log("hello");
+    socket.emit("adduser", name, function(available){
+      if (available && name !== '') {
+        console.log("login success");
+        this.setState({ name })
+      }
+      else {
+        console.log("login failed");
+      }
+  });
+  }
+*/
 
   onSubmit(e) {
     e.preventDefault();
@@ -30,6 +47,11 @@ class Login extends React.Component {
     //if found in list, throw something on the screen and reset the page
     //if not found
     //register the user with the server and redirect to chat room selection
+    const { addUser } = this.props;
+    const { name } = this.state;
+    addUser({ name });
+    //ef addUser gengur upp redirect í chatio
+    // annars eitthvað villa
   }
 
   render() {
@@ -45,8 +67,16 @@ class Login extends React.Component {
           </div>
         </form>
       </div>
+      
     )
   }
 }
+/*
+const mapStateToProps = reduxStoreState => {
+  console.log(reduxStoreState);
+  return {};
+}
+*/
+//console.log(name);
 
-export default Login;
+export default connect(null, { addUser })(Login);
