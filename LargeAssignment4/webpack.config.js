@@ -4,7 +4,7 @@ const MinifyPreset = require("babel-preset-minify");
 const MinifyPlugin = require("babel-minify-webpack-plugin");;
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/App.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'master.js',
@@ -36,7 +36,7 @@ module.exports = {
         open: true,
         compress: true,
         historyApiFallback: true,
-        port: 3000
+        port: 3020
     },
     watch: true
 };
