@@ -18,7 +18,7 @@ class Login extends React.Component {
     });
   }
 
-  addUser1(name) {
+  addUserToServer(name) {
     console.log("inside adduser1" + name);
     socket.emit("adduser", name, available => {
       if (available && name !== '') {
@@ -39,7 +39,7 @@ class Login extends React.Component {
     //register the user with the server and redirect to chat room selection
     const { addUser } = this.props;
     addUser(this.state.name);
-    this.addUser1(this.state.name);
+    this.addUserToServer(this.state.name);
     this.props.history.push('/chatio');
     //ef addUser gengur upp redirect í chatio
     // annars eitthvað villa
