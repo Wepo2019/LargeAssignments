@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
-import { addUser } from '../../action/userActions';
+import { addUser } from '../../actions/userActions';
 
 class Login extends React.Component {
 
