@@ -1,1 +1,38 @@
 /* You can add styles here */
+
+#chatWindow {
+    float: right;
+}
+
+.chat-window .input-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.chat-window .input-container input {
+    width: 80%;
+    padding: 5px;
+}
+
+.chat-window .input-container button {
+    padding: 5px;
+}
+
+.chat-window {
+    position: relative;
+    border: solid 1px black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 2px darkgray;
+    background-size: 100% 40px, auto;
+    background-image:
+        linear-gradient(to top right, white, white 50px, pink),
+        linear-gradient(to bottom, black, black 1px, white 1px, white 40px, black 40px, black 42px, white 42px, white);
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: 40px;
+    animation: move-shadow 1s ease-in alternate infinite;
+    overflow: hidden;
+}

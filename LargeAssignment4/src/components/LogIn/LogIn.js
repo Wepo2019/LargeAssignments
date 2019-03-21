@@ -24,7 +24,7 @@ class Login extends React.Component {
       if (available && name !== '') {
         console.log("Login Successfull!");
         this.setState({name: ""});
-        this.props.history.push("/ChatIO")
+        this.props.history.push("/ChatIO");
       }
       else {
         console.log("Login Failed!");
