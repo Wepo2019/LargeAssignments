@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 class Chat extends React.Component {
   componentDidMount() {
+    socket.on('updatechat', (roomName, messageHistory) => {
+      this.setState({ messages: messageHistory });
+  });
   }
 
   constructor(props) {
@@ -14,28 +17,29 @@ class Chat extends React.Component {
       currentRoom: this.props.room
     };
   }
-  /*
+  
   sendMessage(message) {
     if (message === '') { 
       return false; 
     }
-    socket.emit('sendmsg', { roomName: this.props.currentRoom, msg: message });
+    socket.emit('sendmsg', { roomName: this.props.room, msg: message });
     this.setState({ message: '' });
   }
-  */
+
   render() {
-    return ( <div></div> )
-    /*
+    const { messages, message } = this.state;
     return (
       <div className="chat-window">
-        <div className="messages"></div>
+      <h3>Chatio</h3>
+        <div className="messages">
+        { messages.map(m => <div key={ m.timestamp } className="message">{ m.message }</div>) }
+        </div>
         <div className="input-container">
             <input type="text" value={ message } onChange={e => this.setState({ message: e.target.value })} placeholder="Enter your message here..." />
             <button type="button" onClick={() => this.sendMessage(message)}>Send</button>
         </div>
       </div>
     )
-    */
   }
 }
 

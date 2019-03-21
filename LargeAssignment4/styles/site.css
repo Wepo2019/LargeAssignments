@@ -4,6 +4,12 @@
     float: right;
 }
 
+.chat-window h3 {
+    position: relative;
+    top: -10px;
+    text-align: center;
+}
+
 .chat-window .input-container {
     position: absolute;
     width: 100%;
