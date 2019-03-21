@@ -39,6 +39,7 @@ class Login extends React.Component {
     e.preventDefault();
     //remove later probably
     const { addUser } = this.props;
+
     addUser(this.state.name);
 
     this.addUserToServer(this.state.name);
@@ -57,7 +58,6 @@ class Login extends React.Component {
           </div>
         </form>
       </div>
-      
     )
   }
 }
