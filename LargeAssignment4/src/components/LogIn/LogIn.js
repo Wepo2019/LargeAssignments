@@ -8,7 +8,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: "",
+      error: ""
     };
   }
 
@@ -19,13 +20,16 @@ class Login extends React.Component {
   }
 
   addUserToServer(name) {
-    console.log("inside adduser1" + name);
     socket.emit("adduser", name, available => {
       if (available && name !== '') {
-        console.log("login success");
+        console.log("Login Successfull!");
+        this.setState({name: ""});
+        this.props.history.push("/ChatIO")
       }
       else {
-        console.log("login failed");
+        console.log("Login Failed!");
+        this.setState({name: "", error: "Username already taken!"});
+        alert(this.state.error);
       }
     });
   }
@@ -33,16 +37,11 @@ class Login extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    //Compare this.state.name to the server userlist
-    //if found in list, throw something on the screen and reset the page
-    //if not found
-    //register the user with the server and redirect to chat room selection
+    //remove later probably
     const { addUser } = this.props;
     addUser(this.state.name);
+
     this.addUserToServer(this.state.name);
-    this.props.history.push('/chatio');
-    //ef addUser gengur upp redirect í chatio
-    // annars eitthvað villa
   }
 
   render() {
@@ -62,12 +61,5 @@ class Login extends React.Component {
     )
   }
 }
-/*
-const mapStateToProps = reduxStoreState => {
-  console.log(reduxStoreState);
-  return {};
-}
-*/
-//console.log(name);
 
 export default connect(null, { addUser })(Login);

@@ -13,7 +13,7 @@ class App extends React.Component {
         return (
             <Switch>
                 <Route exact path="/" component={ Login } />
-                <Route exact path="/chatio" component={ Chatio } />
+                <Route exact path="/ChatIO" component={ Chatio } />
             </Switch>
         )   
     }
