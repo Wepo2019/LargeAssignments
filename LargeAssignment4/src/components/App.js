@@ -1,6 +1,7 @@
 import React from 'react';
-
-import Login from './LogIn/LogIn'
+import { Switch, Route } from 'react-router-dom';
+import Login from './Login/Login';
+import Chatio from './Chatio/Chatio';
 
 class App extends React.Component {
 
@@ -10,7 +11,10 @@ class App extends React.Component {
 
     render () {
         return (
-            <Login />
+            <Switch>
+                <Route exact path="/" component={ Login } />
+                <Route exact path="/chatio" component={ Chatio } />
+            </Switch>
         )   
     }
 };

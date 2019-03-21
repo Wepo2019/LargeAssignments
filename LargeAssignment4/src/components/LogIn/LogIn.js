@@ -4,20 +4,11 @@ import { socket } from '../../services/socketService';
 import { addUser } from '../../action/userActions';
 
 class Login extends React.Component {
-  /*
-  componentDidMount() {
-    socket.on('users', userList => {
-      this.setState({
-        usernames: userList
-      });
-    });
-  }
-*/
+
   constructor(props) {
     super(props);
     this.state = {
-      name: ''//,
-      //usernames: []
+      name: ''
     };
   }
 
@@ -26,20 +17,19 @@ class Login extends React.Component {
       [e.target.name]: e.target.value
     });
   }
-/*
-  addUser(name) {
-    console.log("hello");
-    socket.emit("adduser", name, function(available){
+
+  addUser1(name) {
+    console.log("inside adduser1" + name);
+    socket.emit("adduser", name, available => {
       if (available && name !== '') {
         console.log("login success");
-        this.setState({ name })
       }
       else {
         console.log("login failed");
       }
-  });
+    });
   }
-*/
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -48,8 +38,9 @@ class Login extends React.Component {
     //if not found
     //register the user with the server and redirect to chat room selection
     const { addUser } = this.props;
-    const { name } = this.state;
-    addUser({ name });
+    addUser(this.state.name);
+    this.addUser1(this.state.name);
+    this.props.history.push('/chatio');
     //ef addUser gengur upp redirect í chatio
     // annars eitthvað villa
   }
