@@ -1,5 +1,7 @@
 import React from 'react';
 import { socket } from '../../services/socketService';
+import { connect } from 'react-redux';
+import { findRoom } from '../../actions/roomActions';
 
 class Rooms extends React.Component {
   componentDidMount() {
@@ -9,6 +11,7 @@ class Rooms extends React.Component {
     socket.emit("joinroom", {room: "lobby"}, dasBool => {
       if(dasBool) {
         console.log("The user joined the default lobby!");
+        this.props.findRoom(this.state.currentRoom);
         socket.emit("rooms");
       }
       else {
@@ -36,8 +39,8 @@ class Rooms extends React.Component {
   onCreateNewRoom(e) {
     e.preventDefault();
     const newRoom = this.state.createRoomName;
-    socket.emit("partroom", this.state.currentRoom);
     if(newRoom !== "") {
+      socket.emit("partroom", this.state.currentRoom);
       socket.emit("joinroom", { room: newRoom }, success => {
         if(success) {
           this.setState({ createRoomName: "" });
@@ -49,6 +52,8 @@ class Rooms extends React.Component {
         }
       });
       this.setState({ currentRoom: newRoom });
+      console.log("Should change room states!");
+      this.props.findRoom(newRoom);
     }
   }
 
@@ -65,6 +70,7 @@ class Rooms extends React.Component {
       }
     });
     this.setState({ currentRoom: e.target.name });
+    this.props.findRoom(e.target.name);
   }
 
   render() {
@@ -94,4 +100,4 @@ class Rooms extends React.Component {
   }
 }
 
-export default Rooms;
+export default connect(null, { findRoom })(Rooms);

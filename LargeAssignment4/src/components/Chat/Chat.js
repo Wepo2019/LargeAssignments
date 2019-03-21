@@ -1,16 +1,17 @@
 import React from 'react';
 import { socket } from '../../services/socketService';
+import { connect } from 'react-redux';
 
 class Chat extends React.Component {
   componentDidMount() {
-
   }
 
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
-      message: ""
+      message: "",
+      currentRoom: this.props.room
     };
   }
   /*
@@ -37,5 +38,13 @@ class Chat extends React.Component {
     */
   }
 }
+
+const mapStateToProps = ({ user, room }) => {
+  return {
+    user,
+    room
+  };
+};
+
 //Needs connections to: Users, Messages for current room, Current room name
-export default Chat;
+export default connect(mapStateToProps)(Chat);
