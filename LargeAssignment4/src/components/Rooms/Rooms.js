@@ -93,7 +93,7 @@ class Rooms extends React.Component {
     //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
-        roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
+        roomsHTML.push(<li key={"ul-" + k}><a href="url" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
         //Rendering operators for each room
         for(var o in this.state.roomlist[k].ops) {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
@@ -107,7 +107,7 @@ class Rooms extends React.Component {
           console.log("HALLO BTICH");
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
             console.log(u);
-            roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
+            roomsUsersHTML.push(<li className="user-in-room" key={ "us-" + u + k }>User: { u }</li>);
           }
         }
         temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
@@ -118,10 +118,8 @@ class Rooms extends React.Component {
     }
 
     return (
-      <di>
-       
+      <div>
         <div className="room-form">
-        
             <div className="black-form">
               <h3>Chat rooms -  { this.state.currentRoom }</h3>
                 <ul id="rooms-list" style={{listStyle: "none"}}>
@@ -137,7 +135,7 @@ class Rooms extends React.Component {
               </form>
             </div>
         </div>
-      </di>
+      </div>
     )
   }
 }
