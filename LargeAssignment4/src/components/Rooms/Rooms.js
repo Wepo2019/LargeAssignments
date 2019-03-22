@@ -6,8 +6,14 @@ import { findRoom } from '../../actions/roomActions';
 class Rooms extends React.Component {
   componentDidMount() {
     socket.emit("rooms");
+    
     socket.on("roomlist", roomlist => this.setState({ roomlist }));
 
+    //testing other person update server list
+    socket.on("updateusers", () => {
+      socket.emit("rooms");
+      socket.on("roomlist", roomlist => this.setState({ roomlist }));
+    });
     
     //join the default lobby
     socket.emit("joinroom", {room: "lobby"}, dasBool => {
@@ -15,6 +21,7 @@ class Rooms extends React.Component {
         console.log("The user joined the default lobby!");
         this.props.findRoom(this.state.currentRoom);
         socket.emit("rooms");
+        socket.emit("updateusers");
       }
       else {
         console.log("Something went wrong while trying to join the default lobby");
@@ -26,7 +33,6 @@ class Rooms extends React.Component {
     super(props);
     this.state = {
       roomlist: {},
-      userlist: {},
       createRoomName: "",
       currentRoom: "lobby"
     };
@@ -54,6 +60,7 @@ class Rooms extends React.Component {
           console.log("The user failed to create and join a new room!");
         }
       });
+      //socket.emit("rooms");
       this.setState({ currentRoom: newRoom });
       console.log("Should change room states!");
       this.props.findRoom(newRoom);
@@ -104,7 +111,6 @@ class Rooms extends React.Component {
         roomsOpsHTML = [];
         //Rendering users for each room
         for(var u in this.state.roomlist[k].users) {
-          console.log("HALLO BTICH");
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
             console.log(u);
             roomsUsersHTML.push(<li className="user-in-room" key={ "us-" + u + k }>User: { u }</li>);
