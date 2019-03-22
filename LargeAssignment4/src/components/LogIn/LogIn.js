@@ -50,11 +50,9 @@ class Login extends React.Component {
     return (
       <div className="text-center" style={{ marginTop: 40 }}>
         <form action="" onSubmit={e => this.onSubmit(e)} className="form-horizontal">
-          <div className="form-group">
+          <div className="login-form">
             <input type="text" name="name" id="name" value={ name } onChange={e => this.onInput(e)} placeholder="Enter your nick here" />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Login!" className="btn btn-primary" />
+            <input type="submit" value="Login!" />
           </div>
         </form>
       </div>
