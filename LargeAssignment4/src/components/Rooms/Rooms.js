@@ -86,16 +86,36 @@ class Rooms extends React.Component {
 
   render() {
     var roomsHTML = [];
+    var roomsUsersHTML = [];
+    var roomsOpsHTML = [];
+    var temp = [];
     var k;
+    //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
         roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
+        //Rendering operators for each room
+        for(var o in this.state.roomlist[k].ops) {
+          if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
+            roomsOpsHTML.push(<li key={ "op-" + o + k }> + { o }</li>);
+          } 
+        }
+        temp.push(roomsOpsHTML);
+        roomsOpsHTML = [];
+        //Rendering users for each room
+        for(var u in this.state.roomlist[k].users) {
+          console.log("HALLO BTICH");
+          if(this.state.roomlist[k].users.hasOwnProperty(u)) {
+            console.log(u);
+            roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
+          }
+        }
+        temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
+        roomsHTML.push(temp);
+        roomsUsersHTML = [];
+        temp = [];
       }
     }
-
-    var roomUsersHTML = [];
-    var u;
-
 
     return (
       <div>
