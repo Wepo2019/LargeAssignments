@@ -15,6 +15,7 @@ class Rooms extends React.Component {
         console.log("The user joined the default lobby!");
         this.props.findRoom(this.state.currentRoom);
         socket.emit("rooms");
+        socket.emit("updateusers");
       }
       else {
         console.log("Something went wrong while trying to join the default lobby");
@@ -26,7 +27,6 @@ class Rooms extends React.Component {
     super(props);
     this.state = {
       roomlist: {},
-      userlist: {},
       createRoomName: "",
       currentRoom: "lobby"
     };
@@ -104,9 +104,7 @@ class Rooms extends React.Component {
         roomsOpsHTML = [];
         //Rendering users for each room
         for(var u in this.state.roomlist[k].users) {
-          console.log("HALLO BTICH");
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            console.log(u);
             roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
           }
         }
@@ -118,7 +116,7 @@ class Rooms extends React.Component {
     }
 
     return (
-      <di>
+      <div>
        
         <div className="room-form">
         
@@ -137,7 +135,7 @@ class Rooms extends React.Component {
               </form>
             </div>
         </div>
-      </di>
+      </div>
     )
   }
 }
