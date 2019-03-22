@@ -7,7 +7,6 @@ class Rooms extends React.Component {
   componentDidMount() {
     socket.emit("rooms");
     socket.on("roomlist", roomlist => this.setState({ roomlist }));
-
     
     //join the default lobby
     socket.emit("joinroom", {room: "lobby"}, dasBool => {

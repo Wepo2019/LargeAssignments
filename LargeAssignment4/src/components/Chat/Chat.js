@@ -18,7 +18,20 @@ class Chat extends React.Component {
 
     socket.on('updatechat', (roomName, messageHistory) => {
       this.setState({ messages: messageHistory });
+      this.setState({ currentRoom: this.props.room });
     });
+
+    //To do: how to get second socket persons room list to update
+
+    socket.on("updateusers", (room, roomsUsers, roomsOps) => {
+      this.setState({ currentRoom: this.props.room });
+
+      socket.on('updatechat', (roomName, messageHistory) => {
+        this.setState({ messages: messageHistory });
+        this.setState({ currentRoom: this.props.room });
+      });
+    });
+
     this.setState({ currentRoom: this.props.room });
   }
 
@@ -27,6 +40,7 @@ class Chat extends React.Component {
     this.state = {
       messages: [],
       message: "",
+      allRooms: {},
       currentRoom: this.props.room
     };
   }
