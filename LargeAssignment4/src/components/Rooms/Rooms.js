@@ -83,14 +83,6 @@ class Rooms extends React.Component {
     this.props.findRoom(e.target.name);
   }
 
-  // TODO
-  /**
-   * Þurfum hérna að gera lista af notendum undir hverju lobbyi, 
-   * og render það
-   */
-
-
-
   render() {
     var roomsHTML = [];
     var roomsUsersHTML = [];
@@ -111,9 +103,7 @@ class Rooms extends React.Component {
         roomsOpsHTML = [];
         //Rendering users for each room
         for(var u in this.state.roomlist[k].users) {
-          console.log("HALLO BTICH");
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            console.log(u);
             roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
           }
         }
@@ -126,9 +116,7 @@ class Rooms extends React.Component {
 
     return (
       <div>
-       
-        <div className="room-form">
-        
+        <div className="room-form">1
             <div className="black-form">
               <h3>Chat rooms -  { this.state.currentRoom }</h3>
                 <ul id="rooms-list" style={{listStyle: "none"}}>
