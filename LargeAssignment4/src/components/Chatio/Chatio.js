@@ -17,7 +17,7 @@ class Chatio extends React.Component {
   render() {
     return (
       <div>
-        <h1>{ this.state.name }</h1>
+         <h1 className="welcome2">Welcome to Chat.IO { this.state.name }! - Please chat away!</h1>
           <Rooms />
           <Chat />
       </div>

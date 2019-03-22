@@ -46,13 +46,94 @@
     overflow: hidden;
 }
 
-.login-form button {
-    width: 9%;
-    padding: 5px;
-    color: yellow;
-    background-color: black;
-}
+/* Login page */
 .login-form input {
     width: 20%;
     padding: 5px;
 }
+
+.login-button {
+    padding: 5px; 
+    color: yellow;
+    width: 5px;
+}
+.welcome {
+    margin-left: 38%;
+    margin-top: 5%;
+}
+.please{
+    margin-left: 29%;
+}
+
+/* Room list */
+.room-form{
+    width: 850px;
+    height: 100%;
+}
+.room-list-form input {
+    width: 30%;
+    padding: 5px;
+}
+
+.room-button  {
+    padding: 5px; 
+    color: yellow;
+    background-color: black;
+}
+
+ a {
+    color: yellow;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+a:hover {
+    color: yellow;
+    opacity: 1;
+    text-decoration: none;
+}
+
+::placeholder {
+    background-color: black;
+    color: yellow;
+}
+
+input {
+    background-color: black;
+    color: yellow;
+    box-shadow: 5px 5px 10px 2px darkgray;
+}
+
+.test {
+    margin-left: 5px;
+}
+
+.black-form {
+    width: 500px;
+    height: 90%;
+    margin-left: 10px;
+    background-color: black;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 10px 2px darkgray;
+}
+
+.black-form h3 {
+
+    color: yellow;
+    padding-left: 33%;
+
+}
+
+.room-form {
+    
+}
+
+.welcome2{
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+

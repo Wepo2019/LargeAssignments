@@ -118,20 +118,26 @@ class Rooms extends React.Component {
     }
 
     return (
-      <div>
-        <h3>Current Room - { this.state.currentRoom }</h3>
-        <ul id="rooms-list" style={{listStyle: "none"}}>
-          {roomsHTML}
-        </ul>
-          <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
-            <div className="form-group">
-              <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } />
+      <di>
+       
+        <div className="room-form">
+        
+            <div className="black-form">
+              <h3>Chat rooms -  { this.state.currentRoom }</h3>
+                <ul id="rooms-list" style={{listStyle: "none"}}>
+                  {roomsHTML}
+                </ul>
+              </div>
+            <div className="test">
+              <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
+                <div className="room-list-form">
+                  <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } placeholder="Name of new room.." />
+                  <input type="submit" value="Create Room!" className="room-button" />
+                </div>
+              </form>
             </div>
-            <div className="login-form">
-              <input type="submit" value="Create Room!" className="btn btn-primary" />
-            </div>
-        </form>
-      </div>
+        </div>
+      </di>
     )
   }
 }
