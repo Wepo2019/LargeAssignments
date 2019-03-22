@@ -21,6 +21,7 @@ class Rooms extends React.Component {
         console.log("The user joined the default lobby!");
         this.props.findRoom(this.state.currentRoom);
         socket.emit("rooms");
+        socket.emit("updateusers");
       }
       else {
         console.log("Something went wrong while trying to join the default lobby");
@@ -32,7 +33,6 @@ class Rooms extends React.Component {
     super(props);
     this.state = {
       roomlist: {},
-      userlist: {},
       createRoomName: "",
       currentRoom: "lobby"
     };
@@ -92,7 +92,7 @@ class Rooms extends React.Component {
     //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
-        roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
+        roomsHTML.push(<li key={"ul-" + k}><a href="url" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
         //Rendering operators for each room
         for(var o in this.state.roomlist[k].ops) {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
@@ -104,7 +104,7 @@ class Rooms extends React.Component {
         //Rendering users for each room
         for(var u in this.state.roomlist[k].users) {
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
+            roomsUsersHTML.push(<li className="user-in-room" key={ "us-" + u + k }>User: { u }</li>);
           }
         }
         temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
@@ -116,7 +116,7 @@ class Rooms extends React.Component {
 
     return (
       <div>
-        <div className="room-form">1
+        <div className="room-form">
             <div className="black-form">
               <h3>Chat rooms -  { this.state.currentRoom }</h3>
                 <ul id="rooms-list" style={{listStyle: "none"}}>

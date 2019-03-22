@@ -1,13 +1,12 @@
 /* You can add styles here */
 
-#chatWindow {
-    float: right;
-}
+
+
 
 .chat-window h3 {
     position: relative;
     text-align: center;
-    color: yellow;
+    color: yellow; 
 }
 
 .chat-window .input-container {
@@ -16,16 +15,22 @@
     bottom: 0;
 }
 
-.chat-window .input-container input {
+.input-container input {
     width: 90%;
     padding: 5px;
+    position: relative;
+    bottom: 0;
+  
 }
 
-.chat-window .input-container button {
+.input-container button {
     width: 9%;
     padding: 5px;
     color: yellow;
     background-color: black;
+    position: relative;
+    bottom: 0;
+    
 }
 
 .chat-window {
@@ -41,9 +46,14 @@
     width: 800px;
     height: 600px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 50px;
     animation: move-shadow 1s ease-in alternate infinite;
-    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.message {
+    padding-top: 10px;
 }
 
 /* Login page */
@@ -67,31 +77,47 @@
 
 /* Room list */
 .room-form{
-    width: 850px;
+    margin-top: 19px;
+    width: 350px;
     height: 100%;
+    margin-left: 40px;
+}
+.room-form h3 {
+    margin-left: 5px;
+    padding-top: 10px;
 }
 .room-list-form input {
-    width: 30%;
+    width: 45%;
     padding: 5px;
+    margin-left: 5px;
+    font-size: 15px;
 }
 
 .room-button  {
     padding: 5px; 
     color: yellow;
     background-color: black;
+
 }
 
  a {
     color: yellow;
     text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.8;
+    font-size: 20px;
 }
 
-a:hover {
+a:hover  {
     color: yellow;
     opacity: 1;
     text-decoration: none;
 }
+
+a:active {
+    color: yellow;
+    opacity: 1;
+    text-decoration: none;
+  }
 
 ::placeholder {
     background-color: black;
@@ -114,19 +140,17 @@ input {
     margin-left: 10px;
     background-color: black;
     overflow-y: scroll;
+    overflow-x: scroll;
     margin-bottom: 10px;
     box-shadow: 5px 5px 10px 2px darkgray;
 }
 
 .black-form h3 {
-
     color: yellow;
-    padding-left: 33%;
-
 }
 
 .room-form {
-    
+    float: left;
 }
 
 .welcome2{
@@ -135,5 +159,12 @@ input {
     margin-bottom: 20px;
 }
 
+.user-in-room {
+    color: yellow;
+    font-size: 15px;
+    opacity: 0.8;
+}
 
-
+footer { 
+    display: block;
+  }
