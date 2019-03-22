@@ -6,7 +6,14 @@ import { findRoom } from '../../actions/roomActions';
 class Rooms extends React.Component {
   componentDidMount() {
     socket.emit("rooms");
+    
     socket.on("roomlist", roomlist => this.setState({ roomlist }));
+
+    //testing other person update server list
+    socket.on("updateusers", () => {
+      socket.emit("rooms");
+      socket.on("roomlist", roomlist => this.setState({ roomlist }));
+    });
     
     //join the default lobby
     socket.emit("joinroom", {room: "lobby"}, dasBool => {
@@ -53,6 +60,7 @@ class Rooms extends React.Component {
           console.log("The user failed to create and join a new room!");
         }
       });
+      //socket.emit("rooms");
       this.setState({ currentRoom: newRoom });
       console.log("Should change room states!");
       this.props.findRoom(newRoom);
@@ -117,7 +125,7 @@ class Rooms extends React.Component {
     }
 
     return (
-      <di>
+      <div>
        
         <div className="room-form">
         
@@ -136,7 +144,7 @@ class Rooms extends React.Component {
               </form>
             </div>
         </div>
-      </di>
+      </div>
     )
   }
 }

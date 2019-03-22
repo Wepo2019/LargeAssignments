@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class Chat extends React.Component {
 
   componentDidMount() {
-    console.log("Inside Chat Mount!");
+    console.log("This shit: " + this.props.room);
 
     //This shit expensive bro!
     //Complete rerender every time any update user shit happens
@@ -17,7 +17,14 @@ class Chat extends React.Component {
     //Find out how to re render chat when a new room is created
 
     socket.on('updatechat', (roomName, messageHistory) => {
-      this.setState({ messages: messageHistory });
+      console.log(roomName + "  " + this.state.currentRoom);
+      if(roomName == this.state.currentRoom) {
+        console.log("this is the room i am in, im going to render new messages!");
+        this.setState({ messages: messageHistory });
+      }
+      else {
+        console.log("this is not the room i am in!")
+      }
       this.setState({ currentRoom: this.props.room });
     });
 
@@ -26,10 +33,12 @@ class Chat extends React.Component {
     socket.on("updateusers", (room, roomsUsers, roomsOps) => {
       this.setState({ currentRoom: this.props.room });
 
+      /*
       socket.on('updatechat', (roomName, messageHistory) => {
         this.setState({ messages: messageHistory });
         this.setState({ currentRoom: this.props.room });
       });
+      */
     });
 
     this.setState({ currentRoom: this.props.room });
@@ -50,7 +59,7 @@ class Chat extends React.Component {
       return false; 
     }
     socket.emit('sendmsg', { roomName: this.props.room, msg: message });
-    this.setState({ message: '' , currentRoom: this.props.room.roomName});
+    this.setState({ message: '' , currentRoom: this.props.room});
   }
   
   /* TODO
