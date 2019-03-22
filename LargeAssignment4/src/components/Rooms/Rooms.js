@@ -7,6 +7,8 @@ class Rooms extends React.Component {
   componentDidMount() {
     socket.emit("rooms");
     socket.on("roomlist", roomlist => this.setState({ roomlist }));
+
+    
     //join the default lobby
     socket.emit("joinroom", {room: "lobby"}, dasBool => {
       if(dasBool) {
@@ -24,6 +26,7 @@ class Rooms extends React.Component {
     super(props);
     this.state = {
       roomlist: {},
+      userlist: {},
       createRoomName: "",
       currentRoom: "lobby"
     };
@@ -73,6 +76,14 @@ class Rooms extends React.Component {
     this.props.findRoom(e.target.name);
   }
 
+  // TODO
+  /**
+   * Þurfum hérna að gera lista af notendum undir hverju lobbyi, 
+   * og render það
+   */
+
+
+
   render() {
     var roomsHTML = [];
     var k;
@@ -81,9 +92,14 @@ class Rooms extends React.Component {
         roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
       }
     }
+
+    var roomUsersHTML = [];
+    var u;
+
+
     return (
       <div>
-        <h3>Chat.IO</h3>
+        <h3>Current Room - { this.state.currentRoom }</h3>
         <ul id="rooms-list" style={{listStyle: "none"}}>
           {roomsHTML}
         </ul>
