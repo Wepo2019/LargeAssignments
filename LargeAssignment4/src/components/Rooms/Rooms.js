@@ -85,32 +85,58 @@ class Rooms extends React.Component {
 
   render() {
     var roomsHTML = [];
+    var roomsUsersHTML = [];
+    var roomsOpsHTML = [];
+    var temp = [];
     var k;
+    //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
         roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
+        //Rendering operators for each room
+        for(var o in this.state.roomlist[k].ops) {
+          if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
+            roomsOpsHTML.push(<li key={ "op-" + o + k }> + { o }</li>);
+          } 
+        }
+        temp.push(roomsOpsHTML);
+        roomsOpsHTML = [];
+        //Rendering users for each room
+        for(var u in this.state.roomlist[k].users) {
+          console.log("HALLO BTICH");
+          if(this.state.roomlist[k].users.hasOwnProperty(u)) {
+            console.log(u);
+            roomsUsersHTML.push(<li key={ "us-" + u + k }>{ u }</li>);
+          }
+        }
+        temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
+        roomsHTML.push(temp);
+        roomsUsersHTML = [];
+        temp = [];
       }
     }
 
-    var roomUsersHTML = [];
-    var u;
-
-
     return (
-      <div>
-        <h3>Current Room - { this.state.currentRoom }</h3>
-        <ul id="rooms-list" style={{listStyle: "none"}}>
-          {roomsHTML}
-        </ul>
-          <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
-            <div className="form-group">
-              <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } />
+      <di>
+       
+        <div className="room-form">
+        
+            <div className="black-form">
+              <h3>Chat rooms -  { this.state.currentRoom }</h3>
+                <ul id="rooms-list" style={{listStyle: "none"}}>
+                  {roomsHTML}
+                </ul>
+              </div>
+            <div className="test">
+              <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
+                <div className="room-list-form">
+                  <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } placeholder="Name of new room.." />
+                  <input type="submit" value="Create Room!" className="room-button" />
+                </div>
+              </form>
             </div>
-            <div className="login-form">
-              <input type="submit" value="Create Room!" className="btn btn-primary" />
-            </div>
-        </form>
-      </div>
+        </div>
+      </di>
     )
   }
 }
