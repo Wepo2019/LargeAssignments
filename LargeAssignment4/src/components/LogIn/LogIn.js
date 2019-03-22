@@ -48,13 +48,17 @@ class Login extends React.Component {
   render() {
     const { name } = this.state;
     return (
+      <div> 
+        <h1 className="welcome">Welcome to Chat.IO</h1>
+        <h2 className="please">Please choose your nickname before entering!</h2>
       <div className="text-center" style={{ marginTop: 40 }}>
         <form action="" onSubmit={e => this.onSubmit(e)} className="form-horizontal">
           <div className="login-form">
-            <input type="text" name="name" id="name" value={ name } onChange={e => this.onInput(e)} placeholder="Enter your nick here" />
-            <input type="submit" value="Login!" />
+            <input type="text" name="name" id="name" value={ name } onChange={e => this.onInput(e)}
+             placeholder="Enter your nick here.." /> <input type="submit" value="Login!" className="login-button"/>
           </div>
         </form>
+      </div>
       </div>
     )
   }

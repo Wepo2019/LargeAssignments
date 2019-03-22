@@ -78,24 +78,32 @@ class Rooms extends React.Component {
     var k;
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
-        roomsHTML.push(<li key={"ul-" + k}><button type="button" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</button></li>);
+        roomsHTML.push(<li key={"ul-" + k}><a href="url" className="room-link" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
       }
     }
+
+  
     return (
-      <div>
-        <h3>Chat.IO</h3>
-        <ul id="rooms-list" style={{listStyle: "none"}}>
-          {roomsHTML}
-        </ul>
-          <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
-            <div className="form-group">
-              <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } />
+      <di>
+       
+        <div className="room-form">
+        
+            <div className="black-form">
+              <h3>Chat rooms</h3>
+                <ul id="rooms-list" style={{listStyle: "none"}}>
+                  {roomsHTML}
+                </ul>
+              </div>
+            <div className="test">
+              <form action="" onSubmit={ e => this.onCreateNewRoom(e) } className="form-horizontal">
+                <div className="room-list-form">
+                  <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } placeholder="Name of new room.." />
+                  <input type="submit" value="Create Room!" className="room-button" />
+                </div>
+              </form>
             </div>
-            <div className="login-form">
-              <input type="submit" value="Create Room!" className="btn btn-primary" />
-            </div>
-        </form>
-      </div>
+        </div>
+      </di>
     )
   }
 }
