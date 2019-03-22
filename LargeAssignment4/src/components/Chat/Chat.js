@@ -40,11 +40,18 @@ class Chat extends React.Component {
     this.setState({ message: '' });
   }
 
+  /**
+   * Vill fá chatRoomName renderast á milli herbergja ég er heimskur
+   * ÉG ekki skilja HELP
+   */
+
   render() {
     const { messages, message } = this.state;
+    console.log("inni render i chat.js")
+    console.log(this.props.room);
     return (
       <div className="chat-window">
-      <h3>Chatio</h3>
+      <h3>Chat.IO - CURRENTROOM</h3>
         <div className="messages">
         { messages.map(m => <div key={ m.timestamp } className="message">{ m.message }</div>) }
         </div>
