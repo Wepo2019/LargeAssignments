@@ -1,7 +1,7 @@
 import { FIND_ROOM } from '../constants/constants';
 
 const initialState = {
-    roomName: ''
+    roomName: "lobby"
 };
 
 export default function(state = initialState, action) {

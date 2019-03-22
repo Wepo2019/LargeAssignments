@@ -19,7 +19,6 @@ class Chat extends React.Component {
     socket.on('updatechat', (roomName, messageHistory) => {
       this.setState({ messages: messageHistory });
     });
-
     this.setState({ currentRoom: this.props.room });
   }
 
@@ -37,28 +36,27 @@ class Chat extends React.Component {
       return false; 
     }
     socket.emit('sendmsg', { roomName: this.props.room, msg: message });
-    this.setState({ message: '' });
+    this.setState({ message: '' , currentRoom: this.props.room.roomName});
   }
-
-  /**
-   * Vill fá chatRoomName renderast á milli herbergja ég er heimskur
-   * ÉG ekki skilja HELP
+  
+  /* TODO
+   * 
+   * Rendera Userlist til að senda primsg
+   * Senda priMsg
    */
 
   render() {
     const { messages, message } = this.state;
-    console.log("inni render i chat.js")
-    console.log(this.props.room);
     return (
       <div className="chat-window">
-      <h3>Chat.IO - CURRENTROOM</h3>
-        <div className="messages">
-        { messages.map(m => <div key={ m.timestamp } className="message">{ m.message }</div>) }
-        </div>
-        <div className="input-container">
-            <input type="text" value={ message } onChange={e => this.setState({ message: e.target.value })} placeholder="Enter your message here..." />
-            <button type="button" onClick={() => this.sendMessage(message)}>Send</button>
-        </div>
+      <h3>Chat.IO</h3>
+            <div className="messages">
+            { messages.map(m => <div key={ m.timestamp } className="message">{ m.message }</div>) }
+            </div>
+            <div className="input-container">
+                <input type="text" value={ message } onChange={e => this.setState({ message: e.target.value })} placeholder="Enter your message here..." />
+                <button type="button" onClick={() => this.sendMessage(message)}>Send</button>
+            </div>
       </div>
     )
   }
