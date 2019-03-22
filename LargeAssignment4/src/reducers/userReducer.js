@@ -1,4 +1,4 @@
-import { ADD_USER } from '../constants';
+import { ADD_USER } from '../constants/constants';
 
 const initialState = {
     name: ''

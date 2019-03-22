@@ -3,10 +3,24 @@ import { socket } from '../../services/socketService';
 import { connect } from 'react-redux';
 
 class Chat extends React.Component {
+
   componentDidMount() {
+    console.log("Inside Chat Mount!");
+
+    //This shit expensive bro!
+    //Complete rerender every time any update user shit happens
+    //Might have to test what happens when two users are in a room and one leaves
+    //socket.on("updateusers", (newRoom, roomUsers, roomOps) => {
+    //  this.setState({ messages : [] });
+    //});
+
+    //Find out how to re render chat when a new room is created
+
     socket.on('updatechat', (roomName, messageHistory) => {
       this.setState({ messages: messageHistory });
-  });
+    });
+
+    this.setState({ currentRoom: this.props.room });
   }
 
   constructor(props) {

@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from './reducers';
+import reducers from './reducers/combinedReducers';
 
 ReactDOM.render(
     <Provider store={ createStore(reducers) }>

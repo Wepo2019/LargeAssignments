@@ -1,4 +1,4 @@
-import { FIND_ROOM } from '../constants';
+import { FIND_ROOM } from '../constants/constants';
 
 export const findRoom = (roomName) => {
   console.log("Room name: " + roomName);
