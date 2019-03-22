@@ -6,8 +6,8 @@
 
 .chat-window h3 {
     position: relative;
-    top: -10px;
     text-align: center;
+    color: yellow;
 }
 
 .chat-window .input-container {
@@ -17,12 +17,15 @@
 }
 
 .chat-window .input-container input {
-    width: 80%;
+    width: 90%;
     padding: 5px;
 }
 
 .chat-window .input-container button {
+    width: 9%;
     padding: 5px;
+    color: yellow;
+    background-color: black;
 }
 
 .chat-window {
@@ -32,7 +35,7 @@
     box-shadow: 5px 5px 10px 2px darkgray;
     background-size: 100% 40px, auto;
     background-image:
-        linear-gradient(to top right, white, white 50px, pink),
+        linear-gradient(to top right, black, black, 50px, black),
         linear-gradient(to bottom, black, black 1px, white 1px, white 40px, black 40px, black 42px, white 42px, white);
     background-repeat: no-repeat;
     width: 800px;
@@ -41,4 +44,15 @@
     margin-top: 40px;
     animation: move-shadow 1s ease-in alternate infinite;
     overflow: hidden;
+}
+
+.login-form button {
+    width: 9%;
+    padding: 5px;
+    color: yellow;
+    background-color: black;
+}
+.login-form input {
+    width: 20%;
+    padding: 5px;
 }

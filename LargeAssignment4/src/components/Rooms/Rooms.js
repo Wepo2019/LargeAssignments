@@ -91,7 +91,7 @@ class Rooms extends React.Component {
             <div className="form-group">
               <input type="text" name="createRoomName" id="createRoomName" value={ this.state.createRoomName } onChange={ e => this.onInput(e) } />
             </div>
-            <div className="form-group">
+            <div className="login-form">
               <input type="submit" value="Create Room!" className="btn btn-primary" />
             </div>
         </form>
