@@ -58,6 +58,9 @@ class Login extends React.Component {
              placeholder="Enter your nick here.." /> <input type="submit" value="Login!" className="login-button"/>
           </div>
         </form>
+        <div className="login-smile">
+            <img src="../../broskall.png" className="chat-logo" style={{ width: 400 }}></img>
+        </div>
       </div>
       </div>
     )
