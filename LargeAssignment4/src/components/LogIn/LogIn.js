@@ -61,7 +61,7 @@ class Login extends React.Component {
           </div>
         </form>
         <div className="login-smile">
-            <img src="../../broskall.png" className="chat-logo" style={{ width: 400 }}></img>
+            <img src="../../broskall3.png" className="chat-logo" style={{ width: 400 }}></img>
         </div>
       </div>
       </div>
@@ -73,7 +73,6 @@ class Login extends React.Component {
 Login.propTypes = {
   addUser: PropTypes.func.isRequired
 };  
-
 
 
 export default connect(null, { addUser })(Login);
