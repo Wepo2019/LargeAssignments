@@ -4,6 +4,10 @@ import { socket } from '../../services/socketService';
 
 import Rooms from '../Rooms/Rooms';
 import Chat from '../Chat/Chat';
+import PropTypes from 'prop-types';
+
+
+
 
 class Chatio extends React.Component {
 
@@ -30,5 +34,11 @@ const mapStateToProps = ({ user }) => {
     user
   };
 };
+
+
+Chatio.propTypes = {
+  user: PropTypes.string.isRequired
+};
+
 
 export default connect(mapStateToProps)(Chatio);

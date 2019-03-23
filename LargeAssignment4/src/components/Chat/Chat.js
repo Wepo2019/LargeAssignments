@@ -1,6 +1,8 @@
 import React from 'react';
 import { socket } from '../../services/socketService';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 
 class Chat extends React.Component {
 
@@ -93,6 +95,12 @@ const mapStateToProps = ({ user, room }) => {
     room
   };
 };
+
+Chat.propTypes = {
+  user: PropTypes.string.isRequired,
+  room: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired  
+};
+
 
 //Needs connections to: Users, Messages for current room, Current room name
 export default connect(mapStateToProps)(Chat);

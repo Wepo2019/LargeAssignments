@@ -3,6 +3,8 @@ import { socket } from '../../services/socketService';
 import { connect } from 'react-redux';
 import { findRoom } from '../../actions/roomActions';
 import PrivateMessages from '../PrivateMessages/PrivateMessages';
+import PropTypes from 'prop-types';
+
 
 class Rooms extends React.Component {
   componentDidMount() {
@@ -168,5 +170,10 @@ class Rooms extends React.Component {
     )
   }
 }
+
+Rooms.propTypes = {
+  findRoom: PropTypes.func.isRequired
+};
+
 
 export default connect(null, { findRoom })(Rooms);
