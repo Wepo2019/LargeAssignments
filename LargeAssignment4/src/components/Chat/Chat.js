@@ -73,7 +73,7 @@ class Chat extends React.Component {
     return (
       <div>
       <div className="chat-window">
-      <h3>Chat.IO</h3>
+      <h3>Chat.IO </h3>
             <div className="messages">
                 { messages.map(m => (<div key={ m.timestamp } className="message">{new Date(m.timestamp).toLocaleTimeString()} - { m.nick }:   { m.message }</div>)) }
             </div>
