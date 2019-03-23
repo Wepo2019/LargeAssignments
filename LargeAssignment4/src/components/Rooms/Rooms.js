@@ -132,7 +132,7 @@ class Rooms extends React.Component {
       <div>
         <div className="room-form">
             <div className="black-form">
-              <h3>Chat rooms -  { this.state.currentRoom }</h3>
+              <h3>Chat rooms</h3>
                 <ul id="rooms-list" style={{listStyle: "none"}}>
                   {roomsHTML}
                 </ul>
@@ -145,6 +145,9 @@ class Rooms extends React.Component {
                 </div>
               </form>
             </div>
+        </div>
+        <div>
+            <h3 className="current-chat"> You are currently in Chat Room - { this.state.currentRoom }</h3>
         </div>
       </div>
     )
