@@ -49,9 +49,12 @@ class PrivateMessages extends React.Component {
         const fromHtml = [];
         if(this.state.showAndTell.recved !== "") {
             fromHtml.push(
-                <div key="0" style={{borderStyle: "solid"}}>
-                    <p key="1">From {this.state.showAndTell.person}:</p>
-                    <p key="2">{this.state.showAndTell.recved}</p>
+                <div>
+                    
+                    <p key="0">You got a private message from {this.state.showAndTell.person}</p>
+                    <div key="1" className="recved">
+                        <p key="2">{this.state.showAndTell.recved}</p>
+                    </div>
                 </div>
             );
         }
@@ -66,8 +69,7 @@ class PrivateMessages extends React.Component {
                         <p>Send message to { this.state.showAndTell.person }?</p>
                         <form action="" onSubmit={ e => this.onSendMessage(e) } className="form-horizontal">
                             <div className="room-list-form">
-                                <textarea name="privateMessage" rows="7" cols="143" value={ this.state.privateMessage } onChange={ e => this.onInput(e) } placeholder="Enter message..."></textarea>
-                                
+                                <textarea name="privateMessage" className="text-area"rows="7" cols="60" value={ this.state.privateMessage } onChange={ e => this.onInput(e) } placeholder="Enter message..."></textarea>
                             </div>
                             <input type="submit" value="Send" className="room-button" />
                         </form>

@@ -1,8 +1,5 @@
 /* You can add styles here */
 
-
-
-
 .chat-window h3 {
     position: relative;
     text-align: center;
@@ -11,20 +8,18 @@
 
  .input-container {
     position: absolute;
-    width: 100%;
-    
+    width: 100%; 
 }
+
 .input-container {
     width: 800px;
-    margin-left: 38.8%;
+    margin-left: 40%;
     margin-top: 10px;
 }
 
 .input-container input {
     width: 90%;
     padding: 5px;
-   
-  
 }
 
 .input-container button {
@@ -49,13 +44,13 @@
         linear-gradient(to bottom, black, black 1px, white 1px, white 40px, black 40px, black 42px, white 42px, white);
     background-repeat: no-repeat;
     width: 800px;
-    height: 600px;
+    height: 500px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     animation: move-shadow 1s ease-in alternate infinite;
     overflow-y: scroll;
+    margin-left: 40%;
 }
-
 
 .message {
     padding-top: 10px;
@@ -87,10 +82,12 @@
     height: 100%;
     margin-left: 40px;
 }
+
 .room-form h3 {
     margin-left: 5px;
     padding-top: 10px;
 }
+
 .room-list-form input {
     width: 45%;
     padding: 5px;
@@ -102,7 +99,6 @@
     padding: 5px; 
     color: yellow;
     background-color: black;
-
 }
 
  a {
@@ -122,7 +118,7 @@ a:active {
     color: yellow;
     opacity: 1;
     text-decoration: none;
-  }
+}
 
 ::placeholder {
     background-color: black;
@@ -135,12 +131,8 @@ input {
     box-shadow: 5px 5px 10px 2px darkgray;
 }
 
-.test {
-    margin-left: 5px;
-}
-
 .black-form {
-    width: 500px;
+    width: 400px;
     height: 90%;
     margin-left: 10px;
     background-color: black;
@@ -173,7 +165,7 @@ input {
 }
 
 .current-chat {
-    margin-left: 39%;
+    margin-left: 40%;
     color: black;
     padding-top: 30px;
 }
@@ -204,7 +196,7 @@ input {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
   }
   
   /* The Close Button */
@@ -221,3 +213,19 @@ input {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .text-area {
+    background-color: black;
+    color: yellow;
+    box-shadow: 5px 5px 10px 2px darkgray;
+    border: none;
+  }
+
+  .recved {
+    background-color: black;
+    color: yellow;
+    width: 91.5%;
+    box-shadow: 5px 5px 10px 2px darkgray;
+  }
+
+  
