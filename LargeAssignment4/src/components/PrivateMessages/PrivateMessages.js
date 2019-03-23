@@ -19,7 +19,6 @@ class PrivateMessages extends React.Component {
 
     closePMs(e) {
         e.preventDefault();
-        console.log("close clicked");
         this.setState({ showAndTell: {show: "none", recved: ""} });
         this.state.showAndTell.parentCallback();
     } 
@@ -35,12 +34,10 @@ class PrivateMessages extends React.Component {
         const msgObj = { nick: this.state.showAndTell.person, message: this.state.privateMessage }
         socket.emit("privatemsg", msgObj, success => {
             if(success) {
-                console.log("message sent!");
                 this.setState({ showAndTell: {show: "none", recved: ""}, privateMessage: "" });
                 this.state.showAndTell.parentCallback();
             }
             else {
-                console.log("some shit went wrong bro");
             }
         });
     }

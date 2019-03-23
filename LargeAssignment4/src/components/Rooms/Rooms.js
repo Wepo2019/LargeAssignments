@@ -12,7 +12,6 @@ class Rooms extends React.Component {
     
     socket.on("roomlist", roomlist => this.setState({ roomlist }));
 
-    //testing other person update server list
     socket.on("updateusers", () => {
       socket.emit("rooms");
       socket.on("roomlist", roomlist => this.setState({ roomlist }));
@@ -83,7 +82,6 @@ class Rooms extends React.Component {
       clickedName: "",
       recv_message: "",
       clearRecentPM: () => {
-        console.log("callback baby");
         this.setState({ recv_message: "", showPMs: "none" });
       }
     };
@@ -111,9 +109,7 @@ class Rooms extends React.Component {
           console.log("The user failed to create and join a new room!");
         }
       });
-      //socket.emit("rooms");
       this.setState({ currentRoom: newRoom });
-      console.log("Should change room states!");
       this.props.findRoom(newRoom);
     }
   }
@@ -131,7 +127,6 @@ class Rooms extends React.Component {
       }
     });
 
-    console.log("not banned, setting new room to clicked");
     this.setState({ currentRoom: e.target.name });
     this.props.findRoom(e.target.name);
   }
@@ -147,24 +142,23 @@ class Rooms extends React.Component {
     const kickedObj = { user: e.target.name, room: this.state.currentRoom };
     socket.emit("kick", kickedObj, success => {
       if(success) {
-        console.log("kicked this bitch");
+        console.log("kicked user");
       }
       else {
-        console.log("failed to kick this bitch :(");
+        console.log("failed to kick this user");
       }
     });
   }
 
   banUser(e) {
     e.preventDefault();
-    console.log(e.target.name);
     const banObj = { user: e.target.name, room: this.state.currentRoom }
     socket.emit("ban", banObj, success => {
       if(success) {
-        console.log("banned this bitch");
+        console.log("banned this user");
       }
       else {
-        console.log("failed to ban this bitch :(");
+        console.log("failed to ban this user :(");
       }
     });
   }
@@ -174,10 +168,10 @@ class Rooms extends React.Component {
     const opObj = { user: e.target.name, room: this.state.currentRoom };
     socket.emit("op", opObj, success => {
       if(success) {
-        console.log("opped this bitch");
+        console.log("opped this user");
       }
       else {
-        console.log("failed to op this bitch :(");
+        console.log("failed to op this user");
       }
     });
   }
@@ -269,6 +263,7 @@ class Rooms extends React.Component {
 }
 
 Rooms.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   findRoom: PropTypes.func.isRequired
 };
 

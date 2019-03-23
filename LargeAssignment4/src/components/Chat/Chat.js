@@ -7,32 +7,14 @@ import PropTypes from 'prop-types';
 class Chat extends React.Component {
 
   componentDidMount() {
-    console.log("This shit: " + this.props.room);
-
-    //This shit expensive bro!
-    //Complete rerender every time any update user shit happens
-    //Might have to test what happens when two users are in a room and one leaves
-    //socket.on("updateusers", (newRoom, roomUsers, roomOps) => {
-    //  this.setState({ messages : [] });
-    //});
-
-    //Find out how to re render chat when a new room is created
-
-
-  
     socket.on('updatechat', (roomName, messageHistory) => {
-      console.log(roomName + "  " + this.state.currentRoom);
       if(roomName == this.state.currentRoom) {
-        console.log("this is the room i am in, im going to render new messages!");
         this.setState({ messages: messageHistory });
       }
       else {
-        console.log("this is not the room i am in!")
       }
       this.setState({ currentRoom: this.props.room });
     });
-
-    //To do: how to get second socket persons room list to update
 
     this.setState({ currentRoom: this.props.room });
 

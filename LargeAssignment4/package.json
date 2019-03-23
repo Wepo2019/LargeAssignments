@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "webpack-dev-server --config ./webpack.config.js --mode development",
 		"build": "./node_modules/.bin/webpack",
-		"tests": "echo \"Error: no test specified\" && exit 1"
+		"tests": "echo \"Error: no test specified\" && exit 1",
+		"watch": "./node_modules/.bin/webpack --watch"
 	},
 	"keywords": [],
 	"author": "UniqueKeys",
