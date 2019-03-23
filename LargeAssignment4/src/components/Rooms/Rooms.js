@@ -83,14 +83,6 @@ class Rooms extends React.Component {
     this.props.findRoom(e.target.name);
   }
 
-  // TODO
-  /**
-   * Þurfum hérna að gera lista af notendum undir hverju lobbyi, 
-   * og render það
-   */
-
-
-
   render() {
     var roomsHTML = [];
     var roomsUsersHTML = [];
@@ -112,7 +104,6 @@ class Rooms extends React.Component {
         //Rendering users for each room
         for(var u in this.state.roomlist[k].users) {
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            console.log(u);
             roomsUsersHTML.push(<li className="user-in-room" key={ "us-" + u + k }>User: { u }</li>);
           }
         }
