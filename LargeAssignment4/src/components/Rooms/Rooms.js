@@ -2,6 +2,7 @@ import React from 'react';
 import { socket } from '../../services/socketService';
 import { connect } from 'react-redux';
 import { findRoom } from '../../actions/roomActions';
+import PrivateMessages from '../PrivateMessages/PrivateMessages';
 
 class Rooms extends React.Component {
   componentDidMount() {
@@ -27,6 +28,14 @@ class Rooms extends React.Component {
         console.log("Something went wrong while trying to join the default lobby");
       }
     });
+
+    socket.on("recv_privatemsg", (recv_username, recv_msg) => {
+      this.setState({
+        showPMs: "block", 
+        recv_message: recv_msg, 
+        clickedName: recv_username
+      });
+    });
   }
 
   constructor(props) {
@@ -35,7 +44,9 @@ class Rooms extends React.Component {
       roomlist: {},
       createRoomName: "",
       currentRoom: "lobby",
-      privateMessage: "",
+      showPMs: "none",
+      clickedName: "",
+      recv_message: "",
     };
   }
 
@@ -84,10 +95,9 @@ class Rooms extends React.Component {
     this.props.findRoom(e.target.name);
   }
 
-  sendPrivateMessage(e) {
+  pmsClicked(e) {
     e.preventDefault();
-    console.log(e);
-    console.log("Sending message");
+    this.setState({ showPMs: "block", clickedName: e.target.name})
   }
 
   render() {
@@ -105,7 +115,7 @@ class Rooms extends React.Component {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
             roomsOpsHTML.push(
             <li className="user-in-room" key={ "op-" + o + k }>
-             <a href={o} key={ "op-" + o + k } name={ o }>+ { o } </a>
+             <a href={o} key={ "op-" + o + k } name={ o } onClick={ e => this.pmsClicked(e) }>+ { o } </a>
             </li>
             );
           } 
@@ -119,7 +129,7 @@ class Rooms extends React.Component {
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
             roomsUsersHTML.push(
             <li className="user-in-room" key={ "us-" + u + k }>
-              <a href={u} key={ "us-" + u + k } name={ u }>- { u }</a>
+              <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
             </li>
             );
           }
@@ -153,6 +163,7 @@ class Rooms extends React.Component {
         <div>
             <h3 className="current-chat"> You are currently in Chat Room - { this.state.currentRoom }</h3>
         </div>
+        <PrivateMessages showAndTell={ { recved: this.state.recv_message ,show: this.state.showPMs, person: this.state.clickedName} } />
       </div>
     )
   }
