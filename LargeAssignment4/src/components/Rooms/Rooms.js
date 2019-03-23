@@ -103,7 +103,11 @@ class Rooms extends React.Component {
         //Rendering operators for each room
         for(var o in this.state.roomlist[k].ops) {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
-            roomsOpsHTML.push(<li key={ "op-" + o + k }> + { o }</li>);
+            roomsOpsHTML.push(
+            <li className="user-in-room" key={ "op-" + o + k }>
+             <a href={o} key={ "op-" + o + k } name={ o }>+ { o } </a>
+            </li>
+            );
           } 
         }
         temp.push(roomsOpsHTML);
@@ -115,14 +119,14 @@ class Rooms extends React.Component {
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
             roomsUsersHTML.push(
             <li className="user-in-room" key={ "us-" + u + k }>
-              <a href={u} key={ "us-" + u + k } name={ u } > User: { u } </a>
+              <a href={u} key={ "us-" + u + k } name={ u }>- { u }</a>
             </li>
             );
           }
         }
     
-        temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
-        roomsHTML.push(temp);
+        temp.push(roomsUsersHTML);
+        roomsHTML.push(<ul key={ "temp" + k } style={{listStyle: "none"}}>{ temp }</ul>);
         roomsUsersHTML = [];
         temp = [];
       }
