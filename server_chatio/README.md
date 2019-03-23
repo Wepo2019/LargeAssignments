@@ -44,6 +44,9 @@ an object containing the following properties:
 a callback function which accepts two parameters:  a boolean parameter, stating if the request was successful or not. and if not (due to password protection or because of something else), the reason why the join wasn't successful.
 The server responds by emitting the following events: "updateusers" (to all participants in the room), "updatetopic" (to the newly joined user, not required to handle this), "servermessage" with the first parameter set to "join" ( to all participants in the room, informing about the newly added user). If a new room is being created, the message "updatechat" is also emitted.
 
+**Changes made to joinroom**
+We added that when you joinroom and the room is undefined in other words you create the room, the socket emits updatechat.
+
 **sendmsg**
 Should get called when a user wants to send a message to a room.
 Parameters:
