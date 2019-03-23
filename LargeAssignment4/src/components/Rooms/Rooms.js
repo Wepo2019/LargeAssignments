@@ -22,13 +22,29 @@ class Rooms extends React.Component {
       if(this.state.name == kickedUser) {
         socket.emit("joinroom", {room: "lobby"}, dasBool => {
           if(dasBool) {
-            console.log("The user joined the default lobby!");
+            console.log("The user joined the default lobby after being kicked!");
             this.setState({ currentRoom: "lobby" });
             socket.emit("rooms");
             socket.emit("updateusers");
           }
           else {
-            console.log("Something went wrong while trying to join the default lobby");
+            console.log("Something went wrong while trying to join the default lobby after being kicked");
+          }
+        });
+      }
+    });
+
+    socket.on("banned", (bannedRoom, bannedUser, whoBanned) => {
+      if(this.state.name == bannedUser) {
+        socket.emit("joinroom", {room: "lobby"}, dasBool => {
+          if(dasBool) {
+            console.log("The user joined the default lobby after being banned!");
+            this.setState({ currentRoom: "lobby" });
+            socket.emit("rooms");
+            socket.emit("updateusers");
+          }
+          else {
+            console.log("Something went wrong while trying to join the default lobby after being banned");
           }
         });
       }
@@ -85,7 +101,7 @@ class Rooms extends React.Component {
     const newRoom = this.state.createRoomName;
     if(newRoom !== "") {
       socket.emit("partroom", this.state.currentRoom);
-      socket.emit("joinroom", { room: newRoom }, success => {
+      socket.emit("joinroom", { room: newRoom }, (success, reason) => {
         if(success) {
           this.setState({ createRoomName: "" });
           console.log("The user to created and joined a new room as an op!");
@@ -105,7 +121,7 @@ class Rooms extends React.Component {
   joinNewRoom(e) {
     e.preventDefault();
     socket.emit("partroom", this.state.currentRoom);
-    socket.emit("joinroom", { room: e.target.name }, success => {
+    socket.emit("joinroom", { room: e.target.name }, (success, reason) => {
       if(success) {
         socket.emit("rooms");
         console.log("User joined a new existing room");
@@ -114,6 +130,8 @@ class Rooms extends React.Component {
         console.log("User failed to join a new existing room");
       }
     });
+
+    console.log("not banned, setting new room to clicked");
     this.setState({ currentRoom: e.target.name });
     this.props.findRoom(e.target.name);
   }
@@ -140,6 +158,15 @@ class Rooms extends React.Component {
   banUser(e) {
     e.preventDefault();
     console.log(e.target.name);
+    const banObj = { user: e.target.name, room: this.state.currentRoom }
+    socket.emit("ban", banObj, success => {
+      if(success) {
+        console.log("banned this bitch");
+      }
+      else {
+        console.log("failed to ban this bitch :(");
+      }
+    });
   }
 
   render() {
@@ -151,6 +178,9 @@ class Rooms extends React.Component {
     //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
+        if(this.state.roomlist[k].banned.hasOwnProperty(this.state.name)) {
+          continue;
+        }
         roomsHTML.push(<li key={"ul-" + k}><a href={k} key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
         //Rendering operators for each room
         var amOp = false;

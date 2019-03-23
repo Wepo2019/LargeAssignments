@@ -18,6 +18,8 @@ class Chat extends React.Component {
 
     //Find out how to re render chat when a new room is created
 
+
+  
     socket.on('updatechat', (roomName, messageHistory) => {
       console.log(roomName + "  " + this.state.currentRoom);
       if(roomName == this.state.currentRoom) {
@@ -32,18 +34,11 @@ class Chat extends React.Component {
 
     //To do: how to get second socket persons room list to update
 
-    socket.on("updateusers", (room, roomsUsers, roomsOps) => {
-      this.setState({ currentRoom: this.props.room });
-
-      /*
-      socket.on('updatechat', (roomName, messageHistory) => {
-        this.setState({ messages: messageHistory });
-        this.setState({ currentRoom: this.props.room });
-      });
-      */
-    });
-
     this.setState({ currentRoom: this.props.room });
+
+    socket.on("updateusers", (room, roomsUsers, roomsOps) => {
+      this.setState({ currentRoom: room });
+    });
   }
 
   constructor(props) {
@@ -63,12 +58,6 @@ class Chat extends React.Component {
     socket.emit('sendmsg', { roomName: this.props.room, msg: message });
     this.setState({ message: '' , currentRoom: this.props.room});
   }
-  
-  /* TODO
-   * 
-   * Rendera Userlist til að senda primsg
-   * Senda priMsg
-   */
 
   render() {
     const { messages, message } = this.state;
@@ -101,6 +90,4 @@ Chat.propTypes = {
   room: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired  
 };
 
-
-//Needs connections to: Users, Messages for current room, Current room name
 export default connect(mapStateToProps)(Chat);
