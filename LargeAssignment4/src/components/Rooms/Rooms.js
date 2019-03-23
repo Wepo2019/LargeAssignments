@@ -34,7 +34,8 @@ class Rooms extends React.Component {
     this.state = {
       roomlist: {},
       createRoomName: "",
-      currentRoom: "lobby"
+      currentRoom: "lobby",
+      privateMessage: "",
     };
   }
 
@@ -83,6 +84,12 @@ class Rooms extends React.Component {
     this.props.findRoom(e.target.name);
   }
 
+  sendPrivateMessage(e) {
+    e.preventDefault();
+    console.log(e);
+    console.log("Sending message");
+  }
+
   render() {
     var roomsHTML = [];
     var roomsUsersHTML = [];
@@ -92,7 +99,7 @@ class Rooms extends React.Component {
     //Rendering all rooms in roomlist
     for(k in this.state.roomlist) {
       if(this.state.roomlist.hasOwnProperty(k)) {
-        roomsHTML.push(<li key={"ul-" + k}><a href="url" key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
+        roomsHTML.push(<li key={"ul-" + k}><a href={k} key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
         //Rendering operators for each room
         for(var o in this.state.roomlist[k].ops) {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
@@ -102,11 +109,18 @@ class Rooms extends React.Component {
         temp.push(roomsOpsHTML);
         roomsOpsHTML = [];
         //Rendering users for each room
+        var i = 0;
         for(var u in this.state.roomlist[k].users) {
+          i++;
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            roomsUsersHTML.push(<li className="user-in-room" key={ "us-" + u + k }>User: { u }</li>);
+            roomsUsersHTML.push(
+            <li className="user-in-room" key={ "us-" + u + k }>
+              <a href={u} key={ "us-" + u + k } name={ u } > User: { u } </a>
+            </li>
+            );
           }
         }
+    
         temp.push(<ul key={ "temp" + k }>{ roomsUsersHTML }</ul>);
         roomsHTML.push(temp);
         roomsUsersHTML = [];
