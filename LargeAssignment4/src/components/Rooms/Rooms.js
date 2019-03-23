@@ -17,6 +17,22 @@ class Rooms extends React.Component {
       socket.emit("rooms");
       socket.on("roomlist", roomlist => this.setState({ roomlist }));
     });
+
+    socket.on("kicked", (kickedRoom, kickedUser, whoKicked) => {
+      if(this.state.name == kickedUser) {
+        socket.emit("joinroom", {room: "lobby"}, dasBool => {
+          if(dasBool) {
+            console.log("The user joined the default lobby!");
+            this.setState({ currentRoom: "lobby" });
+            socket.emit("rooms");
+            socket.emit("updateusers");
+          }
+          else {
+            console.log("Something went wrong while trying to join the default lobby");
+          }
+        });
+      }
+    });
     
     //join the default lobby
     socket.emit("joinroom", {room: "lobby"}, dasBool => {
@@ -43,6 +59,7 @@ class Rooms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: this.props.user,
       roomlist: {},
       createRoomName: "",
       currentRoom: "lobby",
@@ -106,6 +123,25 @@ class Rooms extends React.Component {
     this.setState({ showPMs: "block", clickedName: e.target.name})
   }
 
+  kickUser(e) {
+    e.preventDefault();
+    console.log(e.target.name);
+    const kickedObj = { user: e.target.name, room: this.state.currentRoom };
+    socket.emit("kick", kickedObj, success => {
+      if(success) {
+        console.log("kicked this bitch");
+      }
+      else {
+        console.log("failed to kick this bitch :(");
+      }
+    });
+  }
+
+  banUser(e) {
+    e.preventDefault();
+    console.log(e.target.name);
+  }
+
   render() {
     var roomsHTML = [];
     var roomsUsersHTML = [];
@@ -117,8 +153,10 @@ class Rooms extends React.Component {
       if(this.state.roomlist.hasOwnProperty(k)) {
         roomsHTML.push(<li key={"ul-" + k}><a href={k} key={"span-" + k} name={k} onClick={ e => this.joinNewRoom(e) }>{ k }</a></li>);
         //Rendering operators for each room
-        for(var o in this.state.roomlist[k].ops) {
+        var amOp = false;
+         for(var o in this.state.roomlist[k].ops) {
           if(this.state.roomlist[k].ops.hasOwnProperty(o)) {
+            if(o == this.state.name) amOp = true;
             roomsOpsHTML.push(
             <li className="user-in-room" key={ "op-" + o + k }>
              <a href={o} key={ "op-" + o + k } name={ o } onClick={ e => this.pmsClicked(e) }>+ { o } </a>
@@ -133,11 +171,22 @@ class Rooms extends React.Component {
         for(var u in this.state.roomlist[k].users) {
           i++;
           if(this.state.roomlist[k].users.hasOwnProperty(u)) {
-            roomsUsersHTML.push(
-            <li className="user-in-room" key={ "us-" + u + k }>
-              <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
-            </li>
-            );
+            if(k == this.state.currentRoom && amOp) {
+              roomsUsersHTML.push(
+                <li className="user-in-room" key={ "us-" + u + k }>
+                  <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
+                  <a href="Kick" style={{paddingLeft: "100px"}} key={ "kick-" + u + k } name={ u } onClick={ e => this.kickUser(e) }>&#9746;</a>
+                  <a href="Ban" key={ "ban-" + u + k } name={ u } onClick={ e => this.banUser(e) }>&#9940;</a>
+                </li>
+                );
+            }
+            else {
+              roomsUsersHTML.push(
+                <li className="user-in-room" key={ "us-" + u + k }>
+                  <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
+                </li>
+                );
+            }
           }
         }
     
@@ -179,5 +228,10 @@ Rooms.propTypes = {
   findRoom: PropTypes.func.isRequired
 };
 
+const mapStateToProps = ({ user }) => {
+  return {
+    user
+  };
+};
 
-export default connect(null, { findRoom })(Rooms);
+export default connect(mapStateToProps, { findRoom })(Rooms);
