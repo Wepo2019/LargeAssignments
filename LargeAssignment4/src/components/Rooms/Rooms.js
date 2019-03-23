@@ -205,8 +205,8 @@ class Rooms extends React.Component {
               roomsUsersHTML.push(
                 <li className="user-in-room" key={ "us-" + u + k }>
                   <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
-                  <button className="button5" key={ "kick-" + u + k } name={ u } onClick={ e => this.kickUser(e) }>Kick</button>
-                  <button className="button5" key={ "ban-" + u + k } name={ u } onClick={ e => this.banUser(e) }>Ban</button>
+                    <button className="button5" key={ "kick-" + u + k } name={ u } onClick={ e => this.kickUser(e) }>Kick</button>
+                    <button className="button5" key={ "ban-" + u + k } name={ u } onClick={ e => this.banUser(e) }>Ban</button>
                 </li>
                 );
             }
