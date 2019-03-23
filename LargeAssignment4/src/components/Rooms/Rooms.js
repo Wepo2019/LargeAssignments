@@ -169,6 +169,19 @@ class Rooms extends React.Component {
     });
   }
 
+  opUser(e) {
+    e.preventDefault();
+    const opObj = { user: e.target.name, room: this.state.currentRoom };
+    socket.emit("op", opObj, success => {
+      if(success) {
+        console.log("opped this bitch");
+      }
+      else {
+        console.log("failed to op this bitch :(");
+      }
+    });
+  }
+
   render() {
     var roomsHTML = [];
     var roomsUsersHTML = [];
@@ -207,6 +220,7 @@ class Rooms extends React.Component {
                   <a href={u} key={ "us-" + u + k } name={ u } onClick={ e => this.pmsClicked(e) }>- { u }</a>
                   <button className="button5" key={ "kick-" + u + k } name={ u } onClick={ e => this.kickUser(e) }>Kick</button>
                   <button className="button5" key={ "ban-" + u + k } name={ u } onClick={ e => this.banUser(e) }>Ban</button>
+                  <button className="button5" key={ "op-" + u + k } name={ u } onClick={ e => this.opUser(e) }>+</button>
                 </li>
                 );
             }
