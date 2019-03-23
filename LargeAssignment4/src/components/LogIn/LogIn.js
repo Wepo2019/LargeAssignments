@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
 import { addUser } from '../../actions/userActions';
+import PropTypes from 'prop-types';
+
 
 class Login extends React.Component {
 
@@ -66,5 +68,12 @@ class Login extends React.Component {
     )
   }
 }
+
+
+Login.propTypes = {
+  addUser: PropTypes.func.isRequired
+};  
+
+
 
 export default connect(null, { addUser })(Login);
