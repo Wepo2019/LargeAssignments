@@ -9,17 +9,21 @@
     color: yellow; 
 }
 
-.chat-window .input-container {
+ .input-container {
     position: absolute;
     width: 100%;
-    bottom: 0;
+    
+}
+.input-container {
+    width: 800px;
+    margin-left: 38.8%;
+    margin-top: 10px;
 }
 
 .input-container input {
     width: 90%;
     padding: 5px;
-    position: relative;
-    bottom: 0;
+   
   
 }
 
@@ -30,7 +34,8 @@
     background-color: black;
     position: relative;
     bottom: 0;
-    
+    box-shadow: 5px 5px 10px 2px darkgray;
+    margin-left: 1px;
 }
 
 .chat-window {
@@ -165,6 +170,3 @@ input {
     opacity: 0.8;
 }
 
-footer { 
-    display: block;
-  }

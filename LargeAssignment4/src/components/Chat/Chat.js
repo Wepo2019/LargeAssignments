@@ -71,16 +71,18 @@ class Chat extends React.Component {
   render() {
     const { messages, message } = this.state;
     return (
+      <div>
       <div className="chat-window">
       <h3>Chat.IO</h3>
             <div className="messages">
                 { messages.map(m => (<div key={ m.timestamp } className="message">{new Date(m.timestamp).toLocaleTimeString()} - { m.nick }:   { m.message }</div>)) }
             </div>
-              <div className="input-container">
-                  <input type="text" value={ message } onChange={e => this.setState({ message: e.target.value })} placeholder="Enter your message here..." />
-                  <button type="button" onClick={() => this.sendMessage(message)}>Send</button>
-              </div>   
       </div>
+      <div className="input-container">
+        <input type="text" value={ message } onChange={e => this.setState({ message: e.target.value })} placeholder="Enter your message here..." />
+        <button type="button" onClick={() => this.sendMessage(message)}>Send</button>
+      </div> 
+    </div>
     )
   }
 }
