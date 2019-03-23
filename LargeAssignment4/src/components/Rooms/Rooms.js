@@ -49,6 +49,10 @@ class Rooms extends React.Component {
       showPMs: "none",
       clickedName: "",
       recv_message: "",
+      clearRecentPM: () => {
+        console.log("callback baby");
+        this.setState({ recv_message: "", showPMs: "none" });
+      }
     };
   }
 
@@ -165,7 +169,7 @@ class Rooms extends React.Component {
         <div>
             <h3 className="current-chat"> You are currently in Chat Room - { this.state.currentRoom }</h3>
         </div>
-        <PrivateMessages showAndTell={ { recved: this.state.recv_message ,show: this.state.showPMs, person: this.state.clickedName} } />
+        <PrivateMessages showAndTell={ { recved: this.state.recv_message, show: this.state.showPMs, person: this.state.clickedName, parentCallback: this.state.clearRecentPM} } />
       </div>
     )
   }

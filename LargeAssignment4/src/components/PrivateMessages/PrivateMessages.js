@@ -21,6 +21,7 @@ class PrivateMessages extends React.Component {
         e.preventDefault();
         console.log("close clicked");
         this.setState({ showAndTell: {show: "none", recved: ""} });
+        this.state.showAndTell.parentCallback();
     } 
 
     onInput(e) {
@@ -36,6 +37,7 @@ class PrivateMessages extends React.Component {
             if(success) {
                 console.log("message sent!");
                 this.setState({ showAndTell: {show: "none", recved: ""}, privateMessage: "" });
+                this.state.showAndTell.parentCallback();
             }
             else {
                 console.log("some shit went wrong bro");
